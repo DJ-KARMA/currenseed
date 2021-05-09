@@ -1,38 +1,32 @@
 {
   "name": "project-3",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/react": "^11.2.6",
-    "@testing-library/user-event": "^12.8.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.2"
-  },
+  "version": "1.0.0",
+  "description": "A repository for Project 3, an online farmer's market.",
+  "main": "server/server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "cd server && npm start",
+    "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "heroku-postbuild": "cd client && npm run build"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.5.1",
+    "graphql": "^15.5.0",
+    "if-env": "^1.0.4",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "devDependencies": {
+    "concurrently": "^6.1.0",
+    "redux-devtools": "^3.7.0"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "chakra"
+  ]
 }
