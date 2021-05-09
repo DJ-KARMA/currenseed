@@ -4,6 +4,7 @@ import {ApolloProvider} from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 import {Provider} from 'react-redux';
 import store from './redux/store';
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
@@ -26,9 +27,22 @@ const client = new ApolloClient({
   uri: '/graphql',
 })
 
+const colors = {
+  brand: {
+    900: "#043007",
+    800: "#005C13",
+    700: "#E2E2EB",
+    600: "#FFD500",
+    500: "#E59800",
+  }
+}
+
+const theme = extendTheme({ colors });
+
 function App() {
   return (
     <ApolloProvider client={client}>
+      <ChakraProvider theme={theme}>
       <Router>
         <div>
           <Provider store={store}>
@@ -45,6 +59,7 @@ function App() {
           </Provider>
         </div>
       </Router>
+      </ChakraProvider>
     </ApolloProvider>
 
   );

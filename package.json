@@ -14,7 +14,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@chakra-ui/gatsby-plugin": "^2.0.0",
+    "@chakra-ui/react": "^1.6.1",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "@reduxjs/toolkit": "^1.5.1",
+    "framer-motion": "^4.1.13",
     "graphql": "^15.5.0",
     "if-env": "^1.0.4",
     "react-redux": "^7.2.4",
