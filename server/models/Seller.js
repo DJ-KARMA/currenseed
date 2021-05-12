@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Order = require('./Order');
+const Purchases = require('./Purchases');
+const Sales = require('./Sales')
 
-const userSchema = new Schema({
+const sellerSchema = new Schema({
   firstName: {
     type: String,
     required: true,
@@ -25,11 +26,12 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  orders: [Order.schema]
+  sales: [Sales.schema],
+  purchases: [Purchases.schema]
 });
 
 // set up pre-save middleware to create password
-userSchema.pre('save', async function(next) {
+sellerSchema.pre('save', async function(next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
@@ -43,6 +45,6 @@ userSchema.methods.isCorrectPassword = async function(password) {
   return await bcrypt.compare(password, this.password);
 };
 
-const User = mongoose.model('User', userSchema);
+const Seller = mongoose.model('Seller', sellerSchema);
 
-module.exports = User;
+module.exports = Seller;
