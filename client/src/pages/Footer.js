@@ -11,23 +11,21 @@ const Footer = () => {
             <FooterLinks>
 
             </FooterLinks>
-       
-        
-
-        
-
     )
 }
 
 const FooterLinks = () => {
     return (
    
-<Flex justifyContent="center">
+<Flex justifyContent="center" bg="brand.600">
        <Box>
            <Container align="center"pb="3" fontSize="xl">CONTRIBUTORS</Container>
         
         <SimpleGrid columns={4} gap={4}>
             <Button
+            as="a" 
+            href="https://github.com/malloryfaria"
+            target="_blank"
             color={["white"]} 
             size="lg"
             bg={["brand.800"]}
@@ -37,6 +35,9 @@ const FooterLinks = () => {
             >Mallory Faria
             </Button>
             <Button
+                as="a" 
+                href="https://github.com/dvicj"
+                target="_blank"            
                 color={["white"]} 
                 size="lg"
                 bg={["brand.800"]}
@@ -46,6 +47,9 @@ const FooterLinks = () => {
             >Devin Jones
             </Button>
             <Button
+                as="a" 
+                href="https://github.com/Kgroll"
+                target="_blank"             
                 color={["white"]} 
                 size="lg"
                 bg={["brand.800"]}
@@ -55,6 +59,9 @@ const FooterLinks = () => {
                 >Kristen Groller
             </Button>
             <Button
+                as="a" 
+                href="https://github.com/raedaltaki"
+                target="_blank"             
                 color={["white"]} 
                 size="lg"
                 bg={["brand.800"]}
@@ -64,6 +71,9 @@ const FooterLinks = () => {
                 >Raed Altaki
             </Button>
             <Button
+                as="a" 
+                href="https://github.com/alovatt83"
+                target="_blank" 
                 color={["white"]} 
                 size="lg"
                 bg={["brand.800"]}
@@ -73,6 +83,9 @@ const FooterLinks = () => {
                 >Allen Lovatt
             </Button>
             <Button
+                as="a" 
+                href="https://github.com/cerafinn"
+                target="_blank" 
                 color={["white"]} 
                 size="lg"
                 bg={["brand.800"]}
@@ -82,6 +95,9 @@ const FooterLinks = () => {
                 >Andaleeb Farooq
             </Button>
             <Button
+                as="a" 
+                href="https://github.com/jshallcross"
+                target="_blank" 
                 color={["white"]} 
                 size="lg"
                 bg={["brand.800"]}
@@ -91,6 +107,9 @@ const FooterLinks = () => {
                 >Jon Shallcross
             </Button>
             <Button
+                as="a" 
+                href="https://github.com/hayleyvuylsteke"
+                target="_blank" 
                 color={["white"]} 
                 size="lg"
                 bg={["brand.800"]}
@@ -100,6 +119,9 @@ const FooterLinks = () => {
                 >Hayley Vuylsteke
             </Button>
             <Button
+                as="a" 
+                href="https://github.com/"
+                target="_blank" 
                 color={["white"]} 
                 size="lg"
                 bg={["brand.800"]}
@@ -110,19 +132,13 @@ const FooterLinks = () => {
             </Button>
     
             
-      </SimpleGrid> 
+      </SimpleGrid>
+      <Container align="center">©2021 Copyright CurrenSeed</Container> 
       </Box>
       </Flex>
     )
 }
 
-const FooterTitle = () => {
-    return (
-        <Box>
-        <Container>CONTRIBUTORS</Container>
-    </Box>
-    )
-}
 
 
 export default Footer;
