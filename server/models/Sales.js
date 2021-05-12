@@ -15,6 +15,6 @@ const saleSchema = new Schema({
   ]
 });
 
-const Order = mongoose.model('Purchases', saleSchema);
+const Sales = mongoose.model('Sales', saleSchema);
 
-module.exports = Purchases;
+module.exports = Sales;
