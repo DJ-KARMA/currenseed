@@ -43,6 +43,6 @@ buyerSchema.methods.isCorrectPassword = async function(password) {
   return await bcrypt.compare(password, this.password);
 };
 
-const User = mongoose.model('Buyer', buyerSchema);
+const Buyer = mongoose.model('Buyer', buyerSchema);
 
 module.exports = Buyer;
