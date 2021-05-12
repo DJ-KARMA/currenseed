@@ -1,3 +1,11 @@
+// type Mutation {
+//   addBuyer(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+//   addSeller(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+//   updateBuyer(firstName: String, lastName: String, email: String, password: String): Buyer
+//   updateSeller(firstName: String, lastName: String, email: String, password: String): Seller
+//   updateProduct(_id: ID!, quantity: Int!): Product
+// }
+
 
 import gql from 'graphql-tag';
 
