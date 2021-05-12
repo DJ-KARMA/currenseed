@@ -9,7 +9,8 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Header from "./pages/Header";
 
 
-//import Home from "./pages/Home";
+import Home from "./pages/Home";
+import Footer from './pages/Footer';
 //import Detail from "./pages/Detail";
 //import NoMatch from "./pages/NoMatch";
 //import Login from "./pages/Login";
@@ -49,7 +50,8 @@ function App() {
       <Router>
         <div>
           <Header/>
-          Test
+          <Home/>
+          <Footer/>
           {/*
           <Provider store={store}>
             
