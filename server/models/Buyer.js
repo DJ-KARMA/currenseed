@@ -27,9 +27,7 @@ const buyerSchema = new Schema({
   },
   purchases: [Purchases.schema],
   seeds: {
-    type: Number, 
-    required: true, 
-    default: 20
+    type: Number
   }
 });
 
