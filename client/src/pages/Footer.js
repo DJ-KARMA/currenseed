@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Box, Flex, Text, Stack, Container, Icon, Center, Spacer, SimpleGrid} from "@chakra-ui/react";
-import { BREAK } from "graphql";
+import { Button, Box, Flex, Text, Stack, Container, Center, Spacer, SimpleGrid} from "@chakra-ui/react";
+
 
 
 
@@ -16,12 +16,12 @@ const Footer = () => {
 
 const FooterLinks = () => {
     return (
-   
-<Flex justifyContent="center" bg="brand.600">
+
+<Flex justifyContent="center" bg="brand.600" width="100%">
        <Box>
            <Container align="center"pb="3" fontSize="xl">CONTRIBUTORS</Container>
         
-        <SimpleGrid columns={4} gap={4}>
+        <SimpleGrid columns={[3, null, 4]} gap={4}>
             <Button
             as="a" 
             href="https://github.com/malloryfaria"
@@ -72,7 +72,7 @@ const FooterLinks = () => {
             </Button>
             <Button
                 as="a" 
-                href="https://github.com/alovatt83"
+                href="https://github.com/matthewAbianco"
                 target="_blank" 
                 color={["white"]} 
                 size="lg"
@@ -80,7 +80,7 @@ const FooterLinks = () => {
                 _hover={{
                     color: ["brand.500"]
                 }}
-                >Allen Lovatt
+                >Matthew Bianco
             </Button>
             <Button
                 as="a" 
@@ -117,18 +117,6 @@ const FooterLinks = () => {
                     color: ["brand.500"]
                 }}
                 >Hayley Vuylsteke
-            </Button>
-            <Button
-                as="a" 
-                href="https://github.com/"
-                target="_blank" 
-                color={["white"]} 
-                size="lg"
-                bg={["brand.800"]}
-                _hover={{
-                    color: ["brand.500"]
-                }}
-                >Shaylen Naidu
             </Button>
     
             
