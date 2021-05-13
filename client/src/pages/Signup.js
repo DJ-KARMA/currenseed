@@ -11,7 +11,9 @@ import {
     FormControl,
     FormLabel,
     Input,
-    Button
+    Button,
+    Checkbox,
+    Stack
 } from '@chakra-ui/react';
 
 export default function Signup() {
@@ -37,12 +39,21 @@ export default function Signup() {
                     <form onSubmit={handleSubmit}>
 
                         <FormControl isRequired>
-                            <FormLabel>Username</FormLabel>
+                            <FormLabel>First Name</FormLabel>
                             <Input
-                                type="username"
+                                type="firstName"
                                 placeholder="*******"
                                 size="lg"
-                                onChange={event => setUsername(event.currentTarget.value)}
+                                onChange={event => setFirstName(event.currentTarget.value)}
+                            />
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel>Last Name</FormLabel>
+                            <Input
+                                type="lastName"
+                                placeholder="*******"
+                                size="lg"
+                                onChange={event => setLastName(event.currentTarget.value)}
                             />
                         </FormControl>
                         <FormControl isRequired>
@@ -63,6 +74,17 @@ export default function Signup() {
                                 onChange={event => setPassword(event.currentTarget.value)}
                             />
                         </FormControl>
+
+
+                        <Stack spacing={10} direction="row">
+                            <Checkbox colorScheme="red" defaultIsChecked>
+                                Buyer
+                        </Checkbox>
+                            <Checkbox colorScheme="green" defaultIsChecked>
+                                Seller
+                         </Checkbox>
+                        </Stack>
+
                         <Button
                             variantColor="teal"
                             variant="outline"
