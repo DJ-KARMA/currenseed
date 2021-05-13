@@ -1,13 +1,25 @@
 import React, { useState } from "react";
 
-import { Box, Image, Flex, Text, Button,Stack, Center, SimpleGrid } from "@chakra-ui/react";
+import { Box, Image, Flex, Text, Button,Stack, Container, SimpleGrid } from "@chakra-ui/react";
+
 
 
 const Home = () => {
 
   return (
+
     <Flex m="5" justifyContent="center">
+ 			        
+
       <Stack m="2" alignContent="center">
+			<Box>
+		<Container w={[300, 400, 560]}>Currenseed is an online farmer’s market. There is no real world currency here. Products are paid for using “seeds” which can be purchased via credit card, earned by doing certain tasks such as logging in, and by interacting with the website (ie. Buying and making sales). Buyer’s can browse kiosks based on their location, to ensure that they are able to buy fresh produce and other items locally.</Container>
+			
+			</Box>
+
+			<Box>
+				<Container fontSize="3xl" align="center" fontWeight="bold" color="brand.500">Niagara Region</Container>
+			</Box>
 				<SimpleGrid columns={[1, null, 2, null, 4]} gap={4}>
         <Box  p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
           <Image borderRadius="md" src="/images/beer-1.jpg" alt="Test"/>
