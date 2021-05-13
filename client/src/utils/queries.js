@@ -27,6 +27,7 @@ export const QUERY_PRODUCTS = gql`
   }
 `
 
+// review purchase and order objects within query
 export const QUERY_BUYER = gql`
 {
   buyer {
@@ -62,18 +63,31 @@ export const QUERY_BUYER = gql`
 }
 `;
 
-// type Query {
-//   // product(_id: ID!): Product --> can use query products like in shop-shop instead of repeating query
-//   seller: Seller
-//   order(_id: ID!): Order
-//   sales(_id: ID!): Sales
-//   purchases(_id: ID!): Purchases
-//   checkout(products: [ID]!): Checkout 
-// }
-
-
-export const QUERY_ = gql`
+// review purchase, sale and order objects within query
+export const QUERY_SELLER = gql`
 {
-  
+  seller {
+    _id
+    firstName
+    lastName
+    email
+    orders {
+
+    }
+    purchases {
+
+    }
+    sales {
+
+    }
+  }
 }
 `
+
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($products: [ID]!) {
+    checkout(products: $products) {
+      session
+    }
+  }
+`;

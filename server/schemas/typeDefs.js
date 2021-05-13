@@ -1,4 +1,4 @@
-// purchase type missing
+// purchase and sale type missing
 
 const { gql } = require('apollo-server-express');
 
