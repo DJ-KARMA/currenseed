@@ -103,7 +103,6 @@ const MenuLinks = ({ isOpen }) => {
 const NavBarContainer = ({ children, ...props }) => {
   return (
     <Flex
-      
       as="nav"
       align="center"
       justify="space-between"
