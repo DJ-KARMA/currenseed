@@ -11,20 +11,20 @@ const Home = () => {
 				<SimpleGrid columns={[1, null, 2, null, 4]} gap={4}>
         <Box  p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
           <Image borderRadius="md" src="/images/beer-1.jpg" alt="Test"/>
-            <Flex  mt={2}>
+            <Flex  mt={2} justifyContent="center">
               <Text 
-                textAlign="center"
                 textTransform="uppercase"
                 fontSize="xl"
                 fontWeight="bold"
               >Craft Beers
               </Text>
             </Flex>
-            <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+            <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short" align="center">
               Check out local vendors selling their craft beers
             </Text>
-						<Flex mt={2} align="center">
-              <Button 
+						<Flex mt={2} justifyContent="center">
+              <Button
+							  
 								color={["brand.500"]} 
                 size="lg"
                 bg={["brand.800"]}
@@ -38,9 +38,8 @@ const Home = () => {
 
 				<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
       <Image borderRadius="md" src="/images/produce-3.jpg" alt="Test"/>
-      <Flex  mt={2}>
+      <Flex  mt={2} justifyContent="center">
         <Text 
-        textAlign="center"
           textTransform="uppercase"
           fontSize="xl"
           fontWeight="bold"
@@ -48,11 +47,11 @@ const Home = () => {
           Fresh Produce
         </Text>
       </Flex>
-      <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+      <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short" align="center">
         Check out local farmers selling their fresh produce
       </Text>
 
-      <Flex mt={2} align="center">
+      <Flex mt={2} justifyContent="center">
         <Button color={["brand.500"]} 
         size="lg"
         bg={["brand.800"]}
@@ -65,9 +64,8 @@ const Home = () => {
 
     <Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
       <Image borderRadius="md" src="/images/jewelry-1.jpg" alt="Test"/>
-      <Flex  mt={2}>
+      <Flex  mt={2} justifyContent="center">
         <Text 
-        textAlign="center"
           textTransform="uppercase"
           fontSize="xl"
           fontWeight="bold"
@@ -75,11 +73,11 @@ const Home = () => {
           Handmade Jewelry
         </Text>
       </Flex>
-      <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+      <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short" align="center">
         Check out vendors selling their handmade jewelry
       </Text>
 
-      <Flex mt={2} align="center">
+      <Flex mt={2} justifyContent="center">
         <Button color={["brand.500"]} 
         size="lg"
         bg={["brand.800"]}
@@ -93,9 +91,8 @@ const Home = () => {
 
 		<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
       	<Image borderRadius="md" src="/images/cheese-2.jpg" alt="Test"/>
-      	<Flex  mt={2}>
+      	<Flex  mt={2} justifyContent="center">
         	<Text 
-        		textAlign="center"
           	textTransform="uppercase"
           	fontSize="xl"
           	fontWeight="bold"
@@ -103,10 +100,10 @@ const Home = () => {
           Artisan Cheese
         	</Text>
       	</Flex>
-      	<Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+      	<Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short" align="center">
         	Check out local vendors selling their artisan cheese
       	</Text>
-      	<Flex mt={2}>
+      	<Flex mt={2} justifyContent="center">
         	<Button
         		align="center" 
         		color={["brand.500"]} 
@@ -125,9 +122,8 @@ const Home = () => {
 
 			<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
       	<Image borderRadius="md" src="/images/meat-2.jpg" alt="Test"/>
-      	<Flex  mt={2}>
+      	<Flex  mt={2} justifyContent="center">
         	<Text 
-        		textAlign="center"
           	textTransform="uppercase"
           	fontSize="xl"
           	fontWeight="bold"
@@ -135,10 +131,10 @@ const Home = () => {
           Fresh Meat
         	</Text>
       	</Flex>
-      	<Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+      	<Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short" align="center">
         	Check out local vendors selling their fresh meats
       	</Text>
-      	<Flex mt={2}>
+      	<Flex mt={2} justifyContent="center">
         	<Button
         		align="center" 
         		color={["brand.500"]} 
@@ -157,9 +153,8 @@ const Home = () => {
 
 			<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
       	<Image borderRadius="md" src="/images/soap-2.jpg" alt="Test"/>
-      	<Flex  mt={2}>
+      	<Flex  mt={2} justifyContent="center">
         	<Text 
-        		textAlign="center"
           	textTransform="uppercase"
           	fontSize="xl"
           	fontWeight="bold"
@@ -167,10 +162,10 @@ const Home = () => {
           Handmade
         	</Text>
       	</Flex>
-      	<Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+      	<Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short" align="center">
         	Check out vendors selling handmade items
       	</Text>
-      	<Flex mt={2}>
+      	<Flex mt={2} justifyContent="center">
         	<Button
         		align="center" 
         		color={["brand.500"]} 
@@ -188,9 +183,8 @@ const Home = () => {
 
 			<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
       	<Image borderRadius="md" src="/images/baked-goods-2.jpg" alt="Test"/>
-      	<Flex  mt={2}>
+      	<Flex  mt={2} justifyContent="center">
         	<Text 
-        		textAlign="center"
           	textTransform="uppercase"
           	fontSize="xl"
           	fontWeight="bold"
@@ -198,10 +192,10 @@ const Home = () => {
           Baked Goods
         	</Text>
       	</Flex>
-      	<Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+      	<Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short" align="center">
         	Check out vendors selling homemade baked items
       	</Text>
-      	<Flex mt={2}>
+      	<Flex mt={2} justifyContent="center">
         	<Button
         		align="center" 
         		color={["brand.500"]} 
@@ -220,9 +214,8 @@ const Home = () => {
 
 			<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
       	<Image borderRadius="md" src="/images/beer-2.jpg" alt="Test"/>
-      	<Flex  mt={2}>
+      	<Flex  mt={2} justifyContent="center">
         	<Text 
-        		textAlign="center"
           	textTransform="uppercase"
           	fontSize="xl"
           	fontWeight="bold"
@@ -230,10 +223,10 @@ const Home = () => {
           Wine
         	</Text>
       	</Flex>
-      	<Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+      	<Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short" align="center">
         	Check out what local wineries have to offer
       	</Text>
-      	<Flex mt={2}>
+      	<Flex mt={2} justifyContent="center">
         	<Button
         		align="center" 
         		color={["brand.500"]} 
