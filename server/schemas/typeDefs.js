@@ -21,6 +21,16 @@ const typeDefs = gql`
     purchaseDate: String
     products: [Product]
   }
+  type Sales {
+    _id: ID
+    purchaseDate: String
+    products: [Product]
+  }
+  type Purchases {
+    _id: ID
+    purchaseDate: String
+    products: [Product]
+  }
   type Buyer {
     _id: ID
     firstName: String
