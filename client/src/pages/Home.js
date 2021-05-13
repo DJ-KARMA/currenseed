@@ -6,9 +6,9 @@ import { Box, Image, Flex, Text, Button,Stack, Center, SimpleGrid } from "@chakr
 const Home = () => {
 
   return (
-    <Flex m="5">
+    <Flex m="5" justifyContent="center">
       <Stack m="2" alignContent="center">
-				<SimpleGrid columns={[2, null, 4]} gap={4}>
+				<SimpleGrid columns={[1, null, 2, null, 4]} gap={4}>
         <Box  p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
           <Image borderRadius="md" src="/images/beer-1.jpg" alt="Test"/>
             <Flex  mt={2}>
@@ -114,7 +114,7 @@ const Home = () => {
         		variant="outline"
 						
         		bg={["white"]}
-        	_	hover={{
+        	_hover={{
           		bg: ["brand.800"]
             	}}
           >See More
@@ -146,7 +146,7 @@ const Home = () => {
         		variant="outline"
 						
         		bg={["white"]}
-        	_	hover={{
+        	_hover={{
           		bg: ["brand.800"]
             	}}
           >See More
@@ -178,7 +178,70 @@ const Home = () => {
         		variant="outline"
 						
         		bg={["white"]}
-        	_	hover={{
+        	_hover={{
+          		bg: ["brand.800"]
+            	}}
+          >See More
+					</Button>
+      	</Flex>
+    	</Box>
+
+			<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
+      	<Image borderRadius="md" src="/images/baked-goods-2.jpg" alt="Test"/>
+      	<Flex  mt={2}>
+        	<Text 
+        		textAlign="center"
+          	textTransform="uppercase"
+          	fontSize="xl"
+          	fontWeight="bold"
+        	>
+          Baked Goods
+        	</Text>
+      	</Flex>
+      	<Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+        	Check out vendors selling homemade baked items
+      	</Text>
+      	<Flex mt={2}>
+        	<Button
+        		align="center" 
+        		color={["brand.500"]} 
+       	 		size="lg"
+        		variant="outline"
+						
+        		bg={["white"]}
+        	_hover={{
+          		bg: ["brand.800"]
+            	}}
+          >See More
+					</Button>
+      	</Flex>
+    	</Box>
+
+
+			<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
+      	<Image borderRadius="md" src="/images/beer-2.jpg" alt="Test"/>
+      	<Flex  mt={2}>
+        	<Text 
+        		textAlign="center"
+          	textTransform="uppercase"
+          	fontSize="xl"
+          	fontWeight="bold"
+        	>
+          Wine
+        	</Text>
+      	</Flex>
+      	<Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+        	Check out what local wineries have to offer
+      	</Text>
+      	<Flex mt={2}>
+        	<Button
+        		align="center" 
+        		color={["brand.500"]} 
+       	 		size="lg"
+        		variant="outline"
+						
+        		bg={["white"]}
+        	_hover={{
           		bg: ["brand.800"]
             	}}
           >See More
