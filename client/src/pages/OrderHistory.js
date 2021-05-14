@@ -15,7 +15,7 @@ function OrderHistory() {
   return (
     <>
       <div className="container my-1">
-        <Link to="/">
+        <Link as={ReactLink} to="/">
           ← Back to Products
           </Link>
 
