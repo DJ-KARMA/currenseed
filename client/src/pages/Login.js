@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-// import { useMutation } from '@apollo/react-hooks';
-// // import { Link } from "react-router-dom";
-// import { LOGIN } from "../utils/mutations"
-// import Auth from "../utils/auth";
+import { useMutation } from '@apollo/react-hooks';
+import { Link } from "react-router-dom";
+import { LOGIN } from "../utils/mutations"
+import Auth from "../utils/auth";
 
 
 import {
@@ -14,28 +14,36 @@ import {
   Input,
   Button,
   Text,
-  CircularProgress
+  CircularProgress,
+  isLoggedIn, 
+  setIsLoggedIn, 
+  ErrorMessage,
+  isLoading
 } from '@chakra-ui/react';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const handleSubmit = async event => {
-    event.preventDefault();
-    setIsLoading(true);
-    try {
-      await userLogin({ email, password });
-      setIsLoggedIn(true);
-      setIsLoading(false);
-    } catch (error) {
-      setError('Invalid username or password');
-      setIsLoading(false);
-      setEmail('');
-      setPassword('');
-    }
-  };
+    const [formState, setFormState] = useState({ email: '', password: '' })
+    const [login, { error }] = useMutation(LOGIN);
+  
+    const handleFormSubmit = async event => {
+      event.preventDefault();
+      try {
+        const mutationResponse = await login({ variables: { email: formState.email, password: formState.password } })
+        const token = mutationResponse.data.login.token;
+        Auth.login(token);
+      } catch (e) {
+        console.log(e)
+      }
+    };
+  
+    const handleChange = event => {
+      const { name, value } = event.target;
+      setFormState({
+        ...formState,
+        [name]: value
+      });
+    };
+
     return (
       <Flex width="full" align="center" justifyContent="center">
         <Box
@@ -47,7 +55,7 @@ export default function Login() {
         >
           {isLoggedIn ? (
             <Box textAlign="center">
-              <Text>{email} logged in!</Text>
+              <Text>logged in!</Text>
               <Button
                 variantColor="orange"
                 variant="outline"
@@ -64,7 +72,7 @@ export default function Login() {
                 <Heading>Login</Heading>
               </Box>
               <Box my={4} textAlign="left">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleFormSubmit}>
                   {error && <ErrorMessage message={error} />}
                   <FormControl isRequired>
                     <FormLabel>Email</FormLabel>
@@ -72,7 +80,7 @@ export default function Login() {
                       type="email"
                       placeholder="test@test.com"
                       size="lg"
-                      onChange={event => setEmail(event.currentTarget.value)}
+                      onChange={handleChange}
                     />
                   </FormControl>
                   <FormControl isRequired mt={6}>
@@ -81,7 +89,7 @@ export default function Login() {
                       type="password"
                       placeholder="*******"
                       size="lg"
-                      onChange={event => setPassword(event.currentTarget.value)}
+                      onChange={handleChange}
                     />
                   </FormControl>
                   <Button

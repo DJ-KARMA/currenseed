@@ -53,27 +53,27 @@ export const ADD_SELLER = gql`
   }
 `
 
-export const UPDATE_BUYER = gql`
-  mutation updateBuyer() {
-    updateBuyer() {
+// export const UPDATE_BUYER = gql`
+//   mutation updateBuyer() {
+//     updateBuyer() {
       
-    }
-  }
-`
+//     }
+//   }
+// `
 
-export const UPDATE_SELLER = gql`
-  mutation updateSeller() {
-    updateSeller() {
+// export const UPDATE_SELLER = gql`
+//   mutation updateSeller() {
+//     updateSeller() {
 
-    }
-  }
-`
+//     }
+//   }
+// `
 
-export const UPDATE_PRODUCT = gql`
-  mutation updateProduct($_id: ID!, $quantity: INT!) {
-    updateProduct(_)
-  }
-`
+// export const UPDATE_PRODUCT = gql`
+//   mutation updateProduct($_id: ID!, $quantity: INT!) {
+//     updateProduct(_)
+//   }
+// `
 
 // type Mutation {
 //   updateBuyer(firstName: String, lastName: String, email: String, password: String): Buyer
