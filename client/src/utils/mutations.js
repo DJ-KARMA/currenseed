@@ -17,13 +17,13 @@ export const ADD_ORDER = gql`
       purchaseDate
       products {
         _id
-      name
-      description
-      price
-      quantity
-      category {
         name
-      } 
+        description
+        price
+        quantity
+        category {
+          name
+        }
       }
     }
   }
@@ -54,29 +54,72 @@ export const ADD_SELLER = gql`
 `
 
 export const UPDATE_BUYER = gql`
-  mutation updateBuyer() {
-    updateBuyer() {
-      
+  mutation updateBuyer($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+    updateBuyer(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+      _id
+      firstName
+      lastName
+      email
+      orders {
+        _id
+        purchaseDate
+        products {
+          _id
+          name
+          description
+          image
+          quantity
+          price
+        }
+      }
+      purchases {
+        _id
+        purchaseDate
+        products {
+          _id
+          name
+          description
+          image
+          quantity
+          price
+        }
+      }
     }
   }
 `
 
 export const UPDATE_SELLER = gql`
-  mutation updateSeller() {
-    updateSeller() {
+  mutation updateSeller($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+    updateSeller(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+      _id
+      firstName
+      lastName
+      email
+      orders {
 
+      }
+      purchases {
+
+      }
+      sales {
+
+      }
     }
   }
 `
 
 export const UPDATE_PRODUCT = gql`
   mutation updateProduct($_id: ID!, $quantity: INT!) {
-    updateProduct(_)
+    updateProduct(_id: $_id, quantity: $quantity) {
+      _id
+      name
+      description
+      image
+      quantity
+      price
+      category {
+        name
+      }
+    }
   }
 `
-
-// type Mutation {
-//   updateBuyer(firstName: String, lastName: String, email: String, password: String): Buyer
-//   updateSeller(firstName: String, lastName: String, email: String, password: String): Seller
-//   updateProduct(_id: ID!, quantity: Int!): Product
-// }
