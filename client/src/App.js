@@ -15,8 +15,8 @@ import Footer from './pages/Footer';
 //import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-//import Success from "./pages/Success";
-//import Nav from "./components/Nav";
+import Success from "./pages/Success";
+import Nav from "./components/Nav";
 //import OrderHistory from "./pages/OrderHistory";
 
 const client = new ApolloClient({
@@ -53,7 +53,7 @@ function App() {
           <Home/>
           <Footer/>
           <Login/>
-          <Signup/>
+          <Signup/> 
           {/*
           <Provider store={store}>
             
