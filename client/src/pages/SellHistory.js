@@ -1,23 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Box, Heading, Flex, Image, Text, Stack, Container, Center, Spacer, SimpleGrid} from "@chakra-ui/react";
-
 // import { useQuery } from '@apollo/react-hooks';
 // import { QUERY_USER } from "../utils/queries";
-
 function SellHistory() {
 //   const { data } = useQuery(QUERY_USER);
   let user;
-
   // if (data) {
   //   user = data.user;
   // }
-
   return (
         <Flex height="100hv" alignItems="center" justifyContent="center">
             <Box>
                 {user ? (
-                    <>
                     <Box>
                     <Heading as="h2">Selling History for {user.firstName} {user.lastName}</Heading>
                         {user.orders.map((order) => (
@@ -31,17 +26,12 @@ function SellHistory() {
                                     </Link>
                                     <Text>${price}</Text>
                                     </Box>
+                                ))}
                             </Box>
-                        )}
+                             ))}
                     </Box>
-                ) : null}
+                         ) : null  }
             </Box>
         </Flex>
-
-
-
   )
 }
-
-
-export default SellHistory;
