@@ -25,7 +25,10 @@ const buyerSchema = new Schema({
     required: true,
     minlength: 5
   },
-  purchases: [Purchases.schema]
+  purchases: [Purchases.schema],
+  seeds: {
+    type: Number
+  }
 });
 
 // set up pre-save middleware to create password

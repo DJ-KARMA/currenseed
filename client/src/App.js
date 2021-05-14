@@ -6,14 +6,18 @@ import {Provider} from 'react-redux';
 import store from './redux/store';
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
+import Header from "./pages/Header";
+
+
 import Home from "./pages/Home";
-import Detail from "./pages/Detail";
-import NoMatch from "./pages/NoMatch";
+import Footer from './pages/Footer';
+//import Detail from "./pages/Detail";
+//import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Success from "./pages/Success";
-import Nav from "./components/Nav";
-import OrderHistory from "./pages/OrderHistory";
+//import Success from "./pages/Success";
+//import Nav from "./components/Nav";
+//import OrderHistory from "./pages/OrderHistory";
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -45,7 +49,14 @@ function App() {
       <ChakraProvider theme={theme}>
       <Router>
         <div>
+          <Header/>
+          <Home/>
+          <Footer/>
+          <Login/>
+          <Signup/>
+          {/*
           <Provider store={store}>
+            
           <Nav />
           <Switch>
             <Route exact path="/" component={Home} />
@@ -56,7 +67,9 @@ function App() {
             <Route exact path="/success" component={Success} />
             <Route component={NoMatch} />
           </Switch>
+           
           </Provider>
+           */}
         </div>
       </Router>
       </ChakraProvider>

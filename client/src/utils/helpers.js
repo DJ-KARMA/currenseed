@@ -60,6 +60,21 @@ export function pluralize(name, count) {
         console.log('No valid method');
         break;
     }
+
+    // Function to get user location
+
+    export function getLocation(e) {
+        if (navigator.geolocation) {
+            $("#city-name").val("Locating...");
+            navigator.geolocation.getCurrentPosition(showPosition, error);
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    };
+
+    // Event listener for user clicking on "locate me" for location services
+
+    $(".user-location").on("click", getLocation);
     
     // when the transaction is complete, close the connection
     tx.oncomplete = function() {
