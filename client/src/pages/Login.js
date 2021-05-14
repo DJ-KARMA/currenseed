@@ -1,8 +1,9 @@
-import React from "react";
-import { useMutation } from '@apollo/react-hooks';
-//import { Link } from "react-router-dom";
-import { LOGIN } from "../utils/mutations"
-import Auth from "../utils/auth";
+import React, { useState } from 'react';
+// import { useMutation } from '@apollo/react-hooks';
+// // import { Link } from "react-router-dom";
+// import { LOGIN } from "../utils/mutations"
+// import Auth from "../utils/auth";
+
 
 import {
   Flex,
@@ -11,66 +12,100 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Button
+  Button,
+  Text,
+  CircularProgress
 } from '@chakra-ui/react';
 
-function Login(props) {
-  const [formState, setFormState] = useState({ email: '', password: '', seeds: '' })
-  const [login, { error }] = useMutation(LOGIN);
-
-  const handleFormSubmit = async event => {
+export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const handleSubmit = async event => {
     event.preventDefault();
+    setIsLoading(true);
     try {
-      const mutationResponse = await login({ variables: { email: formState.email, password: formState.password } })
-      const token = mutationResponse.data.login.token;
-      Auth.login(token);
-    } catch (e) {
-      console.log(e)
+      await userLogin({ email, password });
+      setIsLoggedIn(true);
+      setIsLoading(false);
+    } catch (error) {
+      setError('Invalid username or password');
+      setIsLoading(false);
+      setEmail('');
+      setPassword('');
     }
   };
-
-  const handleChange = event => {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value
-    });
-  };
-
-  const addSeeds = event => {
-    const { seeds } = event.target;
-    setFormState({
-      ...formState, 
-      [seeds]: Math.floor(Math.random()*20) + 1
-    });
-  };
-
-  return (
-
-        <Flex width="full" align="center" justifyContent="center">
-          <Box p={8} maxWidth="500px" borderWidth={1} borderRadius={8} boxShadow="lg">
+    return (
+      <Flex width="full" align="center" justifyContent="center">
+        <Box
+          p={8}
+          maxWidth="500px"
+          borderWidth={1}
+          borderRadius={8}
+          boxShadow="lg"
+        >
+          {isLoggedIn ? (
             <Box textAlign="center">
-              <Heading>Login</Heading>
+              <Text>{email} logged in!</Text>
+              <Button
+                variantColor="orange"
+                variant="outline"
+                width="full"
+                mt={4}
+                onClick={() => setIsLoggedIn(false)}
+              >
+                Sign out
+              </Button>
+            </Box>
+          ) : (
+            <>
+              <Box textAlign="center">
+                <Heading>Login</Heading>
               </Box>
               <Box my={4} textAlign="left">
-               
-          <form onSubmit={handleFormSubmit}>
-            <FormControl>
-              <FormLabel>Email</FormLabel>
-              <Input type="email" placeholder="test@test.com" onChange={handleChange} />
-            </FormControl>
-            <FormControl mt={6}>
-              <FormLabel>Password</FormLabel>
-              <Input type="password" placeholder="*******" onChange={handleChange} />
-            </FormControl>
-            <Button width="full" mt={4} type="submit" onClick={addSeeds}>
-              Sign In
-            </Button>
-          </form>
-            </Box>
-          </Box>
-        </Flex>
-      );
-  }
-
-export default Login;
+                <form onSubmit={handleSubmit}>
+                  {error && <ErrorMessage message={error} />}
+                  <FormControl isRequired>
+                    <FormLabel>Email</FormLabel>
+                    <Input
+                      type="email"
+                      placeholder="test@test.com"
+                      size="lg"
+                      onChange={event => setEmail(event.currentTarget.value)}
+                    />
+                  </FormControl>
+                  <FormControl isRequired mt={6}>
+                    <FormLabel>Password</FormLabel>
+                    <Input
+                      type="password"
+                      placeholder="*******"
+                      size="lg"
+                      onChange={event => setPassword(event.currentTarget.value)}
+                    />
+                  </FormControl>
+                  <Button
+                    variantColor="teal"
+                    variant="outline"
+                    type="submit"
+                    width="full"
+                    mt={4}
+                  >
+                    {isLoading ? (
+                      <CircularProgress
+                        isIndeterminate
+                        size="24px"
+                        color="teal"
+                      />
+                    ) : (
+                      'Sign In'
+                    )}
+                  </Button>
+                </form>
+              </Box>
+            </>
+          )}
+        </Box>
+      </Flex>
+    );
+  };
