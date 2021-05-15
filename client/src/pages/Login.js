@@ -21,7 +21,7 @@ import {
   isLoading
 } from '@chakra-ui/react';
 
-export default function Login() {
+export default function Login(props) {
     const [formState, setFormState] = useState({ email: '', password: '' })
     const [login, { error }] = useMutation(LOGIN);
   
