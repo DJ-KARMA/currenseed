@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-function CetegoryItem(item) {
+function CategoryItem(item) {
   const {
     name,
     description,
@@ -12,13 +12,13 @@ function CetegoryItem(item) {
     category,
     _id,
   } = item;
-
+  //needs to be converted to Chakra
   return (
     <div className="tbd">
       <Link to={`/products/${_id}`}>
         <img
           alt={name}
-          src={`/images/${image}`}
+          //src={`/images/${image}`}
         />
         <p>{name}</p>
         <p>{description}</p>
@@ -27,9 +27,8 @@ function CetegoryItem(item) {
         <div>{quantity} in stock</div>
         <span>${price}</span>
       </div>
-      <button>Add to cart</button>
     </div>
   );
 }
 
-export default CetegoryItem;
+export default CategoryItem;

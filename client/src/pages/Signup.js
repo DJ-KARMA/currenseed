@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { ADD_SELLER, ADD_BUYER } from "../utils/mutations"
 import Auth from "../utils/auth";
 
@@ -15,26 +15,48 @@ import {
     Button,
     Checkbox,
     Stack,
-    setFirstName, 
-    setLastName
+    //setFirstName, 
+    //setLastName
 } from '@chakra-ui/react';
 
 export default function Signup(props) {
     const [formState, setFormState] = useState({ email: '', password: '' });
     const [addSeller] = useMutation(ADD_SELLER);
     const [addBuyer] = useMutation(ADD_BUYER);
+    const choice = []; 
   
-    //need to work on this, if seller chosen mutation response = addSeller, if buyer chose mutation response = addBuyer
+    const handleChoice = event => {
+        //get checked value
+        const checkedValue = event.target.value; 
+        //push to empty array 
+        choice.pop(checkedValue);
+    }
+    
     const handleFormSubmit = async event => {
       event.preventDefault();
-      const mutationResponse = await addSeller({
-        variables: {
-          email: formState.email, password: formState.password,
-          firstName: formState.firstName, lastName: formState.lastName
+
+        if (choice[0] === "Buyer") {
+            const mutationResponse = await addBuyer({
+                variables: {
+                    email: formState.email, password: formState.password,
+                    firstName: formState.firstName, lastName: formState.lastName,
+                    seeds: Math.floor(Math.random()*20 + 1)
+                }
+            });
+            const token = mutationResponse.data.addBuyer.token;
+            Auth.login(token);
+            alert("buyer added!")
+        } else {  
+            const mutationResponse = await addSeller({
+                variables: {
+                    email: formState.email, password: formState.password,
+                    firstName: formState.firstName, lastName: formState.lastName,
+                    seeds: Math.floor(Math.random()*20 + 1)
+                }
+            });
+            const token = mutationResponse.data.addSeller.token;
+            Auth.login(token);
         }
-      });
-      const token = mutationResponse.data.addUser.token;
-      Auth.login(token);
     };
   
     const handleChange = event => {
@@ -95,10 +117,22 @@ export default function Signup(props) {
 
 
                         <Stack spacing={10} direction="row">
-                            <Checkbox colorScheme="red" defaultIsChecked>
+                            <Checkbox 
+                            colorScheme="red" 
+                            //defaultIsChecked
+                            name="Buyer"
+                            value="Buyer"
+                            onChange={handleChoice}
+                            >
                                 Buyer
                             </Checkbox>
-                            <Checkbox colorScheme="green" defaultIsChecked>
+                            <Checkbox 
+                            colorScheme="green" 
+                            //defaultIsChecked
+                            name="Seller"
+                            value="Seller"
+                            onChange={handleChoice}
+                            >
                                 Seller
                             </Checkbox>
                         </Stack>
