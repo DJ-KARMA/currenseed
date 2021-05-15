@@ -46,6 +46,7 @@ export const QUERY_BUYER = gql`
       sellerId
       buyerId
     }
+    seeds
   }
 }
 `;
@@ -85,6 +86,7 @@ export const QUERY_SELLER = gql`
       sellerId
       buyerId
     }
+    seeds
   }
 }
 `;

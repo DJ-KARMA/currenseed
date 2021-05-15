@@ -31,6 +31,16 @@ export const ADD_ORDER = gql`
   }
 `;
 
+export const ADD_SEEDS = gql`
+  mutation addSeeds($products: [ID]!) {
+    addSeeds(products: $products) {
+      products {
+        price
+      }
+    }
+  }
+`;
+
 export const ADD_BUYER = gql`
   mutation addBuyer($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
     addBuyer(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {

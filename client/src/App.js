@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import store from './redux/store';
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
-import Header from "./pages/Header";
+//import Header from "./pages/Header";
 
 
 import Home from "./pages/Home";
@@ -18,7 +18,7 @@ import Signup from "./pages/Signup";
 import Success from "./pages/Success";
 import Nav from "./components/Nav";
 //import OrderHistory from "./pages/OrderHistory";
-import SellHistory from "./pages/SellHistory";
+//import SellHistory from "./pages/SellHistory";
 
 const client = new ApolloClient({
   request: (operation) => {

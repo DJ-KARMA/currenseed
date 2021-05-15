@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { LOGIN } from "../utils/mutations"
 import Auth from "../utils/auth";
 
@@ -21,7 +21,7 @@ import {
   isLoading
 } from '@chakra-ui/react';
 
-export default function Login() {
+export default function Login(props) {
     const [formState, setFormState] = useState({ email: '', password: '' })
     const [login, { error }] = useMutation(LOGIN);
   
