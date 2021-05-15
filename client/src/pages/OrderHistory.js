@@ -11,6 +11,7 @@ function OrderHistory() {
   
     if (data) {
       buyer = data.buyer;
+      seller = data.seller; 
     }
     //return statement below:
     //return ()

@@ -25,6 +25,18 @@ export const ADD_ORDER = gql`
           name
         }
       }
+      sellerId
+      buyerId
+    }
+  }
+`;
+
+export const ADD_SEEDS = gql`
+  mutation addSeeds($products: [ID]!) {
+    addSeeds(products: $products) {
+      products {
+        price
+      }
     }
   }
 `;
@@ -58,18 +70,6 @@ export const UPDATE_BUYER = gql`
       firstName
       lastName
       email
-      orders {
-        _id
-        purchaseDate
-        products {
-          _id
-          name
-          description
-          image
-          quantity
-          price
-        }
-      }
       purchases {
         _id
         purchaseDate
@@ -81,6 +81,8 @@ export const UPDATE_BUYER = gql`
           quantity
           price
         }
+        sellerId
+        buyerId
       }
     }
   }
@@ -93,18 +95,6 @@ export const UPDATE_SELLER = gql`
       firstName
       lastName
       email
-      orders {
-        _id
-        purchaseDate
-        products {
-          _id
-          name
-          description
-          image
-          quantity
-          price
-        }
-      }
       purchases {
         _id
         purchaseDate
@@ -116,6 +106,8 @@ export const UPDATE_SELLER = gql`
           quantity
           price
         }
+        sellerId
+        buyerId
       }
       sales {
         _id
@@ -128,6 +120,8 @@ export const UPDATE_SELLER = gql`
           quantity
           price
         }
+        sellerId
+        buyerId
       }
     }
   }

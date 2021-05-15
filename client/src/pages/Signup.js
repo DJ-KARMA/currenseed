@@ -45,7 +45,7 @@ export default function Signup(props) {
             });
             const token = mutationResponse.data.addBuyer.token;
             Auth.login(token);
-            alert("buyer added!")
+            console.log(token);
         } else {  
             const mutationResponse = await addSeller({
                 variables: {
@@ -79,36 +79,44 @@ export default function Signup(props) {
                     <form onSubmit={handleFormSubmit}>
 
                         <FormControl isRequired>
-                            <FormLabel>First Name</FormLabel>
+                            <FormLabel htmlFor="firstName">First Name</FormLabel>
                             <Input
                                 type="firstName"
+                                name="firstName"
+                                id="firstName"
                                 placeholder="*******"
                                 size="lg"
                                 onChange={handleChange}
                             />
                         </FormControl>
                         <FormControl isRequired>
-                            <FormLabel>Last Name</FormLabel>
+                            <FormLabel htmlFor="lastName">Last Name</FormLabel>
                             <Input
                                 type="lastName"
+                                name="lastName"
+                                id="lastName"
                                 placeholder="*******"
                                 size="lg"
                                 onChange={handleChange}
                             />
                         </FormControl>
                         <FormControl isRequired>
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel htmlFor="email">Email</FormLabel>
                             <Input
                                 type="email"
+                                name="email"
+                                id="email"
                                 placeholder="test@test.com"
                                 size="lg"
                                 onChange={handleChange}
                             />
                         </FormControl>
                         <FormControl isRequired mt={6}>
-                            <FormLabel>Password</FormLabel>
+                            <FormLabel htmlFor="password">Password</FormLabel>
                             <Input
                                 type="password"
+                                name="password"
+                                id="password"
                                 placeholder="*******"
                                 size="lg"
                                 onChange={handleChange}
