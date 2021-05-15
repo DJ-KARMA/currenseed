@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from "react-router-dom";
 import { ADD_SELLER, ADD_BUYER } from "../utils/mutations"
 import Auth from "../utils/auth";
+
 
 import {
     Flex,
@@ -117,3 +119,4 @@ export default function Signup(props) {
         </Flex>
     );
 };
+
