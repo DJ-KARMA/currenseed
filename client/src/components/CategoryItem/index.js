@@ -12,7 +12,7 @@ function CategoryItem(item) {
     category,
     _id,
   } = item;
-
+  //needs to be converted to Chakra
   return (
     <div className="tbd">
       <Link to={`/products/${_id}`}>
@@ -27,7 +27,6 @@ function CategoryItem(item) {
         <div>{quantity} in stock</div>
         <span>${price}</span>
       </div>
-      <button onClick={addToCart}>Add to cart</button>
     </div>
   );
 }
