@@ -73,7 +73,7 @@ const Cart = () => {
           </div>
         );
     }
-
+  //needs to be converted to Chakra
   return (
 <div>
   <div onClick={toggleCart}>[close]</div>

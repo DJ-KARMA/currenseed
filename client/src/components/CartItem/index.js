@@ -39,7 +39,7 @@ const CartItem = ({ item }) => {
             idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(value) });
           }
       };
-
+  //neeeds to be converted to Chakra 
   return (
     <div>
       <div>
