@@ -56,6 +56,7 @@ export const QUERY_BUYER = gql`
         price
       }
     }
+    seeds
   }
 }
 `;
@@ -103,6 +104,7 @@ export const QUERY_SELLER = gql`
         price
       }     
     }
+    seeds
   }
 }
 `;

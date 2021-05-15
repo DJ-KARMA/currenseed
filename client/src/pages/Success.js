@@ -1,19 +1,21 @@
 
 import React, { useEffect } from "react";
 import { useMutation } from '@apollo/react-hooks';
-import { ADD_ORDER } from "../utils/mutations";
+import { ADD_ORDER, ADD_SEEDS } from "../utils/mutations";
 import { idbPromise } from '../utils/helpers';
 
 function Success() {
-    const [addOrder] = useMutation(ADD_ORDER);
+    const [addOrder] = useMutation(ADD_ORDER, ADD_SEEDS);
 
     useEffect(() => {
         async function saveOrder() {
             const cart = await idbPromise('cart', 'get');
             const products = cart.map(item => item._id);
+            const seeds = cart.map(item => item.price)
             if (products.length) {
-                const { data } = await addOrder({ variables: { products } });
+                const { data } = await addOrder({ variables: { products, seeds } });
                 const productData = data.addOrder.products;
+                const seedData = data.addOrder.seeds; 
               
                 productData.forEach((item) => {
                   idbPromise('cart', 'delete', item);
