@@ -50,20 +50,10 @@ function App() {
       <ChakraProvider theme={theme}>
       <Router>
         <div>
-<<<<<<< HEAD
-        <Provider store={store}>
-          <Header/>
-          <Home/>
-          <Footer/>
-          <Login/>
-          <Signup/> 
-          
-=======
         
           <Provider store={store}>
->>>>>>> 1dade155bd495de3b212fd50ab846aa3cfc08712
             
-          {/* <Nav />
+          <Nav />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
@@ -74,18 +64,12 @@ function App() {
             <Route exact path="/orderHistory" component={OrderHistory} />
             <Route exact path="/products/:id" component={Detail} />
             <Route component={NoMatch} />
-<<<<<<< HEAD
-          </Switch> */}
-           
-          </Provider>
-=======
             */}
           </Switch>
           <Footer/>
           </Provider>
            
 
->>>>>>> 1dade155bd495de3b212fd50ab846aa3cfc08712
         </div>
       </Router>
       </ChakraProvider>
