@@ -34,7 +34,7 @@ const FooterLinks = () => {
                         {data.map(item => {
                             return <Button
                                 as="a" 
-                                href="https://github.com/{item.username}"
+                                href={`https://github.com/${item.username}`}
                                 target="_blank"
                                 color={["white"]} 
                                 size="lg"
