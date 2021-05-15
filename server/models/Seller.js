@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Purchases = require('./Purchases');
-const Sales = require('./Sales')
+const Order = require('./Order');
 
 const sellerSchema = new Schema({
   firstName: {
@@ -26,8 +25,8 @@ const sellerSchema = new Schema({
     required: true,
     minlength: 5
   },
-  sales: [Sales.schema],
-  purchases: [Purchases.schema],
+  sales: [Order.schema],
+  purchases: [Order.schema],
   seeds: {
     type: Number
   }

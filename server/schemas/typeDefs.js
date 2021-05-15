@@ -1,5 +1,3 @@
-// purchase and sale type missing
-
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
@@ -15,20 +13,13 @@ const typeDefs = gql`
     quantity: Int
     price: Float
     category: Category
+    sellerId: String
   }
   type Order {
     _id: ID
     purchaseDate: String
-    products: [Product]
-  }
-  type Sales {
-    _id: ID
-    purchaseDate: String
-    products: [Product]
-  }
-  type Purchases {
-    _id: ID
-    purchaseDate: String
+    sellerId: String!
+    buyerId: String!
     products: [Product]
   }
   type Buyer {
@@ -36,17 +27,15 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
-    orders: [Order]
-    purchases: [Purchases]
+    purchases: [Order]
   }
   type Seller {
     _id: ID
     firstName: String
     lastName: String
     email: String
-    orders: [Order]
-    purchases: [Purchases]
-    sales: [Sales]
+    purchases: [Order]
+    sales: [Order]
   }
   type Auth {
     token: ID

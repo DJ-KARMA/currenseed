@@ -17,7 +17,8 @@ function ProductItem(item) {
     price,
     quantity,
     description,
-    category
+    category,
+    sellerId
   } = item;
 
   const state = useSelector(state => state);
@@ -49,7 +50,7 @@ function ProductItem(item) {
     }
   }
 
-   return (
+  return (
     <Box
         w='300px'
         border='2px'
@@ -71,6 +72,7 @@ function ProductItem(item) {
                         color='gray.500'
                         letterSpacing='wide'>
                         sellername
+                        {sellerId}
                     </Text>
                 </Stack>
                 <Text as='h2' fontWeight='semibold' fontSize='xl' my={2}>

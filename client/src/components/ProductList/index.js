@@ -66,6 +66,7 @@ function ProductList({}) {
                   quantity={product.quantity}
                   description={product.description}
                   category={product.category}
+                  sellerId={product.sellerId}
                 />
             ))}
         </div>
