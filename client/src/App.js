@@ -50,6 +50,7 @@ function App() {
       <ChakraProvider theme={theme}>
       <Router>
         <div>
+<<<<<<< HEAD
         <Provider store={store}>
           <Header/>
           <Home/>
@@ -57,19 +58,34 @@ function App() {
           <Login/>
           <Signup/> 
           
+=======
+        
+          <Provider store={store}>
+>>>>>>> 1dade155bd495de3b212fd50ab846aa3cfc08712
             
           {/* <Nav />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
+
+            <Route exact path="/success" component={Success} />
+            {/*
             <Route exact path="/orderHistory" component={OrderHistory} />
             <Route exact path="/products/:id" component={Detail} />
-            <Route exact path="/success" component={Success} />
             <Route component={NoMatch} />
+<<<<<<< HEAD
           </Switch> */}
            
           </Provider>
+=======
+            */}
+          </Switch>
+          <Footer/>
+          </Provider>
+           
+
+>>>>>>> 1dade155bd495de3b212fd50ab846aa3cfc08712
         </div>
       </Router>
       </ChakraProvider>
