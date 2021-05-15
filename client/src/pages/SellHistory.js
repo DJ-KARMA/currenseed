@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Box, Heading, Flex, Image, Text, Stack, Container, Center, Spacer, SimpleGrid} from "@chakra-ui/react";
+import { Box, Heading, Flex, Image, Text} from "@chakra-ui/react";
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_SELLER } from "../utils/queries";
 
