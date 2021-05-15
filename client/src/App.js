@@ -11,8 +11,8 @@ import Header from "./pages/Header";
 
 import Home from "./pages/Home";
 import Footer from './pages/Footer';
-//import Detail from "./pages/Detail";
-//import NoMatch from "./pages/NoMatch";
+// import Detail from "./pages/Detail";
+// import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Success from "./pages/Success";
@@ -50,8 +50,6 @@ function App() {
       <ChakraProvider theme={theme}>
       <Router>
         <div>
-          
-          
         
           <Provider store={store}>
             
@@ -71,6 +69,7 @@ function App() {
           <Footer/>
           </Provider>
            
+
         </div>
       </Router>
       </ChakraProvider>

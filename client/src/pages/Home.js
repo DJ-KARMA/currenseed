@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Box, Image, Flex, Text, Button,Stack, Container, SimpleGrid } from "@chakra-ui/react";
 
 
+
 const Home = () => {
 
   return (
@@ -73,5 +74,6 @@ const Home = () => {
 			</Flex>
 		)
 	}
+
 export default Home;
 
