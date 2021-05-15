@@ -27,7 +27,10 @@ const sellerSchema = new Schema({
     minlength: 5
   },
   sales: [Sales.schema],
-  purchases: [Purchases.schema]
+  purchases: [Purchases.schema],
+  seeds: {
+    type: Number
+  }
 });
 
 // set up pre-save middleware to create password
@@ -41,7 +44,7 @@ sellerSchema.pre('save', async function(next) {
 });
 
 // compare the incoming password with the hashed password
-userSchema.methods.isCorrectPassword = async function(password) {
+sellerSchema.methods.isCorrectPassword = async function(password) {
   return await bcrypt.compare(password, this.password);
 };
 

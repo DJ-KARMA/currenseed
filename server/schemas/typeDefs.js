@@ -21,6 +21,16 @@ const typeDefs = gql`
     purchaseDate: String
     products: [Product]
   }
+  type Sales {
+    _id: ID
+    purchaseDate: String
+    products: [Product]
+  }
+  type Purchases {
+    _id: ID
+    purchaseDate: String
+    products: [Product]
+  }
   type Buyer {
     _id: ID
     firstName: String
@@ -61,7 +71,8 @@ const typeDefs = gql`
     updateBuyer(firstName: String, lastName: String, email: String, password: String): Buyer
     updateSeller(firstName: String, lastName: String, email: String, password: String): Seller
     updateProduct(_id: ID!, quantity: Int!): Product
-    login(email: String!, password: String!): Auth
+    loginBuyer(email: String!, password: String!): Auth
+    loginSeller(email: String!, password: String!): Auth
   }
   type Checkout {
     session: ID

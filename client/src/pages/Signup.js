@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
-// import { useMutation } from '@apollo/react-hooks';
-// // import { Link } from "react-router-dom";
-// import { LOGIN } from "../utils/mutations"
-// import Auth from "../utils/auth";
+import { useMutation } from '@apollo/react-hooks';
+//import { Link } from "react-router-dom";
+import { ADD_SELLER, ADD_BUYER } from "../utils/mutations"
+import Auth from "../utils/auth";
 
 import {
     Flex,
@@ -13,20 +14,59 @@ import {
     Input,
     Button,
     Checkbox,
-    Stack
+    Stack,
+    //setFirstName, 
+    //setLastName
 } from '@chakra-ui/react';
 
-export default function Signup() {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const handleSubmit = event => {
-        event.preventDefault();
-        alert(`Username: ${username} & Email: ${email} & Password: ${password}`);
+export default function Signup(props) {
+    const [formState, setFormState] = useState({ email: '', password: '' });
+    const [addSeller] = useMutation(ADD_SELLER);
+    const [addBuyer] = useMutation(ADD_BUYER);
+    const choice = []; 
+  
+    const handleChoice = event => {
+        //get checked value
+        const checkedValue = event.target.value; 
+        //push to empty array 
+        choice.pop(checkedValue);
+    }
+    
+    const handleFormSubmit = async event => {
+      event.preventDefault();
+
+        if (choice[0] === "Buyer") {
+            const mutationResponse = await addBuyer({
+                variables: {
+                    email: formState.email, password: formState.password,
+                    firstName: formState.firstName, lastName: formState.lastName,
+                    seeds: Math.floor(Math.random()*20 + 1)
+                }
+            });
+            const token = mutationResponse.data.addBuyer.token;
+            Auth.login(token);
+            console.log(token);
+        } else {  
+            const mutationResponse = await addSeller({
+                variables: {
+                    email: formState.email, password: formState.password,
+                    firstName: formState.firstName, lastName: formState.lastName,
+                    seeds: Math.floor(Math.random()*20 + 1)
+                }
+            });
+            const token = mutationResponse.data.addSeller.token;
+            Auth.login(token);
+        }
     };
-
-
-
+  
+    const handleChange = event => {
+      const { name, value } = event.target;
+      setFormState({
+        ...formState,
+        [name]: value
+      });
+    };
+ 
     return (
 
         <Flex width="full" align="center" justifyContent="center">
@@ -36,53 +76,73 @@ export default function Signup() {
                 </Box>
                 <Box my={4} textAlign="left">
 
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleFormSubmit}>
 
                         <FormControl isRequired>
-                            <FormLabel>First Name</FormLabel>
+                            <FormLabel htmlFor="firstName">First Name</FormLabel>
                             <Input
                                 type="firstName"
+                                name="firstName"
+                                id="firstName"
                                 placeholder="*******"
                                 size="lg"
-                                onChange={event => setFirstName(event.currentTarget.value)}
+                                onChange={handleChange}
                             />
                         </FormControl>
                         <FormControl isRequired>
-                            <FormLabel>Last Name</FormLabel>
+                            <FormLabel htmlFor="lastName">Last Name</FormLabel>
                             <Input
                                 type="lastName"
+                                name="lastName"
+                                id="lastName"
                                 placeholder="*******"
                                 size="lg"
-                                onChange={event => setLastName(event.currentTarget.value)}
+                                onChange={handleChange}
                             />
                         </FormControl>
                         <FormControl isRequired>
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel htmlFor="email">Email</FormLabel>
                             <Input
                                 type="email"
+                                name="email"
+                                id="email"
                                 placeholder="test@test.com"
                                 size="lg"
-                                onChange={event => setEmail(event.currentTarget.value)}
+                                onChange={handleChange}
                             />
                         </FormControl>
                         <FormControl isRequired mt={6}>
-                            <FormLabel>Password</FormLabel>
+                            <FormLabel htmlFor="password">Password</FormLabel>
                             <Input
                                 type="password"
+                                name="password"
+                                id="password"
                                 placeholder="*******"
                                 size="lg"
-                                onChange={event => setPassword(event.currentTarget.value)}
+                                onChange={handleChange}
                             />
                         </FormControl>
 
 
                         <Stack spacing={10} direction="row">
-                            <Checkbox colorScheme="red" defaultIsChecked>
+                            <Checkbox 
+                            colorScheme="red" 
+                            //defaultIsChecked
+                            name="Buyer"
+                            value="Buyer"
+                            onChange={handleChoice}
+                            >
                                 Buyer
-                        </Checkbox>
-                            <Checkbox colorScheme="green" defaultIsChecked>
+                            </Checkbox>
+                            <Checkbox 
+                            colorScheme="green" 
+                            //defaultIsChecked
+                            name="Seller"
+                            value="Seller"
+                            onChange={handleChoice}
+                            >
                                 Seller
-                         </Checkbox>
+                            </Checkbox>
                         </Stack>
 
                         <Button
