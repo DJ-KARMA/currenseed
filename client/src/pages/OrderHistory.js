@@ -14,11 +14,11 @@ import { QUERY_USER } from "../utils/queries";
   }
 
 return (
-  //  <Box>   
-  //        <Link as={ReactLink} to="/">
-  //          ← Back to Products
-  //        </Link>
-  //       </Box> 
+   <Box>   
+         <Link as={ReactLink} to="/">
+           ← Back to Products
+         </Link>
+       
 
   <Flex height="100hv" alignItems="center" justifyContent="center">
     <Box>
@@ -51,13 +51,15 @@ return (
                   }         
                 </Box>
               </Box>
-            
+            ))}
           // </Box>
         </Box>
             
       
       ) : null }
                 </Box>
+                
   </Flex>
+  </Box> 
 )
-                }  
+ }  
