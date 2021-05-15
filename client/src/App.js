@@ -53,7 +53,6 @@ function App() {
           <Header/>
           <Home/>
           <Footer/>
-          
           <Login/>
           <Signup/> 
           {/* <Provider store={store}>
