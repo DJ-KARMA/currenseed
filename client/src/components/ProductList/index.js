@@ -8,14 +8,16 @@ import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 import { useSelector, useDispatch } from 'react-redux';
 
-function ProductList({}) {
+function ProductList({ categoryId }) {
 
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   const { currentCategory } = state;
 
-  const { loading, data } = useQuery(QUERY_PRODUCTS);
+  const { loading, data } = useQuery(QUERY_PRODUCTS, {
+    variables: { category: categoryId }
+  });
 
   useEffect(() => {
     // if there's data to be stored
