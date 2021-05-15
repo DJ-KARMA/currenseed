@@ -2,7 +2,8 @@
   "name": "project-3",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
+  "proxy": "https://localhost:3001/",
+
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
     "@chakra-ui/gatsby-plugin": "^2.0.0",
