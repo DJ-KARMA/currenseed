@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { ADD_SELLER, ADD_BUYER } from "../utils/mutations"
 import Auth from "../utils/auth";
 
-
 import {
     Flex,
     Box,
@@ -119,4 +118,3 @@ export default function Signup(props) {
         </Flex>
     );
 };
-
