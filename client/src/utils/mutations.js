@@ -29,8 +29,6 @@ export const ADD_ORDER = gql`
   }
 `;
 
-// add buyer and add seller are both the same mutation
-// would changing the buyer/seller typedef to one that has a toggle for buyer/seller make more sense?
 export const ADD_BUYER = gql`
   mutation addBuyer($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
     addBuyer(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
@@ -96,13 +94,40 @@ export const UPDATE_SELLER = gql`
       lastName
       email
       orders {
-
+        _id
+        purchaseDate
+        products {
+          _id
+          name
+          description
+          image
+          quantity
+          price
+        }
       }
       purchases {
-
+        _id
+        purchaseDate
+        products {
+          _id
+          name
+          description
+          image
+          quantity
+          price
+        }
       }
       sales {
-
+        _id
+        purchaseDate
+        products {
+          _id
+          name
+          description
+          image
+          quantity
+          price
+        }
       }
     }
   }

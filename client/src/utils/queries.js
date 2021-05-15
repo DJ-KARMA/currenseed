@@ -1,4 +1,3 @@
-//code here
 import gql from 'graphql-tag';
 
 export const QUERY_CATEGORIES = gql`
@@ -23,11 +22,9 @@ export const QUERY_PRODUCTS = gql`
         _id
       }
     }
-  
   }
 `
 
-// review purchase and order objects within query
 export const QUERY_BUYER = gql`
 {
   buyer {
@@ -63,7 +60,6 @@ export const QUERY_BUYER = gql`
 }
 `;
 
-// review purchase, sale and order objects within query
 export const QUERY_SELLER = gql`
 {
   seller {
@@ -72,13 +68,40 @@ export const QUERY_SELLER = gql`
     lastName
     email
     orders {
-
+      _id
+      purchaseDate
+      products {
+        _id
+        name
+        description
+        image
+        quantity
+        price
+      }
     }
     purchases {
-
+      _id
+      purchaseDate
+      products {
+        _id
+        name
+        description
+        image
+        quantity
+        price
+      }
     }
     sales {
-
+      _id
+      purchaseDate
+      products {
+        _id
+        name
+        description
+        image
+        quantity
+        price
+      }     
     }
   }
 }
