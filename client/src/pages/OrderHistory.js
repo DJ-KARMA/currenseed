@@ -2,14 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_USER } from "../utils/queries";
+import { QUERY_BUYER, QUERY_SELLER } from "../utils/queries";
 
 function OrderHistory() {
-    const { data } = useQuery(QUERY_USER);
-    let user;
+    const { data } = useQuery(QUERY_BUYER, QUERY_SELLER);
+    let buyer;
+    let seller
   
     if (data) {
-      user = data.user;
+      buyer = data.buyer;
     }
     //return statement below:
     //return ()

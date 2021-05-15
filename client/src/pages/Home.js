@@ -22,7 +22,7 @@ const Home = () => {
 			</Box>
 				<SimpleGrid columns={[1, null, 2, null, 4]} gap={4}>
         <Box  p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
-          <Image borderRadius="md" src="/images/beer-1.jpg" alt="Test"/>
+          <Image borderRadius="md" src="/images/beer-1-min.jpg" alt="Test"/>
             <Flex  mt={2} justifyContent="center">
               <Text 
                 textTransform="uppercase"
@@ -49,7 +49,7 @@ const Home = () => {
         </Box>
 
 				<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
-      <Image borderRadius="md" src="/images/produce-3.jpg" alt="Test"/>
+      <Image borderRadius="md" src="/images/produce-3-min.jpg" alt="Test"/>
       <Flex  mt={2} justifyContent="center">
         <Text 
           textTransform="uppercase"
@@ -75,7 +75,7 @@ const Home = () => {
     </Box>
 
     <Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
-      <Image borderRadius="md" src="/images/jewelry-1.jpg" alt="Test"/>
+      <Image borderRadius="md" src="/images/jewelry-1-min.jpg" alt="Test"/>
       <Flex  mt={2} justifyContent="center">
         <Text 
           textTransform="uppercase"
@@ -102,7 +102,7 @@ const Home = () => {
 
 
 		<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
-      	<Image borderRadius="md" src="/images/cheese-2.jpg" alt="Test"/>
+      	<Image borderRadius="md" src="/images/cheese-2-min.jpg" alt="Test"/>
       	<Flex  mt={2} justifyContent="center">
         	<Text 
           	textTransform="uppercase"
@@ -133,7 +133,7 @@ const Home = () => {
 
 
 			<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
-      	<Image borderRadius="md" src="/images/meat-2.jpg" alt="Test"/>
+      	<Image borderRadius="md" src="/images/meat-2-min.jpg" alt="Test"/>
       	<Flex  mt={2} justifyContent="center">
         	<Text 
           	textTransform="uppercase"
@@ -164,7 +164,7 @@ const Home = () => {
 
 
 			<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
-      	<Image borderRadius="md" src="/images/soap-2.jpg" alt="Test"/>
+      	<Image borderRadius="md" src="/images/soap-2-min.jpg" alt="Test"/>
       	<Flex  mt={2} justifyContent="center">
         	<Text 
           	textTransform="uppercase"
@@ -194,7 +194,7 @@ const Home = () => {
     	</Box>
 
 			<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
-      	<Image borderRadius="md" src="/images/baked-goods-2.jpg" alt="Test"/>
+      	<Image borderRadius="md" src="/images/baked-goods-2-min.jpg" alt="Test"/>
       	<Flex  mt={2} justifyContent="center">
         	<Text 
           	textTransform="uppercase"
@@ -225,7 +225,7 @@ const Home = () => {
 
 
 			<Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px" >
-      	<Image borderRadius="md" src="/images/beer-2.jpg" alt="Test"/>
+      	<Image borderRadius="md" src="/images/beer-2-min.jpg" alt="Test"/>
       	<Flex  mt={2} justifyContent="center">
         	<Text 
           	textTransform="uppercase"

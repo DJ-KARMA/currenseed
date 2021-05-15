@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { ADD_SELLER, ADD_BUYER } from "../utils/mutations"
 import Auth from "../utils/auth";
 
@@ -15,8 +15,8 @@ import {
     Button,
     Checkbox,
     Stack,
-    setFirstName, 
-    setLastName
+    //setFirstName, 
+    //setLastName
 } from '@chakra-ui/react';
 
 export default function Signup(props) {
@@ -35,20 +35,23 @@ export default function Signup(props) {
     const handleFormSubmit = async event => {
       event.preventDefault();
 
-        if (choice[0] == "Buyer") {
+        if (choice[0] === "Buyer") {
             const mutationResponse = await addBuyer({
                 variables: {
                     email: formState.email, password: formState.password,
-                    firstName: formState.firstName, lastName: formState.lastName
+                    firstName: formState.firstName, lastName: formState.lastName,
+                    seeds: Math.floor(Math.random()*20 + 1)
                 }
             });
             const token = mutationResponse.data.addBuyer.token;
             Auth.login(token);
+            alert("buyer added!")
         } else {  
             const mutationResponse = await addSeller({
                 variables: {
                     email: formState.email, password: formState.password,
-                    firstName: formState.firstName, lastName: formState.lastName
+                    firstName: formState.firstName, lastName: formState.lastName,
+                    seeds: Math.floor(Math.random()*20 + 1)
                 }
             });
             const token = mutationResponse.data.addSeller.token;
