@@ -15,9 +15,10 @@ import Footer from './pages/Footer';
 //import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-//import Success from "./pages/Success";
-//import Nav from "./components/Nav";
+import Success from "./pages/Success";
+import Nav from "./components/Nav";
 //import OrderHistory from "./pages/OrderHistory";
+import SellHistory from "./pages/SellHistory";
 
 const client = new ApolloClient({
   request: (operation) => {
