@@ -1,10 +1,11 @@
+
 import React from "react";
 import { Link as ReactLink } from "react-router-dom";
 import { Box, Image, Flex, Text, Button, Stack, Center, SimpleGrid, Link } from '@chakra-ui/react';
-// import { useQuery } from '@apollo/react-hooks';
-// import { QUERY_USER } from "../utils/queries";
+import { useQuery } from '@apollo/react-hooks';
+import { QUERY_USER } from "../utils/queries";
 
-function OrderHistory() {
+ export default function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
   let user;
 
@@ -51,7 +52,7 @@ return (
                 </Box>
               </Box>
             
-          </Box>
+          // </Box>
         </Box>
             
       
@@ -59,5 +60,4 @@ return (
                 </Box>
   </Flex>
 )
-                }          
-export default OrderHistory;
+                }  
