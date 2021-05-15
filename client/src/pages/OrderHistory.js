@@ -1,55 +1,63 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { Link as ReactLink } from "react-router-dom";
+import { Box, Image, Flex, Text, Button, Stack, Center, SimpleGrid, Link } from '@chakra-ui/react';
 // import { useQuery } from '@apollo/react-hooks';
 // import { QUERY_USER } from "../utils/queries";
 
 function OrderHistory() {
-//   const { data } = useQuery(QUERY_USER);
+  const { data } = useQuery(QUERY_USER);
   let user;
 
-  // if (data) {
-  //   user = data.user;
-  // }
+  if (data) {
+    user = data.user;
+  }
 
-  return (
-    <>
-      <div className="container my-1">
-        <Link as={ReactLink} to="/">
-          ← Back to Products
-          </Link>
+return (
+  //  <Box>   
+  //        <Link as={ReactLink} to="/">
+  //          ← Back to Products
+  //        </Link>
+  //       </Box> 
 
-        {user ? (
-          <>
-            <h2>Order History for {user.firstName} {user.lastName}</h2>
+  <Flex height="100hv" alignItems="center" justifyContent="center">
+    <Box>
+      {user ? (
+        <Box>
+          <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+            Order History for {user.firstName} {user.lastName}
+          </Text>
+          <Box>
             {user.orders.map((order) => (
-              <div key={order._id} className="my-2">
-                <h3>{new Date(parseInt(order.purchaseDate)).toLocaleDateString()}</h3>
-                <div className="flex-row">
+              <Box key={order._id} mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+                <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+                  {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
+                </Text>
+                <Box d="flex" alignItems="baseline">
                   {order.products.map(({ _id, image, name, price }, index) => (
-                    <div key={index} className="card px-1 py-1">
-                      <Link to={`/products/${_id}`}>
-                        <img
+                    <Box key={index} padding="4" bg="gray.100" maxW="3xl">
+                      <Link as={ReactLink} to={`/products/${_id}`}>
+                        <Image
                           alt={name}
                           src={`/images/${image}`}
                         />
-                        <p>{name}</p>
+                        <Box>{name}</Box>
                       </Link>
-                      <div>
-                        <span>${price}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </>
-        ) : null}
-
-      </div>
-
-    </>)
-
-};
-
+                        <Box>
+                        <Text>${price}</Text>
+                        </Box>
+                    </Box>
+                  ))
+                  }         
+                </Box>
+              </Box>
+            
+          </Box>
+        </Box>
+            
+      
+      ) : null }
+                </Box>
+  </Flex>
+)
+                }          
 export default OrderHistory;
