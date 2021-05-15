@@ -11,8 +11,8 @@ import Header from "./pages/Header";
 
 import Home from "./pages/Home";
 import Footer from './pages/Footer';
-//import Detail from "./pages/Detail";
-//import NoMatch from "./pages/NoMatch";
+// import Detail from "./pages/Detail";
+// import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Success from "./pages/Success";
@@ -54,8 +54,7 @@ function App() {
           <Footer/>
           <Login/>
           <Signup/> 
-          {/*
-          <Provider store={store}>
+          {/* <Provider store={store}>
             
           <Nav />
           <Switch>
@@ -68,8 +67,7 @@ function App() {
             <Route component={NoMatch} />
           </Switch>
            
-          </Provider>
-           */}
+          </Provider> */}
         </div>
       </Router>
       </ChakraProvider>

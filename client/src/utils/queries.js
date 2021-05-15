@@ -82,7 +82,7 @@ export const QUERY_SELLER = gql`
     }
   }
 }
-`
+`;
 
 export const QUERY_CHECKOUT = gql`
   query getCheckout($products: [ID]!) {
