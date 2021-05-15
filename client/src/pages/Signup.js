@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 // import { LOGIN } from "../utils/mutations"
 // import Auth from "../utils/auth";
 
-/*
+
 import {
     Flex,
     Box,
@@ -102,4 +102,3 @@ export default function Signup() {
     );
 };
 
-*/
