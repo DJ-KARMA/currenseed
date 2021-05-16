@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react";
 import { CloseButton} from "@chakra-ui/react";
+import Auth from "../../utils/auth"
 import Logo from "./Logo";
 
 
@@ -92,7 +93,20 @@ const MenuLinks = ({ isOpen }) => {
               bg: ["white"]
             }}
           >
-          New User Sign Up
+          Sign Up
+          </Button>
+        </MenuItem>
+        <MenuItem>
+          <Button
+            size="sm"
+            rounded="md"
+            color={["brand.500"]}
+            bg={["brand.800"]}
+            _hover={{
+              bg: ["white"]
+            }}
+          >
+          <a href="/" onClick={() => Auth.logout()}> Logout</a>
           </Button>
         </MenuItem>
       </Stack>

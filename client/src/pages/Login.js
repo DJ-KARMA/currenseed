@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from "react-router-dom";
-import { LOGIN } from "../utils/mutations"
+import { LOGIN_BUYER, LOGIN_SELLER } from "../utils/mutations"
 import Auth from "../utils/auth";
 
 import {
@@ -23,13 +23,13 @@ import {
 
 export default function Login(props) {
     const [formState, setFormState] = useState({ email: '', password: '' })
-    const [login, { error }] = useMutation(LOGIN);
+    const [buyerLogin, { error }] = useMutation(LOGIN_BUYER);
   
     const handleFormSubmit = async event => {
       event.preventDefault();
       try {
-        const mutationResponse = await login({ variables: { email: formState.email, password: formState.password } })
-        const token = mutationResponse.data.login.token;
+        const mutationResponse = await buyerLogin({ variables: { email: formState.email, password: formState.password } })
+        const token = mutationResponse.data.buyerLogin.token;
         Auth.login(token);
       } catch (e) {
         console.log(e)
@@ -91,11 +91,11 @@ export default function Login(props) {
                     />
                   </FormControl>
                   <FormControl isRequired mt={6}>
-                    <FormLabel htmlFor="password">Password</FormLabel>
+                    <FormLabel htmlFor="pwd">Password</FormLabel>
                     <Input
                       type="password"
                       name="password"
-                      id="password"
+                      id="pwd"
                       placeholder="*******"
                       size="lg"
                       onChange={handleChange}

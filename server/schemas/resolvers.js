@@ -47,7 +47,7 @@ const resolvers = {
         throw new AuthenticationError('Not logged in');
       },
       seller: async (parent, args, context) => {
-        if (context.buyer) {
+        if (context.seller) {
           const seller = await Seller.findById(context.seller._id).populate({
             path: 'orders.products',
             populate: 'category'
@@ -61,13 +61,13 @@ const resolvers = {
         throw new AuthenticationError('Not logged in');
       },
       order: async (parent, { _id }, context) => {
-        if (context.user) {
-          const user = await User.findById(context.user._id).populate({
+        if (context.buyer) {
+          const buyer = await Buyer.findById(context.buyer._id).populate({
             path: 'orders.products',
             populate: 'category'
           });
   
-          return user.orders.id(_id);
+          return buyer.orders.id(_id);
         }
   
         throw new AuthenticationError('Not logged in');
@@ -129,7 +129,7 @@ const resolvers = {
         if (context.buyer) {
           const order = new Order({ products });
   
-          await Buyer.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+          await Buyer.findByIdAndUpdate(context.buyer._id, { $push: { orders: order } });
   
           return order;
         }
@@ -156,16 +156,16 @@ const resolvers = {
         return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
       },
       loginBuyer: async (parent, { email, password }) => {
-        const buyer = await User.findOne({ email });
+        const buyer = await Buyer.findOne({ email });
   
         if (!buyer) {
-          throw new AuthenticationError('Incorrect credentials');
+          throw new AuthenticationError('Incorrect email');
         }
   
         const correctPw = await buyer.isCorrectPassword(password);
   
         if (!correctPw) {
-          throw new AuthenticationError('Incorrect credentials');
+          throw new AuthenticationError('Incorrect password');
         }
   
         const token = signToken(buyer);
@@ -173,16 +173,16 @@ const resolvers = {
         return { token, buyer };
       },
       loginSeller: async (parent, { email, password }) => {
-        const seller = await User.findOne({ email });
+        const seller = await Seller.findOne({ email });
   
         if (!seller) {
-          throw new AuthenticationError('Incorrect credentials');
+          throw new AuthenticationError('Incorrect email');
         }
   
         const correctPw = await seller.isCorrectPassword(password);
   
         if (!correctPw) {
-          throw new AuthenticationError('Incorrect credentials');
+          throw new AuthenticationError('Incorrect password');
         }
   
         const token = signToken(seller);

@@ -28,7 +28,7 @@ const typeDefs = gql`
     lastName: String
     email: String
     purchases: [Order]
-    seeds: Number
+    seeds: Float
     location: String
   }
   type Seller {
@@ -38,7 +38,7 @@ const typeDefs = gql`
     email: String
     purchases: [Order]
     sales: [Order]
-    seeds: Number
+    seeds: Float
     location: String
   }
   type Auth {

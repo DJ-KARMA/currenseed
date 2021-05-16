@@ -3,10 +3,10 @@ import React from "react";
 import { Link as ReactLink } from "react-router-dom";
 import { Box, Image, Flex, Text, Button, Stack, Center, SimpleGrid, Link } from '@chakra-ui/react';
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_USER } from "../utils/queries";
+import { QUERY_BUYER, QUERY_SELLER } from "../utils/queries";
 
  export default function OrderHistory() {
-  const { data } = useQuery(QUERY_USER);
+  const { data } = useQuery(QUERY_BUYER || QUERY_SELLER);
   let user;
 
   if (data) {
@@ -39,7 +39,7 @@ return (
                       <Link as={ReactLink} to={`/products/${_id}`}>
                         <Image
                           alt={name}
-                          src={`/images/${image}`}
+                          //src={`/images/${image}`}
                         />
                         <Box>{name}</Box>
                       </Link>

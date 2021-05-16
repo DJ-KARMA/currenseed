@@ -77,7 +77,7 @@ export default function Signup(props) {
                 <Box textAlign="center">
                     <Text>
                         <Link to="/login"> Login instead!</Link>
-                    </Text>
+                    </Text> 
                     <Heading>Signup</Heading>
                 </Box>
                 <Box my={4} textAlign="left">
@@ -118,11 +118,11 @@ export default function Signup(props) {
                             />
                         </FormControl>
                         <FormControl isRequired mt={6}>
-                            <FormLabel htmlFor="password">Password</FormLabel>
+                            <FormLabel htmlFor="pwd">Password</FormLabel>
                             <Input
                                 type="password"
                                 name="password"
-                                id="password"
+                                id="pwd"
                                 placeholder="*******"
                                 size="lg"
                                 onChange={handleChange}
