@@ -20,6 +20,8 @@ import Nav from "./components/Nav";
 //import OrderHistory from "./pages/OrderHistory";
 //import SellHistory from "./pages/SellHistory";
 import CategoryDetail from "./pages/CategoryDetail"
+import Cart from "./components/Cart";
+import buyerProfile from "./pages/buyerProfile";
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -62,6 +64,8 @@ function App() {
 
             <Route exact path="/success" component={Success} />
             <Route exact path="/category/:categoryId" component={CategoryDetail} />
+            <Route exact path="/cart" component={Cart}/>
+            <Route exact path="/buyerProfile" component={buyerProfile}/>
             {/*
             <Route exact path="/orderHistory" component={OrderHistory} />
             <Route exact path="/products/:id" component={Detail} />
