@@ -2,10 +2,10 @@ import React from "react";
 import { Link, Box, Flex, Text, Button, Stack, IconButton } from "@chakra-ui/react";
 import { FaShoppingCart } from "react-icons/fa";
 import { CloseButton} from "@chakra-ui/react";
+import Auth from "../../utils/auth"
 import Logo from "./Logo";
-import Auth from "../../utils/auth";
 import Cart from "../Cart";
-import buyerProfile from "../../pages/buyerProfile";
+import SellerProfile from "../../pages/SellerProfile";
 
 const Nav = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -87,7 +87,7 @@ const MenuLinks = ({ isOpen }) => {
             pt={[4, 4, 0, 0]}
           >
             <MenuItem to="/">Home</MenuItem>
-            <MenuItem to="/buyerProfile">My Profile</MenuItem>
+            <MenuItem to="/profile/">My Profile</MenuItem>
             <MenuItem to="/">
               <Button
                 onClick={() => Auth.logout()}

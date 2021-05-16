@@ -3,8 +3,10 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const Order = require('./Order');
+const Purchases = require('./Purchases');
+const Sales = require('./Sales');
 
-const buyerSchema = new Schema({
+const userSchema = new Schema({
   firstName: {
     type: String,
     required: true,
@@ -25,14 +27,22 @@ const buyerSchema = new Schema({
     required: true,
     minlength: 5
   },
-  purchases: [Order.schema],
   seeds: {
-    type: Number
-  }
+    type: Number, 
+    default: 50
+  },
+  location: {
+    type: String,
+    required: true,
+    default: "Niagara Region"
+  },
+  purchases: [Purchases.schema],
+  orders: [Order.schema],
+  sales: [Sales.schema]
 });
 
 // set up pre-save middleware to create password
-buyerSchema.pre('save', async function(next) {
+userSchema.pre('save', async function(next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
@@ -42,10 +52,10 @@ buyerSchema.pre('save', async function(next) {
 });
 
 // compare the incoming password with the hashed password
-buyerSchema.methods.isCorrectPassword = async function(password) {
+userSchema.methods.isCorrectPassword = async function(password) {
   return await bcrypt.compare(password, this.password);
 };
 
-const Buyer = mongoose.model('Buyer', buyerSchema);
+const User = mongoose.model('User', userSchema);
 
-module.exports = Buyer;
+module.exports = User;

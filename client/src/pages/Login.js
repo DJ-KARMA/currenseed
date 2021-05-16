@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LOGIN } from "../utils/mutations"
 import Auth from "../utils/auth";
 
@@ -17,7 +17,7 @@ import {
   CircularProgress,
   isLoggedIn, 
   setIsLoggedIn, 
-  ErrorMessage,
+  //ErrorMessage,
   isLoading
 } from '@chakra-ui/react';
 
@@ -43,6 +43,7 @@ export default function Login(props) {
         [name]: value
       });
     };
+
     return (
      
 
@@ -70,14 +71,19 @@ export default function Login(props) {
           ) : (
             <>
               <Box textAlign="center">
+                <Text> 
+                  <Link to='/signup'>New user?</Link>
+                </Text>
                 <Heading>Login</Heading>
               </Box>
               <Box my={4} textAlign="left">
                 <form onSubmit={handleFormSubmit}>
-                  {error && <ErrorMessage message={error} />}
+                  {/* {error && <ErrorMessage message={error} />} */}
                   <FormControl isRequired>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
+                      name="email"
+                      id="email"
                       type="email"
                       placeholder="test@test.com"
                       size="lg"
@@ -85,9 +91,11 @@ export default function Login(props) {
                     />
                   </FormControl>
                   <FormControl isRequired mt={6}>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel htmlFor="pwd">Password</FormLabel>
                     <Input
                       type="password"
+                      name="password"
+                      id="pwd"
                       placeholder="*******"
                       size="lg"
                       onChange={handleChange}
