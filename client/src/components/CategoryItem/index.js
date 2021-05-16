@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link as ReactLink } from "react-router-dom";
+import { Box, Text, Input, Image } from "@chakra-ui/react";
 
 
 function CategoryItem(item) {
@@ -14,20 +15,20 @@ function CategoryItem(item) {
   } = item;
   //needs to be converted to Chakra
   return (
-    <div className="tbd">
-      <Link to={`/products/${_id}`}>
-        <img
+    <Box boxSize="sm">
+        <Link as={ReactLink}to={`/products/${_id}`}>
+        <Image
           alt={name}
-          //src={`/images/${image}`}
+          src={`/images/${image}`}
         />
-        <p>{name}</p>
-        <p>{description}</p>
+        <Text>{name}</Text>
+        <Text>{description}</Text>
       </Link>
-      <div>
-        <div>{quantity} in stock</div>
-        <span>${price}</span>
-      </div>
-    </div>
+      <Box>
+        <Box>{quantity} in stock</Box>
+        <Text>${price}</Text>
+      </Box>
+    </Box>
   );
 }
 
