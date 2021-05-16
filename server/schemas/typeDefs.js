@@ -28,6 +28,8 @@ const typeDefs = gql`
     lastName: String
     email: String
     purchases: [Order]
+    seeds: Number
+    location: String
   }
   type Seller {
     _id: ID
@@ -36,6 +38,8 @@ const typeDefs = gql`
     email: String
     purchases: [Order]
     sales: [Order]
+    seeds: Number
+    location: String
   }
   type Auth {
     token: ID
@@ -54,8 +58,8 @@ const typeDefs = gql`
     checkout(products: [ID]!): Checkout 
   }
   type Mutation {
-    addBuyer(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addSeller(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addBuyer(firstName: String!, lastName: String!, email: String!, password: String!, location: String!): Auth
+    addSeller(firstName: String!, lastName: String!, email: String!, password: String!, location: String!): Auth
     addOrder(products: [ID]!): Order
     updateBuyer(firstName: String, lastName: String, email: String, password: String): Buyer
     updateSeller(firstName: String, lastName: String, email: String, password: String): Seller

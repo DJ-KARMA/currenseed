@@ -28,6 +28,9 @@ const buyerSchema = new Schema({
   purchases: [Order.schema],
   seeds: {
     type: Number
+  },
+  location: {
+    type: String
   }
 });
 

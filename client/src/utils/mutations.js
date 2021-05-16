@@ -42,8 +42,8 @@ export const ADD_SEEDS = gql`
 `;
 
 export const ADD_BUYER = gql`
-  mutation addBuyer($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    addBuyer(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+  mutation addBuyer($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {
+    addBuyer(firstName: $firstName, lastName: $lastName, email: $email, password: $password, location: $location) {
       token
       buyer {
         _id
@@ -53,8 +53,8 @@ export const ADD_BUYER = gql`
 `;
 
 export const ADD_SELLER = gql`
-  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    addSeller(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {
+    addSeller(firstName: $firstName, lastName: $lastName, email: $email, password: $password, location: $location) {
       token
       seller {
         _id

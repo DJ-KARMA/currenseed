@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ADD_SELLER, ADD_BUYER } from "../utils/mutations"
 import Auth from "../utils/auth";
 
@@ -15,6 +15,7 @@ import {
     Button,
     Checkbox,
     Stack,
+    Text
     //setFirstName, 
     //setLastName
 } from '@chakra-ui/react';
@@ -40,6 +41,7 @@ export default function Signup(props) {
                 variables: {
                     email: formState.email, password: formState.password,
                     firstName: formState.firstName, lastName: formState.lastName,
+                    location: formState.location,
                     seeds: Math.floor(Math.random()*20 + 1)
                 }
             });
@@ -51,6 +53,7 @@ export default function Signup(props) {
                 variables: {
                     email: formState.email, password: formState.password,
                     firstName: formState.firstName, lastName: formState.lastName,
+                    location: formState.location,
                     seeds: Math.floor(Math.random()*20 + 1)
                 }
             });
@@ -72,6 +75,9 @@ export default function Signup(props) {
         <Flex width="full" align="center" justifyContent="center">
             <Box p={8} maxWidth="500px" borderWidth={1} borderRadius={8} boxShadow="lg">
                 <Box textAlign="center">
+                    <Text>
+                        <Link to="/login"> Login instead!</Link>
+                    </Text>
                     <Heading>Signup</Heading>
                 </Box>
                 <Box my={4} textAlign="left">
@@ -122,8 +128,17 @@ export default function Signup(props) {
                                 onChange={handleChange}
                             />
                         </FormControl>
-
-
+                        <FormControl isRequired mt={6}>
+                            <FormLabel htmlFor="location">Location</FormLabel>
+                            <Input
+                                type="location"
+                                name="location"
+                                id="location"
+                                placeholder="Niagara Region"
+                                size="lg"
+                                onChange={handleChange}
+                            />
+                        </FormControl>
                         <Stack spacing={10} direction="row">
                             <Checkbox 
                             colorScheme="red" 
