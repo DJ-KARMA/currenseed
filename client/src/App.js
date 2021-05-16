@@ -11,7 +11,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 import Home from "./pages/Home";
 import Footer from './pages/Footer';
-// import Detail from "./pages/Detail";
+import Detail from "./pages/Detail";
 // import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -65,6 +65,7 @@ function App() {
 
             <Route exact path="/success" component={Success} />
             <Route exact path="/category/:categoryId" component={CategoryDetail} />
+            <Route exact path="/products/:id" component={Detail} />
             <Route exact path="/cart" component={Cart}/>
             <Route exact path="/profile" component={SellerProfile}/>
             {/*

@@ -96,37 +96,45 @@ function Detail() {
   return (
     <>
       {currentProduct ? (
-        <div className="container my-1">
+
+        <Box className="container my-1">
           <Link to="/">
             ← Back to Products
           </Link>
+          <Box
+        w='300px'
+        border='2px'
+        borderColor= 'brand.900'
+        rounded='20px'
+        overflow='sm'
+        bg='brand.700'>
+          <Heading as="h2">{currentProduct.name}</Heading>
 
-          <h2>{currentProduct.name}</h2>
-
-          <p>
+          <Text>
             {currentProduct.description}
-          </p>
+          </Text>
 
-          <p>
+          <Text>
             <strong>Price:</strong>
             ${currentProduct.price}
             {" "}
-            <button onClick={addToCart}>
+            <Button onClick={addToCart}>
               Add to Cart
-            </button>
-            <button 
+            </Button>
+            <Button 
               disabled={!cart.find(p => p._id === currentProduct._id)} 
               onClick={removeFromCart}
             >
               Remove from Cart
-            </button>
-          </p>
+            </Button>
+          </Text>
 
-          <img
+          <Image
             //src={`/images/${currentProduct.image}`}
             alt={currentProduct.name}
           />
-        </div>
+        </Box>
+        </Box>
       ) : null}
       <Cart />
     </>
