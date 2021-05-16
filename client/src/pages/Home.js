@@ -26,15 +26,22 @@ const Home = () => {
 		return (
 			
 		<Flex m="5" justifyContent="center">
-			<Stack m="2" alignContent="center">
-				<Box>
-					<Container w={[300, 400, 560]}>Currenseed is an online farmer’s market. 
-					There is no real world currency here. Products are paid for using “seeds” which 
-					can be purchased via credit card, earned by doing certain tasks such as logging in, 
-					and by interacting with the website (ie. Buying and making sales). 
-					Buyer’s can browse kiosks based on their location, to ensure that they are able to buy 
-					fresh produce and other items locally.</Container>
+			<Stack m="2" alignContent="center" >
+				<Box fontSize="lg" align="center">
+					<Container>
+						Currenseed is your local farmer’s market online.
+					</Container>
+					<Container>
+						As a buyer you can shop from all the your local vendors in one convenient place from the comfort of your home.
+					</Container>
+					<Container>
+						For all the vendors you can put all of your products online to be sold without having to travel to the market and setup.
+					</Container>
+					<Container>
+						The more you buy/sell the more "Seeds" you will accumulate. Seeds can be used to purchase items and even used to promote your products on the homepage.
+					</Container>
 				</Box>
+				
 				<Box>
 					<Container fontSize="3xl" align="center" fontWeight="bold" color="brand.500">Niagara Region</Container>
 				</Box>
