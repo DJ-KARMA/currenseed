@@ -2,21 +2,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Box, Heading, Flex, Image, Text} from "@chakra-ui/react";
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_SELLER } from "../utils/queries";
+import { QUERY_USER } from "../utils/queries";
 
 function SellHistory() {
-  const { data } = useQuery(QUERY_SELLER);
-  let seller;
+  const { data } = useQuery(QUERY_USER);
+  let user;
   if (data) {
-    seller = data.seller;
+    user = data.user;
    }
+   
   return (
         <Flex height="100hv" alignItems="center" justifyContent="center">
             <Box>
-                {seller ? (
+                {user ? (
                     <Box>
-                    <Heading as="h2">Selling History for {seller.firstName} {seller.lastName}</Heading>
-                        {seller.orders.map((order) => (
+                    <Heading as="h2">Sell History for {user.firstName}</Heading>
+                        {user.orders.map((order) => (
                             <Box key={order.id}>
                                 <Heading as="h3">{new Date(parseInt(order.purchaseDate)).toLocaleDateString()}</Heading>
                                 {order.products.map(({ _id, image, name, price }, index) => (

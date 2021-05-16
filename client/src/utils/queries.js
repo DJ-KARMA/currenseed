@@ -25,40 +25,27 @@ export const QUERY_PRODUCTS = gql`
   }
 `
 
-export const QUERY_BUYER = gql`
+export const QUERY_USER = gql`
 {
-  buyer {
+  user {
     _id
     firstName
     lastName
     email
-    purchases {
-      _id
-      purchaseDate
-      products {
-        _id
-        name
-        description
-        image
-        quantity
-        price
-      }
-      sellerId
-      buyerId
-    }
     seeds
     location
-  }
-}
-`;
-
-export const QUERY_SELLER = gql`
-{
-  seller {
-    _id
-    firstName
-    lastName
-    email
+    orders {
+      _id
+      purchaseDate
+      products {
+        _id
+        name
+        description
+        price
+        quantity
+        image
+      }
+    }
     purchases {
       _id
       purchaseDate
@@ -70,8 +57,7 @@ export const QUERY_SELLER = gql`
         quantity
         price
       }
-      sellerId
-      buyerId
+      userId
     }
     sales {
       _id
@@ -84,11 +70,8 @@ export const QUERY_SELLER = gql`
         quantity
         price
       }
-      sellerId
-      buyerId
+      userId
     }
-    seeds
-    location
   }
 }
 `;

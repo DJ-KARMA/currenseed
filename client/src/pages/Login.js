@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from "react-router-dom";
-import { LOGIN_BUYER, LOGIN_SELLER } from "../utils/mutations"
+import { LOGIN } from "../utils/mutations"
 import Auth from "../utils/auth";
 
 import {
@@ -23,13 +23,13 @@ import {
 
 export default function Login(props) {
     const [formState, setFormState] = useState({ email: '', password: '' })
-    const [buyerLogin, { error }] = useMutation(LOGIN_BUYER);
+    const [login, { error }] = useMutation(LOGIN);
   
     const handleFormSubmit = async event => {
       event.preventDefault();
       try {
-        const mutationResponse = await buyerLogin({ variables: { email: formState.email, password: formState.password } })
-        const token = mutationResponse.data.buyerLogin.token;
+        const mutationResponse = await login({ variables: { email: formState.email, password: formState.password } })
+        const token = mutationResponse.data.login.token;
         Auth.login(token);
       } catch (e) {
         console.log(e)

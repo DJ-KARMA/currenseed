@@ -4,7 +4,6 @@ import { FaShoppingCart } from "react-icons/fa";
 import { CloseButton} from "@chakra-ui/react";
 import Auth from "../../utils/auth"
 import Logo from "./Logo";
-import Auth from "../../utils/auth";
 
 
 const Nav = (props) => {
@@ -87,7 +86,7 @@ const MenuLinks = ({ isOpen }) => {
             pt={[4, 4, 0, 0]}
           >
             <MenuItem to="/">Home</MenuItem>
-            <MenuItem to="/profile">My Profile</MenuItem>
+            <MenuItem to="/profile/">My Profile</MenuItem>
             <MenuItem to="/">
               <Button
                 onClick={() => Auth.logout()}
