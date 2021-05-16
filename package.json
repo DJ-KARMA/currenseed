@@ -22,6 +22,7 @@
     "framer-motion": "^4.1.13",
     "graphql": "^15.5.0",
     "if-env": "^1.0.4",
+    "react-icons": "^4.2.0",
     "react-redux": "^7.2.4",
     "redux": "^4.1.0"
   },
