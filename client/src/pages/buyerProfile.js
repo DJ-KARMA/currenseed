@@ -29,7 +29,7 @@ function buyerProfile() {
                         _id:"3",
                         name:"apple",
                         description:"",
-                        image:"",
+                        image:"jewelry-1-min",
                         quantity:"",
                         price: 30
                     },
@@ -37,7 +37,7 @@ function buyerProfile() {
                         _id:"3",
                         name:"apple",
                         description:"",
-                        image:"",
+                        image:"jewelry-1-min",
                         quantity:"",
                         price: 30
                     }
@@ -54,7 +54,7 @@ function buyerProfile() {
                         _id:"3",
                         name:"apple",
                         description:"",
-                        image:"",
+                        image:"jewelry-1-min",
                         quantity:"",
                         price: 30
                     }
@@ -68,10 +68,10 @@ function buyerProfile() {
 
     return (
         <Box>   
-            <Box>
+            <Box margin={10}>
                 <Flex height="100hv" alignItems="top" justifyContent="space-between">  
                     <Box>   
-                        <Text m={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+                        <Text m={2} fontSize="xx-large" fontWeight="semibold" lineHeight="short">
                             Profile for {user.firstName} {user.lastName}
                         </Text>
                         <Text m={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
@@ -84,40 +84,42 @@ function buyerProfile() {
                 </Flex>
             </Box>
             <Divider orientation="horizontal" />
-            <Flex height="100hv" alignItems="center" justifyContent="center">
+            <Box d="flex" height="100hv" alignItems="top" justifyContent="space-around" flexWrap="wrap">
                 <Box width="100%" textAlign="center">
-                   <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+                    <Text color="brand.500" textDecoration="underline" mt="20px" fontSize="xl" fontWeight="semibold" lineHeight="tall">
                         Order History
                     </Text>
-                    <Box border="1px" width="90%" padding="10px" my="20px" mx="auto" textAlign="center">
-                        {/* <orderHistory/> */}
+                    <Box borderWidth="1px" width="80%" minHeight="300px" padding="10px" my="20px" mx="auto" textAlign="center">
                         {user.purchases.map((order) => (
                             <Box key={order._id} m="10px" fontSize="xl" fontWeight="semibold" lineHeight="short">
                                 <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
                                     {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
                                 </Text>
-                                <Box d="flex" alignItems="baseline">
-                                    {order.products.map(({ _id, image, name, price, quantity }, index) => (
-                                        <Box key={index} padding="4" m="10px" bg="gray.100" maxW="3xl">
+                                <Box d="flex" flexWrap="wrap" alignItems="baseline">
+                                    {order.products.map(({ _id, image, name,quantity, price }, index) => (
+                                        <Box borderWidth="1px" width="150" borderRadius="12px" key={index} m="10px" alignItems="center">
                                             <Link as={ReactLink} to={`/products/${_id}`}>
                                                 <Image
+                                                borderTopRadius ="12px"
+                                                width="150px"
                                                 alt={name}
-                                                src={`/images/${image}`}
+                                                src={`/images/${image}.jpg`}
                                                 />
-                                                <Box>{name} Qty:{quantity}</Box>
                                             </Link>
-                                            <Box>
-                                                <Text>${price}</Text>
+                                            <Box width="150px"  color="brand.900" borderBottomRadius="12px">
+                                                <Text p="5px" flexWrap="wrap">{name}</Text>
+                                                <Text p="5px">Qty:{quantity}</Text>
+                                                <Text p="5px">${price}</Text>
                                             </Box>
                                         </Box>
-                                    ))}         
+                                    ))}       
                                 </Box>
                             </Box>
                         ))}
                     </Box>
                 </Box>
 
-            </Flex>
+            </Box>
         </Box> 
     )
 }; 
