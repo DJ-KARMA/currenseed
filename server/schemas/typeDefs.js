@@ -13,55 +13,45 @@ const typeDefs = gql`
     quantity: Int
     price: Float
     category: Category
-    sellerId: String
+    userId: String
   }
   type Order {
     _id: ID
     purchaseDate: String
-    sellerId: String
-    buyerId: String
+    userId: String
     products: [Product]
   }
-  type Buyer {
+  type User {
     _id: ID
     firstName: String
     lastName: String
     email: String
-    purchases: [Order]
-  }
-  type Seller {
-    _id: ID
-    firstName: String
-    lastName: String
-    email: String
-    purchases: [Order]
+    orders: [Order]
     sales: [Order]
+    purchases: [Order]
+    seeds: Float
+    location: String
   }
   type Auth {
-    token: ID
-    buyer: Buyer
-    seller: Seller
+    token: ID!
+    user: User
   }
   type Query {
     categories: [Category]
     products(category: ID, name: String): [Product]
     product(_id: ID!): Product
-    buyer: Buyer
-    seller: Seller
-    order(_id: ID!): Order
-    sales(_id: ID!): Order
-    purchases(_id: ID!): Order
+    user: User
+    orders(_id: ID!): Order
+    sales(_id:ID!): Order
+    purchases(_id:ID!): Order
     checkout(products: [ID]!): Checkout 
   }
   type Mutation {
-    addBuyer(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addSeller(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     addOrder(products: [ID]!): Order
-    updateBuyer(firstName: String, lastName: String, email: String, password: String): Buyer
-    updateSeller(firstName: String, lastName: String, email: String, password: String): Seller
+    updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateProduct(_id: ID!, quantity: Int!): Product
-    loginBuyer(email: String!, password: String!): Auth
-    loginSeller(email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
   }
   type Checkout {
     session: ID

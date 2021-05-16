@@ -6,7 +6,7 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "cd server && npm start",
-    "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "start:dev": "concurrently \"cd server && node server.js\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "heroku-postbuild": "cd client && npm run build"
@@ -22,6 +22,7 @@
     "framer-motion": "^4.1.13",
     "graphql": "^15.5.0",
     "if-env": "^1.0.4",
+    "react-icons": "^4.2.0",
     "react-redux": "^7.2.4",
     "redux": "^4.1.0"
   },

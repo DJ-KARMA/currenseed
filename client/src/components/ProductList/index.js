@@ -3,19 +3,24 @@ import { useQuery } from '@apollo/react-hooks';
 
 import ProductItem from "../ProductItem";
 import { QUERY_PRODUCTS } from "../../utils/queries";
-// import spinner from "../../assets/spinner.gif";
-import { UPDATE_PRODUCTS } from '../../utils/actions';
-import { idbPromise } from "../../utils/helpers";
+
 import { useSelector, useDispatch } from 'react-redux';
+import { UPDATE_PRODUCTS } from '../../utils/actions';
 
-function ProductList({}) {
+import { idbPromise } from "../../utils/helpers";
 
-  const state = useSelector(state => state);
+function ProductList({ categoryId }) {
+  const state = useSelector((state) => {
+    return state
+  });
+  
   const dispatch = useDispatch();
 
   const { currentCategory } = state;
 
-  const { loading, data } = useQuery(QUERY_PRODUCTS);
+  const { loading, data } = useQuery(QUERY_PRODUCTS, {
+    variables: { category: categoryId }
+  });
 
   useEffect(() => {
     // if there's data to be stored
@@ -53,7 +58,6 @@ function ProductList({}) {
   //convert to Chakra 
   return (
     <div className="my-2">
-      <h2>Our Products:</h2>
       {state.products.length ? (
         <div className="flex-row">
             {filterProducts().map(product => (
@@ -66,15 +70,12 @@ function ProductList({}) {
                   quantity={product.quantity}
                   description={product.description}
                   category={product.category}
-                  sellerId={product.sellerId}
                 />
             ))}
         </div>
       ) : (
         <h3>You haven't added any products yet!</h3>
       )}
-      {/* { loading ? 
-      <img src={spinner} alt="loading" />: null} */}
     </div>
   );
 }

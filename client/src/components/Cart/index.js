@@ -7,6 +7,7 @@ import { QUERY_CHECKOUT } from '../../utils/queries';
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { useDispatch, useSelector } from 'react-redux';
+import { Box, Text, Button, Heading } from "@chakra-ui/react";
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
@@ -66,44 +67,56 @@ const Cart = () => {
 
     if (!state.cartOpen) {
         return (
-          <div onClick={toggleCart}>
-            <span
+          <Box onClick={toggleCart}>
+            <Heading><Text
               role="img"
-              aria-label="sunflower">🌻</span>
-          </div>
+              aria-label="sunflower" align="center">🌻 Your cart</Text>
+              </Heading>
+          </Box>
         );
     }
-  //needs to be converted to Chakra
+
   return (
-<div>
-  <div onClick={toggleCart}>[close]</div>
-  <h2>Cart</h2>
+<Box>
+  {/* <Box onClick={toggleCart}>[close]</Box> */}
+  {/* <Heading align="center">Cart</Heading> */}
   {state.cart.length ? (
-    <div>
+    <Box>
       {state.cart.map(item => (
         <CartItem key={item._id} item={item} />
       ))}
-      <div>
-        <strong>Seeds: {calculateTotal()}</strong>
+      <Box>
+        <Heading>Seeds: {calculateTotal()}</Heading>
         {
           Auth.loggedIn() ?
-            <button onClick={submitCheckout}>
-              Checkout
-            </button>
+            <Button 
+            onClick={submitCheckout}
+            size="sm"
+            rounded="md"
+            color={["brand.500"]}
+            bg={["brand.800"]}
+            _hover={{
+              bg: ["white"]
+            }}
+          >          
+            Checkout
+            </Button>
             :
-            <span>(log in to check out)</span>
+            <Text>(log in to check out)</Text>
         }
-      </div>
-    </div>
+  
+      </Box>
+    </Box>
   ) : (
-    <h3>
-      <span role="img" aria-label="sad flower">
+    <Heading>
+      <Text role="img" aria-label="sad flower" align="center">
       🥀
-      </span>
-      Cart empty!
-    </h3>
+      
+      Your cart is empty!
+      </Text>
+    </Heading>
   )}
-</div>
+</Box>
   );
 };
 

@@ -11,14 +11,18 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 import Home from "./pages/Home";
 import Footer from './pages/Footer';
-// import Detail from "./pages/Detail";
+import Detail from "./pages/Detail";
 // import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Success from "./pages/Success";
 import Nav from "./components/Nav";
+import SellerProfile from "./pages/SellerProfile";
 //import OrderHistory from "./pages/OrderHistory";
 //import SellHistory from "./pages/SellHistory";
+import CategoryDetail from "./pages/CategoryDetail"
+import Cart from "./components/Cart";
+
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -60,6 +64,10 @@ function App() {
             <Route exact path="/signup" component={Signup} />
 
             <Route exact path="/success" component={Success} />
+            <Route exact path="/category/:categoryId" component={CategoryDetail} />
+            <Route exact path="/products/:id" component={Detail} />
+            <Route exact path="/cart" component={Cart}/>
+            <Route exact path="/profile" component={SellerProfile}/>
             {/*
             <Route exact path="/orderHistory" component={OrderHistory} />
             <Route exact path="/products/:id" component={Detail} />
