@@ -2,7 +2,7 @@ import React from 'react';
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Text, Button, Heading, Input, Image } from "@chakra-ui/react";
+import { Box, Text, Input, Image } from "@chakra-ui/react";
 
 const CartItem = ({ item }) => {
 
@@ -40,7 +40,7 @@ const CartItem = ({ item }) => {
             idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(value) });
           }
       };
-  //neeeds to be converted to Chakra 
+      
   return (
     <Box>
       <Box boxSize="sm">

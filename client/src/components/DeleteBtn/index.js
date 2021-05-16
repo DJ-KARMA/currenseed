@@ -1,10 +1,13 @@
 import React from "react";
+import { Button } from "@chakra-ui/react";
+
+
 function DeleteBtn(props) {
   //needs to be converted to Chakra
   return (
-    <span {...props} role="button" tabIndex="0">
+    <Button {...props} role="button" tabIndex="0">
       ✗
-    </span>
+    </Button>
   );
 }
 

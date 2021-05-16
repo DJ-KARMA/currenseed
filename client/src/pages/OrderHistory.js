@@ -15,9 +15,9 @@ import { QUERY_USER } from "../utils/queries";
 
 return (
    <Box>   
-         <Link as={ReactLink} to="/">
+         {/* <Link as={ReactLink} to="/">
            ← Back to Products
-         </Link>
+         </Link> */}
        
 
   <Flex height="100hv" alignItems="center" justifyContent="center">

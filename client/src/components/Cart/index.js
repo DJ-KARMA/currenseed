@@ -68,17 +68,18 @@ const Cart = () => {
     if (!state.cartOpen) {
         return (
           <Box onClick={toggleCart}>
-            <Text
+            <Heading><Text
               role="img"
-              aria-label="sunflower">🌻</Text>
+              aria-label="sunflower" align="center">🌻 Your cart</Text>
+              </Heading>
           </Box>
         );
     }
-  //needs to be converted to Chakra
+
   return (
 <Box>
-  <Box onClick={toggleCart}>[close]</Box>
-  <Heading>Cart</Heading>
+  {/* <Box onClick={toggleCart}>[close]</Box> */}
+  {/* <Heading align="center">Cart</Heading> */}
   {state.cart.length ? (
     <Box>
       {state.cart.map(item => (
@@ -108,10 +109,11 @@ const Cart = () => {
     </Box>
   ) : (
     <Heading>
-      <Text role="img" aria-label="sad flower">
+      <Text role="img" aria-label="sad flower" align="center">
       🥀
+      
+      Your cart is empty!
       </Text>
-      Cart empty!
     </Heading>
   )}
 </Box>
