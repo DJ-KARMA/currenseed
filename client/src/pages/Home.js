@@ -7,7 +7,7 @@ import { Box, Image, Flex, Text, Button,Stack, Container, SimpleGrid } from "@ch
 const Home = () => {
 
   return (
-		<Categories></Categories>
+		<Categories />
 	)
 	}
 
@@ -57,13 +57,16 @@ const Home = () => {
 										</Text>
 									<Flex mt={2} justifyContent="center">
 										<Button
+											as="a" 
+											href={"/category/"+item.id}
 											color={["brand.500"]} 
 											size="lg"
 											bg={["brand.800"]}
 											_hover={{
 												bg: ["white"]
 												}}
-											>See More
+											>
+												See More
 										</Button>
 									</Flex>
 							</Box>
