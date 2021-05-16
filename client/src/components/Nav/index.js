@@ -4,9 +4,8 @@ import { FaShoppingCart } from "react-icons/fa";
 import { CloseButton} from "@chakra-ui/react";
 import Auth from "../../utils/auth"
 import Logo from "./Logo";
-import Auth from "../../utils/auth";
 import Cart from "../Cart";
-import buyerProfile from "../../pages/buyerProfile";
+import SellerProfile from "../../pages/SellerProfile";
 
 const Nav = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);

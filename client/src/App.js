@@ -22,7 +22,7 @@ import SellerProfile from "./pages/SellerProfile";
 //import SellHistory from "./pages/SellHistory";
 import CategoryDetail from "./pages/CategoryDetail"
 import Cart from "./components/Cart";
-import buyerProfile from "./pages/buyerProfile";
+
 
 const client = new ApolloClient({
   request: (operation) => {
