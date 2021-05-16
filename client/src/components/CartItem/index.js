@@ -2,6 +2,7 @@ import React from 'react';
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 import { useDispatch, useSelector } from 'react-redux';
+import { Box, Text, Button, Heading, Input, Image } from "@chakra-ui/react";
 
 const CartItem = ({ item }) => {
 
@@ -41,33 +42,33 @@ const CartItem = ({ item }) => {
       };
   //neeeds to be converted to Chakra 
   return (
-    <div>
-      <div>
-        <img
-          //src={`/images/${item.image}`}
+    <Box>
+      <Box boxSize="sm">
+        <Image
+          src={`/images/${item.image}`}
           alt=""
         />
-      </div>
-      <div>
-        <div>{item.name}, {item.price}</div>
-        <div>
-          <span>Qty:</span>
-          <input
+      </Box>
+      <Box>
+        <Box>{item.name}, {item.price}</Box>
+        <Box>
+          <Text mb="8px">Qty:</Text>
+          <Input
             type="number"
             placeholder="1"
             value={item.purchaseQuantity}
             onChange={onChange}
           />
-          <span
+          <Text
             role="img"
             aria-label="trash"
             onClick={() => removeFromCart(item)}
           >
             🗑️
-          </span>
-        </div>
-      </div>
-    </div>
+          </Text>
+        </Box>
+      </Box>
+    </Box>
   );
 }
 
