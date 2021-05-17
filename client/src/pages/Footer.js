@@ -31,8 +31,9 @@ const FooterLinks = () => {
             <Box>
                 <Container align="center"pb="3" fontSize="xl">CONTRIBUTORS</Container>
                     <SimpleGrid columns={[3, null, 4]} gap={4}>
-                        {data.map(item => {
+                        {data.map((item, i) => {
                             return <Button
+                            key={i}
                                 as="a" 
                                 href={`https://github.com/${item.username}`}
                                 target="_blank"

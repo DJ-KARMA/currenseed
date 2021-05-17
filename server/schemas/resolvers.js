@@ -115,6 +115,18 @@ const resolvers = {
   
         throw new AuthenticationError('Not logged in');
       },
+      addProduct: async (parent,  data , context) => {
+        if(context.user) {
+          console.log("data",data);
+          const category = new Category({name:data.category});
+          const product = new Product ( {name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category });
+          console.log("product",product);
+          const user = await User.findByIdAndUpdate(context.user._id, { $push: { products: product } });
+          // console.log("user",user);
+
+          return user; 
+        }
+      },
       updateUser: async (parent, args, context) => {
         if (context.user) {
           return await User.findByIdAndUpdate(context.user._id, args, { new: true });

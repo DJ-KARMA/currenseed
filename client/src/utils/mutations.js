@@ -30,6 +30,27 @@ export const ADD_ORDER = gql`
   }
 `;
 
+export const ADD_PRODUCT = gql`
+mutation addProduct($name: String!, $description: String!, $price: Float!, $quantity: Int!, $category: String!) {    
+  addProduct(name: $name, description: $description, price: $price, quantity: $quantity, category: $category) {
+    _id
+    firstName
+    lastName
+    products{
+      _id
+      name
+      description
+      price
+      quantity
+      category{
+        _id
+        name
+      }
+    }
+}
+}
+`
+
 export const ADD_SEEDS = gql`
   mutation addSeeds($products: [ID]!) {
     addSeeds(products: $products) {
