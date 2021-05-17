@@ -17,7 +17,7 @@ function SellHistory() {
                 {user ? (
                     <Box>
                     <Heading as="h2">Sell History for {user.firstName}</Heading>
-                        {user.orders.map((order) => (
+                        {user.sales.map((order) => (
                             <Box key={order.id}>
                                 <Heading as="h3">{new Date(parseInt(order.purchaseDate)).toLocaleDateString()}</Heading>
                                 {order.products.map(({ _id, image, name, price }, index) => (
