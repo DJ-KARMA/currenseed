@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 //import ProductItem from "./
-import OrderHistory from "../pages/OrderHistory";
-import SellHistory from "../pages/SellHistory";
+import OrderHistory from "./OrderHistory";
+import SellHistory from "./SellHistory";
 import ProductList from "../components/ProductList";
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
