@@ -9,9 +9,9 @@ import ProductList from "../components/ProductList";
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { QUERY_USER } from "../utils/queries";
 import { ADD_PRODUCT } from "../utils/mutations";
-import { UPDATE_PRODUCTS } from "../utils/actions"
+// import { UPDATE_PRODUCTS } from "../utils/actions"
 
-import { Link as ReactLink } from "react-router-dom";
+// import { Link as ReactLink } from "react-router-dom";
 import { Box, Image, Flex, Text, Divider, Stack, Center, SimpleGrid, Link, Heading, Input, FormControl, FormLabel, Select, Button } from '@chakra-ui/react';
 
 function SellerProfile(props) {
@@ -21,7 +21,10 @@ function SellerProfile(props) {
     if (data) {
          user = data.user;
     }
+
     return (
+        <>
+        {user ? (
         <Box>   
             <Box margin={10}>
                 <Flex height="100hv" alignItems="top" justifyContent="space-between">  
@@ -64,6 +67,8 @@ function SellerProfile(props) {
 
             </Box>
         </Box> 
+        ) : null}
+        </>
     )
     
 }; 
@@ -77,7 +82,7 @@ function AddProduct(props) {
             const mutationResponse = await addProduct({
                 variables: {
                     name: formState.name, description: formState.description,
-                    price: formState.price, quantity: formState.quantity,
+                    price: parseFloat(formState.price) , quantity: parseInt(formState.quantity) ,
                     category: formState.category
                 }
             });
