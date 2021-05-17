@@ -57,9 +57,9 @@ function ProductList({ categoryId }) {
   }
   //convert to Chakra 
   return (
-    <Box fontSize="lg" align="center">
+    <div className="my-2">
       {state.products.length ? (
-        <Box className="flex-row">
+        <div className="flex-row">
             {filterProducts().map(product => (
                 <ProductItem
                   key= {product._id}
@@ -72,11 +72,11 @@ function ProductList({ categoryId }) {
                   category={product.category}
                 />
             ))}
-        </Box>
+        </div>
       ) : (
-        <Heading>You haven't added any products yet!</Heading>
+        <h3>You haven't added any products yet!</h3>
       )}
-    </Box>
+    </div>
   );
 }
 
