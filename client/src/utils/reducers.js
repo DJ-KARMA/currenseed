@@ -7,7 +7,8 @@ import {
     REMOVE_FROM_CART,
     UPDATE_CART_QUANTITY,
     CLEAR_CART,
-    TOGGLE_CART
+    TOGGLE_CART,
+    GET_USERID
 } from './actions';
 
 const defaultState ={
@@ -15,9 +16,10 @@ const defaultState ={
   cart: [],
   cartOpen: false, 
   categories: [],
-  currentCategrory: ''
+  currentCategrory: '',
+  userId: ''
 }
-  
+
   const reducer = (state=defaultState, action) => {
     switch (action.type) {
       // if action type value is the value of `UPDATE_PRODUCTS`, return a new state object with an updated products array
@@ -80,7 +82,11 @@ const defaultState ={
           ...state,
           cartOpen: !state.cartOpen
         };
-  
+      case GET_USERID:
+        return {
+          ...state,
+          cartOpen: !state.cartOpen
+        };  
       default:
         return state;
     }

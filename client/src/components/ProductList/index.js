@@ -71,6 +71,7 @@ function ProductList({ categoryId }) {
                   quantity={product.quantity}
                   description={product.description}
                   category={product.category}
+                  userId={product.userId}
                 />
             ))}
         </Box>
