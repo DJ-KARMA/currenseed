@@ -14,14 +14,14 @@ const Home = () => {
 
 	const Categories = () => {
 		const data = [
-			{id: 1, title: "Craft Beers", content: "Check out local vendors selling their craft beers", src:"beer-1-min"},
-			{id: 2, title: "Fresh Produce", content: "Check out local farmers selling their fresh produce", src:"produce-3-min"},
-			{id: 3, title: "Jewelry", content: "Check out vendors selling their handmade jewelry", src:"jewelry-1-min",key: 3},
-			{id: 4, title: "Artisan Cheese", content: "Check out local vendors selling their artisan cheese", src:"cheese-2-min"},
-			{id: 5, title: "Fresh Meat", content: "Check out local vendors selling their fresh meats", src:"meat-2-min"},
-			{id: 6, title: "Handmade Items", content: "Check out vendors selling handmade items", src:"soap-2-min"},
-			{id: 7, title: "Baked Goods", content: "Check out vendors selling homemade baked items", src:"baked-goods-2-min"},
-			{id: 8, title: "Wine", content: "Check out what local wineries have to offer", src:"wine-2-min"}
+			{id: 1, title: "Craft Beers", content: "Check out local vendors selling their craft beers", src:"beer-1-min", alt:"Glass of beer on a table"},
+			{id: 2, title: "Fresh Produce", content: "Check out local farmers selling their fresh produce", src:"produce-3-min", alt: "Oranges in a bowl and sliced on a table"},
+			{id: 3, title: "Jewelry", content: "Check out vendors selling their handmade jewelry", src:"jewelry-1-min", alt: "Necklaces hanging, silver heart and two gold circular"},
+			{id: 4, title: "Artisan Cheese", content: "Check out local vendors selling their artisan cheese", src:"cheese-2-min", alt: "Charcuterie board with assorted cheese, crackers and fruits"},
+			{id: 5, title: "Fresh Meat", content: "Check out local vendors selling their fresh meats", src:"meat-2-min", alt: "Seasoned lamb racks on a baking tray"},
+			{id: 6, title: "Handmade Items", content: "Check out vendors selling handmade items", src:"soap-2-min", alt:"Four handmade soap bars on a table"},
+			{id: 7, title: "Baked Goods", content: "Check out vendors selling homemade baked items", src:"baked-goods-2-min", alt:"Six assorted cookies on a table"},
+			{id: 8, title: "Wine", content: "Check out what local wineries have to offer", src:"wine-2-min", alt: "A glass of red and white wine on a table"}
 		]
 		return (
 			
@@ -47,12 +47,12 @@ const Home = () => {
 				</Box>
 	
 				<SimpleGrid columns={[1, null, 2, null, 4]} gap={4}>
-					{data.map((item) => {
-						return <Box p="5" maxW="320px" borderWidth="1px" borderRadius="12px"  >
-								<Image  borderRadius="md" src= {`/images/${item.src}.jpg`} alt="Test"/>
+					{data.map((item, i) => {
+						return <Box key={Math.random().toString(36).substr(2, 9)} p="5" maxW="320px" borderWidth="1px" borderRadius="12px"  >
+								<Image  borderRadius="md" src= {`/images/${item.src}.jpg`} alt={item.alt}/>
 									<Flex  mt={2} justifyContent="center">
 										<Text 
-										
+											
 											textTransform="uppercase"
 											fontSize="xl"
 											fontWeight="bold"
@@ -64,6 +64,7 @@ const Home = () => {
 										</Text>
 									<Flex mt={2} justifyContent="center">
 										<Button
+										
 											as="a" 
 											href={"/category/"+item.id}
 											color={["brand.500"]} 
