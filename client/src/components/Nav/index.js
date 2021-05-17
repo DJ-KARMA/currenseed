@@ -5,7 +5,7 @@ import { CloseButton} from "@chakra-ui/react";
 import Auth from "../../utils/auth"
 import Logo from "./Logo";
 import Cart from "../Cart";
-import SellerProfile from "../../pages/SellerProfile";
+import SellerProfile from "../../pages/sellerProfile";
 
 const Nav = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
