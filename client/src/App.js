@@ -17,7 +17,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Success from "./pages/Success";
 import Nav from "./components/Nav";
-import SellerProfile from "./pages/sellerProfile";
+import SellerProfile from "./pages/SellerProfile";
 //import OrderHistory from "./pages/OrderHistory";
 //import SellHistory from "./pages/SellHistory";
 import CategoryDetail from "./pages/CategoryDetail"
