@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-//import ProductItem from "./
 import OrderHistory from "./OrderHistory";
 import SellHistory from "./SellHistory";
 import ProductList from "../components/ProductList";
+//import AddItem from "../components/AddItem";
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { QUERY_USER } from "../utils/queries";
+import { ADD_PRODUCT } from "../utils/mutations";
 import { UPDATE_PRODUCTS } from "../utils/actions"
 
 import { Link as ReactLink } from "react-router-dom";
-import { Box, Image, Flex, Text, Divider, Stack, Center, SimpleGrid, Link, Heading } from '@chakra-ui/react';
+import { Box, Image, Flex, Text, Divider, Stack, Center, SimpleGrid, Link, Heading, Input, FormControl, FormLabel, Select, Button } from '@chakra-ui/react';
 
 function SellerProfile(props) {
     const { loading, data } = useQuery(QUERY_USER);
@@ -20,7 +21,6 @@ function SellerProfile(props) {
     if (data) {
          user = data.user;
     }
-
     return (
         <Box>   
             <Box margin={10}>
@@ -56,10 +56,126 @@ function SellerProfile(props) {
                         <SellHistory></SellHistory>
                     </Box>
                 </Box>
+                <Box minWidth="450px" textAlign="center">
+                    <Box borderWidth="1px" width="90%" minHeight="400px" padding="10px" my="20px" mx="auto" textAlign="center">
+                        <AddProduct />
+                    </Box>
+                </Box> 
 
             </Box>
         </Box> 
     )
+    
 }; 
+
+function AddProduct(props) {
+    const [formState, setFormState] = useState({ name: '', description: '', price: '', quantity: '', category: ''});
+    const [addProduct] = useMutation(ADD_PRODUCT);
+    
+    const handleFormSubmit = async event => {
+      event.preventDefault();
+            const mutationResponse = await addProduct({
+                variables: {
+                    name: formState.name, description: formState.description,
+                    price: formState.price, quantity: formState.quantity,
+                    category: formState.category
+                }
+            });
+        console.log(mutationResponse.data.addProduct);
+    };
+  
+    const handleChange = event => {
+      const { name, value } = event.target;
+      setFormState({
+        ...formState,
+        [name]: value
+      });
+    };
+ 
+    return (
+
+        <Flex width="full" align="center" justifyContent="center">
+            <Box p={8} maxWidth="500px" borderWidth={1} borderRadius={8} boxShadow="lg">
+                <Box textAlign="center">
+                    <Heading>Add Products to Your Kiosk!</Heading>
+                </Box>
+                <Box my={4} textAlign="left">
+
+                    <form onSubmit={handleFormSubmit}>
+
+                        <FormControl isRequired>
+                            <FormLabel htmlFor="name">Product name:</FormLabel>
+                            <Input
+                                type="name"
+                                name="name"
+                                id="firstName"
+                                placeholder="Apples"
+                                size="lg"
+                                onChange={handleChange}
+                            />
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel htmlFor="description">Product Description:</FormLabel>
+                            <Input
+                                type="description"
+                                name="description"
+                                id="description"
+                                placeholder="Granny Smith"
+                                size="lg"
+                                onChange={handleChange}
+                            />
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel htmlFor="price">Product Price:</FormLabel>
+                            <Input
+                                type="price"
+                                name="price"
+                                id="price"
+                                placeholder="$.75"
+                                size="lg"
+                                onChange={handleChange}
+                            />
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel htmlFor="quantity">Product Quantity</FormLabel>
+                            <Input
+                                type="quantity"
+                                name="quantity"
+                                id="quantity"
+                                placeholder="5"
+                                size="lg"
+                                onChange={handleChange}
+                            />
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel htmlFor="category">Product Category</FormLabel>
+                                <Select placeholder="Category">
+                                    <option value="Craft Beers">Craft Beers</option>
+                                    <option value="Fresh Produce">Fresh Produce</option>
+                                    <option value="Jewelry">Jewelry</option>
+                                    <option value="Artisan Cheese">Artisan Cheese</option>
+                                    <option value="Fresh Meat">Fresh Meat</option>
+                                    <option value="Handmade Items">Handmade Items</option>
+                                    <option value="Baked Goods">Baked Goods</option>
+                                    <option value="Wine">Wine</option>
+                                </Select>
+                        </FormControl>
+                        <Button
+                            variantColor="teal"
+                            variant="outline"
+                            type="submit"
+                            width="full"
+                            mt={4}
+                        >
+                            Add Product to Kiosk
+                        </Button>
+                    </form>
+                </Box>
+            </Box>
+        </Flex>
+    );
+};
+
+
 
 export default SellerProfile;

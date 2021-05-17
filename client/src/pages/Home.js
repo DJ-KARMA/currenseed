@@ -21,7 +21,7 @@ const Home = () => {
 			{id: 5, title: "Fresh Meat", content: "Check out local vendors selling their fresh meats", src:"meat-2-min"},
 			{id: 6, title: "Handmade Items", content: "Check out vendors selling handmade items", src:"soap-2-min"},
 			{id: 7, title: "Baked Goods", content: "Check out vendors selling homemade baked items", src:"baked-goods-2-min"},
-			{id: 8, title: "Wine", content: "Check out what local wineries have to offer", src:"beer-2-min"}
+			{id: 8, title: "Wine", content: "Check out what local wineries have to offer", src:"wine-2-min"}
 		]
 		return (
 			

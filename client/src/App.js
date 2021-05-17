@@ -17,7 +17,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Success from "./pages/Success";
 import Nav from "./components/Nav";
-import SellerProfile from "./pages/SellerProfile";
+import sellerProfile from "./pages/sellerProfile";
 //import OrderHistory from "./pages/OrderHistory";
 //import SellHistory from "./pages/SellHistory";
 import CategoryDetail from "./pages/CategoryDetail"
@@ -67,7 +67,7 @@ function App() {
             <Route exact path="/category/:categoryId" component={CategoryDetail} />
             <Route exact path="/products/:id" component={Detail} />
             <Route exact path="/cart" component={Cart}/>
-            <Route exact path="/profile" component={SellerProfile}/>
+            <Route exact path="/profile" component={sellerProfile}/>
             {/*
             <Route exact path="/orderHistory" component={OrderHistory} />
             <Route exact path="/products/:id" component={Detail} />

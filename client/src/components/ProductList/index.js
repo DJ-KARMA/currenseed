@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { UPDATE_PRODUCTS } from '../../utils/actions';
 
 import { idbPromise } from "../../utils/helpers";
+import { Heading, Box } from '@chakra-ui/layout';
 
 function ProductList({ categoryId }) {
   const state = useSelector((state) => {
@@ -55,11 +56,11 @@ function ProductList({ categoryId }) {
 
     return state.products.filter(product => product.category._id === currentCategory);
   }
-  //convert to Chakra 
+  
   return (
-    <div className="my-2">
+    <Box fontSize="lg" align="center">
       {state.products.length ? (
-        <div className="flex-row">
+        <Box className="flex-row">
             {filterProducts().map(product => (
                 <ProductItem
                   key= {product._id}
@@ -72,11 +73,11 @@ function ProductList({ categoryId }) {
                   category={product.category}
                 />
             ))}
-        </div>
+        </Box>
       ) : (
-        <h3>You haven't added any products yet!</h3>
+        <Heading>You haven't added any products yet!</Heading>
       )}
-    </div>
+    </Box>
   );
 }
 
