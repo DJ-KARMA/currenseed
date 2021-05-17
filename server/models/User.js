@@ -6,6 +6,7 @@ const Order = require('./Order');
 const Product = require('./Product');
 const Purchases = require('./Purchases');
 const Sales = require('./Sales');
+const Product = require('./Product');
 
 const userSchema = new Schema({
   firstName: {

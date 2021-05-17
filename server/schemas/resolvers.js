@@ -136,6 +136,29 @@ const resolvers = {
   
         return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
       },
+      createProduct: async(parent, { productInfo }, context) => {
+        if (context.user) {
+          const updateUser = await User.findByIdAndUpdate(
+            { _id: context.user._id },
+            { $push: { products : productInfo } },
+            { new: true }
+          );
+          return updateUser;
+        }
+        throw new AuthenticationError('You must be logged in to add a new product to your shop')
+      },
+      deleteProduct: async (parent, { productId }, context) => {
+        if (context.user) {
+          const updateUser = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $pull: { products: { productId } } },
+            { new: true }
+          );
+          return updateUser;
+        }
+        throw new AuthenticationError('You must be logged in to remove a product from your shop')
+      },
+
       login: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
   
