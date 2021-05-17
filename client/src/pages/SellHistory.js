@@ -24,7 +24,7 @@ function SellHistory() {
                                     <Box>
                                     <Link as={`/products/${_id}`}>
                                     <Image alt={name} src={`/images/${image}`} />
-                                    <Text>{name}</Text>
+                                    {/* <Text>{name}</Text> */}
                                     </Link>
                                     <Text>${price}</Text>
                                     </Box>

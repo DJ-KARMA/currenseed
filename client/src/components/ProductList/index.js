@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { UPDATE_PRODUCTS } from '../../utils/actions';
 
 import { idbPromise } from "../../utils/helpers";
-import { Heading, Box } from '@chakra-ui/layout';
 
 function ProductList({ categoryId }) {
   const state = useSelector((state) => {
@@ -56,7 +55,7 @@ function ProductList({ categoryId }) {
 
     return state.products.filter(product => product.category._id === currentCategory);
   }
-  
+  //convert to Chakra 
   return (
     <Box fontSize="lg" align="center">
       {state.products.length ? (

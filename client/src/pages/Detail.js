@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from '@apollo/react-hooks';
-
+import { Link as ReactLink } from "react-router-dom";
 import { QUERY_PRODUCTS } from "../utils/queries";
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -15,7 +15,7 @@ import {
 import Cart from '../components/Cart';
 import { idbPromise } from "../utils/helpers";
 
-import { Button, Box, Heading, Flex, Image, Text, Stack, Container, Center, Spacer, SimpleGrid} from "@chakra-ui/react";
+import { Button, Box, Heading, Flex, Image, Text, Stack, Container, Center, Spacer, SimpleGrid, Link } from "@chakra-ui/react";
 
 function Detail() {
   const state = useSelector((state) => {
@@ -98,7 +98,7 @@ function Detail() {
       {currentProduct ? (
 
         <Box className="container my-1">
-          <Link to="/">
+          <Link as={ ReactLink } to="/">
             ← Back to Products
           </Link>
           <Box

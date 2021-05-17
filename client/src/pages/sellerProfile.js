@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 //import ProductItem from "./
-import OrderHistory from "./OrderHistory";
-import SellHistory from "./SellHistory";
+import OrderHistory from "../pages/OrderHistory";
+import SellHistory from "../pages/SellHistory";
 import ProductList from "../components/ProductList";
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
@@ -27,14 +27,14 @@ function SellerProfile(props) {
                 <Flex height="100hv" alignItems="top" justifyContent="space-between">  
                     <Box>   
                         <Text m={2} fontSize="xx-large" fontWeight="semibold" lineHeight="short">
-                            {user.firstName}'s Kiosk
+                            {/* {user.firstName}'s Kiosk */}
                         </Text>
                         <Text m={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
-                            Location: {user.location}
+                            {/* Location: {user.location} */}
                         </Text>
                     </Box>
                     <Text m={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
-                        Seeds: {user.seeds} 
+                        {/* Seeds: {user.seeds}  */}
                     </Text>
                 </Flex>
             </Box>
