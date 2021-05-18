@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import OrderHistory from "./OrderHistory";
@@ -8,7 +8,7 @@ import ProductList from "../components/ProductList";
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { QUERY_USER } from "../utils/queries";
-import { ADD_PRODUCT } from "../utils/mutations";
+import { ADD_PRODUCT, ADD_SEEDS } from "../utils/mutations";
 // import { UPDATE_PRODUCTS } from "../utils/actions"
 
 // import { Link as ReactLink } from "react-router-dom";
@@ -21,6 +21,24 @@ function SellerProfile(props) {
     if (data) {
          user = data.user;
     }
+
+    // const text = "Click me!";
+    // const [buttonText, setButtonText] = useState(text);
+
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setButtonText(text);
+    //     }, 1000);
+    //     return ()=> clearTimeout(timer);
+    // }, [buttonText])
+
+    const [addSeeds] = useMutation(ADD_SEEDS);
+
+    const handleSeedAdd = async event => {
+        event.preventDefault(); 
+        const mutationResponse = await addSeeds({ variables: { _id: user._id, seeds: user.seeds } }); 
+        const seedCount = mutationResponse.data.addSeeds; 
+    };
 
     return (
         <>
@@ -39,6 +57,17 @@ function SellerProfile(props) {
                     <Text m={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
                         Seeds: {user.seeds} 
                     </Text>
+                    <Button
+                            variantColor="teal"
+                            variant="outline"
+                            type="submit"
+                            width=""
+                            mt={4}
+                            id="seedbtn"
+                            onClick={handleSeedAdd}
+                        >
+                            Click me!
+                        </Button>
                 </Flex>
             </Box>
             <Divider orientation="horizontal" />
@@ -83,7 +112,7 @@ function AddProduct(props) {
                 variables: {
                     name: formState.name, description: formState.description,
                     price: parseFloat(formState.price) , quantity: parseInt(formState.quantity) ,
-                    category: formState.category
+                    category: formState.category.value
                 }
             });
         console.log(mutationResponse.data.addProduct);

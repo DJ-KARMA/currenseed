@@ -127,6 +127,11 @@ const resolvers = {
           return user; 
         }
       },
+      addSeeds: async (parent, {_id, seeds }) => {
+        const increment = Math.floor(Math.random()* 101);
+
+        return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }});
+      },
       updateUser: async (parent, args, context) => {
         if (context.user) {
           return await User.findByIdAndUpdate(context.user._id, args, { new: true });

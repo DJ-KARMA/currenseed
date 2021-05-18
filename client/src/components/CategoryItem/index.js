@@ -2,7 +2,6 @@ import React from "react";
 import { Link as ReactLink } from "react-router-dom";
 import { Box, Text, Input, Image } from "@chakra-ui/react";
 
-
 function CategoryItem(item) {
   const {
     name,
