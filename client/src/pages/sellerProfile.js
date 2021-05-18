@@ -12,7 +12,7 @@ import { UPDATE_PRODUCTS } from "../utils/actions"
 import { idbPromise } from "../utils/helpers";
 
 // import { Link as ReactLink } from "react-router-dom";
-import { Box, Image, Flex, Text, Divider, useDisclosure,    Drawer,
+import { Box, Image, Flex, Text, Divider, useDisclosure, Drawer,
     DrawerBody,
     DrawerFooter,
     DrawerHeader,
@@ -25,9 +25,8 @@ function SellerProfile() {
     const state = useSelector(state => state);
     const dispatch = useDispatch();
 
-    const { loading, data } = useQuery(QUERY_USER);
-    const { products } = useQuery(QUERY_USER);
 
+    const { loading, data } = useQuery(QUERY_USER);
     
     let user;
 
@@ -35,33 +34,39 @@ function SellerProfile() {
          user = data.user;
     }
 
-    console.log(data);
-
-    useEffect(() => {
+    useEffect(() => 
+    {
+        console.log(state);
+        
         // if there's data to be stored
-        if (data) {
-          // let's store it in the global state object
-          dispatch({
-            type: UPDATE_PRODUCTS,
-            products: data.user.products
-          });
-      
-          // but let's also take each product and save it to IndexedDB using the helper function 
-          user.products.forEach((product) => {
-            idbPromise('products', 'put', product);
-          });
-          // add else if to check if `loading` is undefined in `useQuery()` Hook
-          } else if (!loading) {
-              // since we're offline, get all of the data from the `products` store
-              idbPromise('products', 'get').then((products) => {
+        if (data) 
+        {
+            // let's store it in the global state object
+            // dispatch({
+            //     type: UPDATE_PRODUCTS,
+            //     products: data.user.products
+            // });
+        
+            // but let's also take each product and save it to IndexedDB using the helper function 
+            data.user.products.forEach((product) => 
+            {
+                idbPromise('products', 'put', product);
+            });
+            // add else if to check if `loading` is undefined in `useQuery()` Hook
+        } 
+        else if (!loading) 
+        {
+            // since we're offline, get all of the data from the `products` store
+            idbPromise('products', 'get').then((products) => 
+            {
                 // use retrieved data to set global state for offline browsing
                 dispatch({
-                  type: UPDATE_PRODUCTS,
-                  products: products
+                    type: UPDATE_PRODUCTS,
+                    products: products
                 });
-              });
-            }
-          }, [data, loading, dispatch]);
+            });
+        }
+    }, [state.products.length,data, loading, dispatch]);
 
     return (
         <>
@@ -86,15 +91,13 @@ function SellerProfile() {
 
             <Heading width="100%" as="h2" textAlign="center" my="20px">Products Available:</Heading>
 
-            
-
             <Box padding="10px" my="20px" mx="auto" textAlign="center">
                 <AddProduct />
             </Box>
 
             <Box d="flex" height="100hv" alignItems="top" justifyContent="center" flexWrap="wrap" my="20px" >
                 <Box fontSize="lg" align="center">
-                    {user.products.length ? (
+                    {state.products.length ? (
                         <Box d="flex" justifyContent="center" flexWrap="wrap">
                             {state.products.map(product => (
                                 <Box m="2">
@@ -146,17 +149,26 @@ function AddProduct() {
     const [formState, setFormState] = useState({ name: '', description: '', price: '', quantity: '', category: ''});
     const [addProduct] = useMutation(ADD_PRODUCT);
     
-    const handleFormSubmit = async event => {
-      event.preventDefault();
-      onClose();
-            const mutationResponse = await addProduct({
-                variables: {
-                    name: formState.name, description: formState.description,
-                    price: parseFloat(formState.price) , quantity: parseInt(formState.quantity) ,
-                    category: formState.category
-                }
-            });
-        console.log(mutationResponse.data.addProduct);
+    const handleFormSubmit = async event => 
+    {
+        event.preventDefault();
+        onClose();
+        const mutationResponse = await addProduct({
+            variables: {
+                name: formState.name, 
+                description: formState.description,
+                price: parseFloat(formState.price), 
+                quantity: parseInt(formState.quantity),
+                category: formState.category
+            }
+        });
+
+        dispatch({
+            type: UPDATE_PRODUCTS,
+            products: mutationResponse.data.addProduct.products
+        });
+
+        console.log(mutationResponse.data.addProduct.products);
     };
   
     const handleChange = event => {
@@ -166,6 +178,16 @@ function AddProduct() {
         [name]: value
       });
     };
+
+    const dispatch = useDispatch();
+
+    const { loading, data } = useQuery(QUERY_USER);
+    
+    let user;
+
+    if (data) {
+         user = data.user;
+    }
  
     return (
 <>
