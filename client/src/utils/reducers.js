@@ -85,8 +85,8 @@ const defaultState ={
       case GET_USERID:
         return {
           ...state,
-          cartOpen: !state.cartOpen
-        };  
+          userId: action
+        }
       default:
         return state;
     }
