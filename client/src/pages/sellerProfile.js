@@ -8,7 +8,7 @@ import ProductItem from "../components/ProductItem";
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { QUERY_USER } from "../utils/queries";
 import { ADD_PRODUCT } from "../utils/mutations";
-import { UPDATE_PRODUCTS } from "../utils/actions"
+import { UPDATE_PRODUCTS } from "../utils/actions";
 import { idbPromise } from "../utils/helpers";
 
 // import { Link as ReactLink } from "react-router-dom";
@@ -105,9 +105,9 @@ function SellerProfile() {
                     {state.products.length ? (
                         <Box d="flex" justifyContent="center" flexWrap="wrap">
                             {state.products.map(product => (
-                                <Box m="2">
+                                <Box m="2" key= {product._id}>
                                 <ProductItem
-                                    key= {product._id}
+                                    
                                     _id={product._id}
                                     image={product.image}
                                     name={product.name}
