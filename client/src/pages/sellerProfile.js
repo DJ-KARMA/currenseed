@@ -66,7 +66,12 @@ function SellerProfile() {
                 });
             });
         }
-    }, [state.products.length,data, loading, dispatch]);
+    }, [data, loading, dispatch]);
+    
+    useEffect(() => 
+    {
+    }, [state.products.length]);
+
 
     return (
         <>
