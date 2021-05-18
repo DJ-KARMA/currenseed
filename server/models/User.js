@@ -29,8 +29,8 @@ const userSchema = new Schema({
     minlength: 5
   },
   seeds: {
-    type: Number,
-    required: true
+    type: Number, 
+    default: 25
   },
   location: {
     type: String,
