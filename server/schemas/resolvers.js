@@ -127,7 +127,7 @@ const resolvers = {
         console.log("category", category)
         const product = new Product ( {name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category.name, userId: context.user._id });
         console.log("product",product);
-        const user = await User.findByIdAndUpdate(context.user._id, { $push: { products: product } });
+        const user = await User.findByIdAndUpdate(context.user._id, { $push: { products: product } }, {new: true});
         // console.log("user",user);
 
         return user; 

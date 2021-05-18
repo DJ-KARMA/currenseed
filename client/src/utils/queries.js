@@ -34,6 +34,14 @@ export const QUERY_USER = gql`
     email
     seeds
     location
+    products{
+      _id
+      name
+      description
+      price
+      quantity
+      image
+  }
     orders {
       _id
       purchaseDate
