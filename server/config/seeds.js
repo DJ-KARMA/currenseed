@@ -36,7 +36,7 @@ db.once('open', async () => {
         name: 'Tin of Cookies',
         description:
           'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-        image: 'baked-goods-1-min.jpg',
+        image: 'baked-goods-2-min.jpg',
         category: categories[6]._id,
         price: 10,
         quantity: 20
@@ -54,7 +54,7 @@ db.once('open', async () => {
         name: 'Bread Loaves',
         description:
           'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-        image: 'cookie-tin.jpg',
+        image: 'baked-goods-1-min.jpg',
         category: categories[6]._id,
         price: 2.99,
         quantity: 500
@@ -90,7 +90,7 @@ db.once('open', async () => {
       {
         products: []
       }
-    ])    
+    ])
   });
 
   console.log('users seeded');
