@@ -7,7 +7,7 @@ import { QUERY_CHECKOUT } from '../../utils/queries';
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Text, Button, Heading } from "@chakra-ui/react";
+import { Box, Text, Button, Heading, SimpleGrid } from "@chakra-ui/react";
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
@@ -78,14 +78,17 @@ const Cart = () => {
 
   return (
 <Box>
-  {/* <Box onClick={toggleCart}>[close]</Box> */}
+ 
+  <Button size="lg" onClick={toggleCart}>Close 🛒</Button>
+  
   {/* <Heading align="center">Cart</Heading> */}
+
   {state.cart.length ? (
-    <Box>
+    <SimpleGrid columns={[1, null, 2, null, 4]} gap={4}>
       {state.cart.map(item => (
         <CartItem key={item._id} item={item} />
       ))}
-      <Box>
+      <Box align="center">
         <Heading>Seeds: {calculateTotal()}</Heading>
         {
           Auth.loggedIn() ?
@@ -106,7 +109,7 @@ const Cart = () => {
         }
   
       </Box>
-    </Box>
+    </SimpleGrid>
   ) : (
     <Heading>
       <Text role="img" aria-label="sad flower" align="center">

@@ -63,7 +63,6 @@ function ProductItem(item) {
             <Box p={5}>
                 <Stack isInline align='baseline'>
                     <Badge variant='solid' bg='brand.800' rounded='full' px={2}>
-                        category
                         {category}
                     </Badge>
                     <Text
@@ -71,21 +70,18 @@ function ProductItem(item) {
                         fontSize='sm'
                         color='gray.500'
                         letterSpacing='wide'>
-                        sellername
                         {userId}
                     </Text>
                 </Stack>
                 <Text as='h2' fontWeight='semibold' fontSize='xl' my={2}>
-                    Product name
                     {name}
                 </Text>
                 <Text isTruncated fontWeight='light' fontSize='md'>
-                    description
                     {description}
                 </Text>
                 <Stack isInline justify='space-between'>
                     <Text fontWeight ='semibold' fontSize='lg'>
-                        ${price}10
+                        ${price}
                     </Text>
                     <Text as='h3' fontSize='lg' fontWeight='semibold'>
                         5
