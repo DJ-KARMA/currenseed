@@ -43,7 +43,7 @@ function ProductList({ categoryId }) {
             // use retrieved data to set global state for offline browsing
             dispatch({
               type: UPDATE_PRODUCTS,
-              products: products
+              products: [products]
             });
           });
         }
