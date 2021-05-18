@@ -2,7 +2,7 @@ import React from 'react';
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Text, Input, Image } from "@chakra-ui/react";
+import { Box, Text, Input, Image, Container } from "@chakra-ui/react";
 
 const CartItem = ({ item }) => {
 
@@ -42,18 +42,27 @@ const CartItem = ({ item }) => {
       };
       
   return (
-    <Box>
-      <Box boxSize="sm">
+    <Container>
+    <Box align='center'>
+      <Box 
+      align='center'
+      w='300px'
+      border='2px'
+      borderColor= 'brand.900'
+      overflow='sm'
+      bg='brand.700'>
         <Image
           src={`/images/${item.image}`}
           alt=""
         />
       </Box>
       <Box>
-        <Box>{item.name}, {item.price}</Box>
+        <Box>{item.name} {item.price}</Box>
         <Box>
-          <Text mb="8px">Qty:</Text>
+          <Text mb="8px" align="center">Qty:</Text>
           <Input
+          w="12"
+          alignContent="center"
             type="number"
             placeholder="1"
             value={item.purchaseQuantity}
@@ -61,6 +70,7 @@ const CartItem = ({ item }) => {
           />
           <Text
             role="img"
+            size="lg"
             aria-label="trash"
             onClick={() => removeFromCart(item)}
           >
@@ -69,6 +79,7 @@ const CartItem = ({ item }) => {
         </Box>
       </Box>
     </Box>
+    </Container>
   );
 }
 
