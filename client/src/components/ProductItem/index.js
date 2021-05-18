@@ -18,7 +18,7 @@ function ProductItem(item) {
     quantity,
     description,
     category,
-    sellerId
+    userId
   } = item;
 
   const state = useSelector(state => state);
@@ -72,7 +72,7 @@ function ProductItem(item) {
                         color='gray.500'
                         letterSpacing='wide'>
                         sellername
-                        {sellerId}
+                        {userId}
                     </Text>
                 </Stack>
                 <Text as='h2' fontWeight='semibold' fontSize='xl' my={2}>
