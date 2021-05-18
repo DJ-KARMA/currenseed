@@ -20,16 +20,16 @@ export default function OrderHistory() {
     <Box>
       {user ? (
         <Box>
-          <Heading as="h2">Order History for {user.firstName}</Heading>
+          <Heading as="h2">Order History</Heading>
           <Box>
-            {user.orders.map((order) => (
+            {user.purchases.map((order) => (
               <Box key={order._id} mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
                 <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
                   {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
                 </Text>
                 <Box d="flex" alignItems="baseline">
                   {order.products.map(({ _id, image, name, price }, index) => (
-                    <Box key={index} padding="4" bg="gray.100" maxW="3xl">
+                    <Box key={_id} padding="4" bg="gray.100" maxW="3xl">
                       <Link as={ReactLink} to={`/products/${_id}`}>
                         <Image
                           alt={name}
@@ -51,7 +51,7 @@ export default function OrderHistory() {
             
       
       ) : null }
-                </Box>
+    </Box>
                 
   </Flex>
   </Box> 
