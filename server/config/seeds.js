@@ -71,24 +71,30 @@ db.once('open', async () => {
     ]),
     sales: await Order.insertMany([
       {
-        products: []
+        products: [],
+        sellerId: '',
+        buyerId: ''
       }
     ]),
     purchases: await Order.insertMany([
       {
-        products: []
+        products: [],
+        sellerId: '',
+        buyerId: ''
       }
     ])
   });
 
   await User.create({
-    firstName: 'Elijah',
-    lastName: 'Holt',
-    email: 'eholt@testmail.com',
-    password: 'password12345',
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: 'testing12345',
     purchases: await Order.insertMany([
       {
-        products: []
+        products: [],
+        sellerId: '',
+        buyerId: ''
       }
     ])
   });
