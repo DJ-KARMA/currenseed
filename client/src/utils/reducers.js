@@ -85,7 +85,7 @@ const defaultState ={
       case GET_USERID:
         return {
           ...state,
-          userId: action
+          userId: action.user._id
         }
       default:
         return state;
