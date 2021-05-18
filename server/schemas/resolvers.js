@@ -115,6 +115,11 @@ const resolvers = {
   
       throw new AuthenticationError('Not logged in');
     },
+    addSeeds: async (parent, {_id, seeds }) => {
+      const increment = Math.floor(Math.random()* 21);
+
+      return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }});
+    },
     addProduct: async (parent,  data , context) => {
       if(context.user) {
         console.log("data",data);

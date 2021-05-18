@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
@@ -31,7 +30,7 @@ export default function Signup(props) {
                     email: formState.email, password: formState.password,
                     firstName: formState.firstName, lastName: formState.lastName,
                     location: formState.location,
-                    seeds: Math.floor(Math.random()*20 + 1)
+                    seeds: parseInt(Math.floor(Math.random()*101))
                 }
             });
             const token = mutationResponse.data.addUser.token;
@@ -104,7 +103,7 @@ export default function Signup(props) {
                                 onChange={handleChange}
                             />
                         </FormControl>
-                        <FormControl isRequired mt={6}>
+                        <FormControl isRequired>
                             <FormLabel htmlFor="location">Location</FormLabel>
                             <Input
                                 type="location"
@@ -115,6 +114,17 @@ export default function Signup(props) {
                                 onChange={handleChange}
                             />
                         </FormControl>
+                        {/* <FormControl isRequired>
+                            <FormLabel htmlFor="seeds">Enter a number between 1 and 100</FormLabel>
+                            <Input
+                                type="seeds"
+                                name="seeds"
+                                id="seeds"
+                                placeholder="Niagara Region"
+                                size="lg"
+                                onChange={handleChange}
+                            />
+                        </FormControl> */}
                         <Button
                             variantColor="teal"
                             variant="outline"

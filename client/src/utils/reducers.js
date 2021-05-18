@@ -1,6 +1,7 @@
 import {
     UPDATE_PRODUCTS,
     UPDATE_CATEGORIES,
+    UPDATE_SEEDS,
     UPDATE_CURRENT_CATEGORY,
     ADD_TO_CART,
     ADD_MULTIPLE_TO_CART,
@@ -39,6 +40,11 @@ const defaultState ={
           ...state,
           currentCategory: action.currentCategory
         };
+      case UPDATE_SEEDS: 
+        return {
+          ...state, 
+          seeds: action.seeds
+        }
       case ADD_TO_CART: 
         return {
             ...state, 

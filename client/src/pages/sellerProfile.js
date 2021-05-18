@@ -7,8 +7,8 @@ import ProductItem from "../components/ProductItem";
 //import AddItem from "../components/AddItem";
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { QUERY_USER } from "../utils/queries";
-import { ADD_PRODUCT } from "../utils/mutations";
-import { UPDATE_PRODUCTS } from "../utils/actions"
+import { ADD_PRODUCT, ADD_SEEDS } from "../utils/mutations";
+import { UPDATE_PRODUCTS, UPDATE_SEEDS } from "../utils/actions"
 import { idbPromise } from "../utils/helpers";
 
 // import { Link as ReactLink } from "react-router-dom";
@@ -33,6 +33,30 @@ function SellerProfile() {
     if (data) {
          user = data.user;
     }
+
+    // const text = "Click me!";
+    // const [buttonText, setButtonText] = useState(text);
+
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setButtonText(text);
+    //     }, 1000);
+    //     return ()=> clearTimeout(timer);
+    // }, [buttonText])
+
+    const [addSeeds] = useMutation(ADD_SEEDS);
+
+    const handleSeedAdd = async event => {
+        event.preventDefault(); 
+        const mutationResponse = await addSeeds({ variables: { _id: user._id, seeds: user.seeds } }); 
+      
+        dispatch({
+            type: UPDATE_SEEDS,
+            products: mutationResponse.data.addSeeds
+        });
+
+        console.log(mutationResponse.data.addSeeds);
+    };
 
     useEffect(() => 
     {
@@ -90,6 +114,17 @@ function SellerProfile() {
                     <Text m={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
                         Seeds: {user.seeds} 
                     </Text>
+                    <Button
+                            variantColor="teal"
+                            variant="outline"
+                            type="submit"
+                            width=""
+                            mt={4}
+                            id="seedbtn"
+                            onClick={handleSeedAdd}
+                        >
+                            Click me!
+                        </Button>
                 </Flex>
             </Box>
             <Divider orientation="horizontal" />
