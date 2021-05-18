@@ -42,10 +42,10 @@ function SellerProfile() {
         if (data) 
         {
             // let's store it in the global state object
-            // dispatch({
-            //     type: UPDATE_PRODUCTS,
-            //     products: data.user.products
-            // });
+            dispatch({
+                type: UPDATE_PRODUCTS,
+                products: data.user.products
+            });
         
             // but let's also take each product and save it to IndexedDB using the helper function 
             data.user.products.forEach((product) => 
