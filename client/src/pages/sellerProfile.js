@@ -83,7 +83,7 @@ function AddProduct(props) {
                 variables: {
                     name: formState.name, description: formState.description,
                     price: parseFloat(formState.price) , quantity: parseInt(formState.quantity) ,
-                    category: formState.category
+                    category: formState.category.value
                 }
             });
         console.log(mutationResponse.data.addProduct);
