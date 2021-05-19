@@ -126,7 +126,7 @@ export default function Signup(props) {
                             />
                         </FormControl> */}
                         <Button
-                            variantColor="teal"
+                            // variantColor="teal"
                             variant="outline"
                             type="submit"
                             width="full"
