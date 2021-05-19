@@ -116,7 +116,7 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     addSeeds: async (parent, {_id, seeds }) => {
-      const increment = Math.floor(Math.random()* 21);
+      const increment = Math.random().toPrecision(2)* 20;
 
       return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }});
     },

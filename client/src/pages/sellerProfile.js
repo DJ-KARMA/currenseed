@@ -237,6 +237,20 @@ function AddProduct() {
       
     //     dispatch({
     //         type: UPDATE_SEEDS,
+    //         products: mutationResponse.data.addSeeds
+    //     });
+
+    //     console.log(mutationResponse.data.addSeeds);
+    // };
+
+    // const [addSeeds] = useMutation(ADD_SEEDS);
+
+    // const handleSeedAdd = async event => {
+    //     event.preventDefault(); 
+    //     const mutationResponse = await addSeeds({ variables: { _id: user._id, seeds: user.seeds } }); 
+      
+    //     dispatch({
+    //         type: UPDATE_SEEDS,
     //         seeds: mutationResponse.data.addSeeds
     //     });
 

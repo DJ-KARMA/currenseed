@@ -52,7 +52,7 @@ mutation addProduct($name: String!, $description: String!, $price: Float!, $quan
 `
 
 export const ADD_USER = gql`
-  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!, $seeds: Int!) {
+  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!, $seeds: Float!) {
     addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, location: $location, seeds: $seeds) {
       token
       user {
@@ -116,7 +116,7 @@ export const UPDATE_PRODUCT = gql`
   }
 `
 export const ADD_SEEDS = gql`
-  mutation addSeeds($_id: ID!, $seeds: Int!) {
+  mutation addSeeds($_id: ID!, $seeds: Float!) {
     addSeeds(_id: $_id, seeds: $seeds) {
       _id
       seeds

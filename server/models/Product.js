@@ -13,6 +13,7 @@ const productSchema = new Schema({
   },
   image: {
     type: String,
+    default: "https://images.heb.com/is/image/HEBGrocery/000375146-1?$article%2D235%2Dsquare$"
   },
   price: {
     type: Number,

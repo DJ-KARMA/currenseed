@@ -59,7 +59,7 @@ function ProductItem(item) {
         overflow='sm'
         bg='brand.700'>
         <Link to={`/products/${_id}`}>
-            <Image boxSize='300px' roundedTop='20px' objectFit="cover" src={`/images/${image}`} alt={name} />
+            <Image boxSize='300px' roundedTop='20px' objectFit="cover" src={`${image}`} alt={name} />
             <Box p={5}>
                 <Stack isInline align='baseline'>
                     <Badge variant='solid' bg='brand.800' rounded='full' px={2}>
