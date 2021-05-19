@@ -31,7 +31,7 @@ function SellHistory() {
                        <Link as={ReactLink} to={`/products/${_id}`}>
                          <Image
                            alt={name}
-                           src={`/images/${image}`}
+                           src={`${image}`}
                          />
                          <Box>{quantity} {name}</Box>
                        </Link>
