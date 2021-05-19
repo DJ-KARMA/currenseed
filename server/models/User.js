@@ -30,7 +30,7 @@ const userSchema = new Schema({
   },
   seeds: {
     type: Number, 
-    default: 25
+    default: 25.00
   },
   location: {
     type: String,

@@ -30,7 +30,7 @@ export default function Signup(props) {
                     email: formState.email, password: formState.password,
                     firstName: formState.firstName, lastName: formState.lastName,
                     location: formState.location,
-                    seeds: parseInt(Math.floor(Math.random()*101))
+                    seeds: parseFloat(Math.random().toPrecision(2)* 10)
                 }
             });
             const token = mutationResponse.data.addUser.token;
