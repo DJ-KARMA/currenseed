@@ -52,7 +52,7 @@ const CartItem = ({ item }) => {
       overflow='sm'
       bg='brand.700'>
         <Image
-          src={`/images/${item.image}`}
+          src={`${item.image}`}
           alt=""
         />
       </Box>

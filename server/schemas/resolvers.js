@@ -116,7 +116,7 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     addSeeds: async (parent, {_id, seeds }) => {
-      const increment = Math.random().toPrecision(2)* 20;
+      const increment = Math.random().toPrecision(2);
 
       return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }});
     },
@@ -167,7 +167,6 @@ const resolvers = {
       }
       throw new AuthenticationError('You must be logged in to remove a product from your shop')
     },
-
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
   

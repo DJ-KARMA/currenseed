@@ -7,6 +7,12 @@ const categorySchema = new Schema({
     type: String,
     required: true,
     trim: true
+  },
+  description: {
+    type: String
+  }, 
+  image: {
+    type: String
   }
 });
 

@@ -51,6 +51,14 @@ mutation addProduct($name: String!, $description: String!, $price: Float!, $quan
 }
 `
 
+export const DELETE_PRODUCT = gql `
+  mutation deleteProduct($products: [ID]!) {
+    deleteProduct(products: $products){
+      _id
+    }
+  }
+`
+
 export const ADD_USER = gql`
   mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!, $seeds: Float!) {
     addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, location: $location, seeds: $seeds) {

@@ -1,13 +1,13 @@
 import React from "react";
-
 import { Box, Image, Flex, Text, Button,Stack, Container, SimpleGrid } from "@chakra-ui/react";
-
+import CategoryMenu from "../components/CategoryMenu"
 
 
 const Home = () => {
 
   return (
-		<Categories />
+	  	<CategoryMenu />
+		// <Categories />
 	)
 	}
 
