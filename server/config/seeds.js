@@ -27,7 +27,7 @@ db.once('open', async () => {
       name: 'Tin of Cookies',
       description:
         'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'baked-goods-2-min.jpg',
+      image: '/images/baked-goods-2-min.jpg',
       category: categories[6]._id,
       price: 10,
       quantity: 20
@@ -36,7 +36,7 @@ db.once('open', async () => {
       name: 'Necklaces',
       description:
         'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'jewelry-1-min.jpg',
+      image: '/images/jewelry-1-min.jpg',
       category: categories[2]._id,
       price: 30,
       quantity: 5
@@ -45,7 +45,7 @@ db.once('open', async () => {
       name: 'Bread Loaves',
       description:
         'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'baked-goods-1-min.jpg',
+      image: '/images/baked-goods-1-min.jpg',
       category: categories[6]._id,
       price: 4,
       quantity: 15
@@ -54,7 +54,7 @@ db.once('open', async () => {
       name: 'Oranges',
       description:
         'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'produce-3-min.jpg',
+      image: '/images/produce-3-min.jpg',
       category: categories[1]._id,
       price: 3,
       quantity: 10
@@ -63,7 +63,7 @@ db.once('open', async () => {
       name: 'White Wine',
       description:
         'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'wine-1-min.jpg',
+      image: '/images/wine-1-min.jpg',
       category: categories[7]._id,
       price: 40,
       quantity: 5 
@@ -72,7 +72,7 @@ db.once('open', async () => {
       name: 'Handmade Soap',
       description:
         'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'soap-1-min.jpg',
+      image: '/images/soap-1-min.jpg',
       category: categories[5]._id,
       price: 15,
       quantity: 9
@@ -81,7 +81,7 @@ db.once('open', async () => {
       name: 'Lamp Chops',
       description:
         'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'meat-2-min.jpg',
+      image: '/images/meat-2-min.jpg',
       category: categories[4]._id,
       price: 15,
       quantity: 20
@@ -90,7 +90,7 @@ db.once('open', async () => {
       name: 'Steak',
       description:
         'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'meat-1-min.jpg',
+      image: '/images/meat-1-min.jpg',
       category: categories[4]._id,
       price: 10,
       quantity: 16
@@ -99,7 +99,7 @@ db.once('open', async () => {
       name: 'Munster',
       description:
         'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cheese-3-min.jpg',
+      image: '/images/cheese-3-min.jpg',
       category: categories[3]._id,
       price: 7,
       quantity: 25
@@ -108,7 +108,7 @@ db.once('open', async () => {
       name: 'Cheese tray',
       description:
         'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cheese-2-min.jpg',
+      image: '/images/cheese-2-min.jpg',
       category: categories[3]._id,
       price: 35,
       quantity: 5
