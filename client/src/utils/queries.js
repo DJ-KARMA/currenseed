@@ -21,6 +21,7 @@ export const QUERY_PRODUCTS = gql`
       category {
         _id
       }
+      sellerId
     }
   }
 `
@@ -53,6 +54,8 @@ export const QUERY_USER = gql`
         quantity
         image
       }
+      buyerId
+      sellerId
     }
     purchases {
       _id
@@ -65,7 +68,8 @@ export const QUERY_USER = gql`
         quantity
         price
       }
-      userId
+      buyerId
+      sellerId
     }
     sales {
       _id
@@ -78,7 +82,8 @@ export const QUERY_USER = gql`
         quantity
         price
       }
-      userId
+      buyerId
+      sellerId
     }
   }
 }

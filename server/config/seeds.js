@@ -125,14 +125,14 @@ db.once('open', async () => {
     products: [products[0], products[2], products[3]],
     sales: await Order.insertMany([
       {
-        products: [products[0]._id, products[0]._id, products[2]._id],
+        products: [products[0], products[0], products[2]],
         sellerId: 'Elijah',
         buyerId: 'Pamela'
       }
     ]),
     purchases: await Order.insertMany([
       {
-        products: [products[1]._id],
+        products: [products[1]],
         sellerId: 'Bobbi',
         buyerId: 'Pamela'
       }
@@ -148,12 +148,12 @@ db.once('open', async () => {
     purchases: await Order.insertMany([]),
     sales: await Order.insertMany([
       {
-        products: [products[1]._id],
+        products: [products[1]],
         sellerId: 'Bobbi',
         buyerId: 'Pamela'
       },
       {
-        products: [products[1]._id, products[4]._id],
+        products: [products[1], products[4]],
         sellerId: 'Bobbi',
         buyerId: 'Elijah'
       }
@@ -167,12 +167,12 @@ db.once('open', async () => {
     password: 'password12345',
     purchases: await Order.insertMany([
       {
-        products: [products[0]._id, products[0]._id, products[2]._id],
+        products: [products[0], products[0], products[2]],
         sellerId: 'Pamela',
         buyerId: 'Elijah'
       },
       {
-        products: [products[1]._id, products[4]._id],
+        products: [products[1], products[4]],
         sellerId: 'Bobbi',
         buyerId: 'Elijah'
       }
