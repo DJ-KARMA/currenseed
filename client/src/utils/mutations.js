@@ -42,6 +42,7 @@ mutation addProduct($name: String!, $description: String!, $price: Float!, $quan
       description
       price
       quantity
+      image
       category{
         _id
         name

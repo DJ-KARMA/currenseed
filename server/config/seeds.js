@@ -118,9 +118,9 @@ db.once('open', async () => {
 
   const orders = await Order.insertMany([
     {
-      products: [products[0]._id, products[0]._id, products[2]._id],
-      sellerId: 'Elijah',
-      buyerId: 'Pamela'
+      products: [products[0]._id, products[1]._id, products[2]._id],
+      sellerId: 'Pamela',
+      buyerId: 'Elijah'
     },
     {
       products: [products[1]._id],
