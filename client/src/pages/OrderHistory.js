@@ -12,6 +12,8 @@ export default function OrderHistory() {
 
   if (data) {
     user = data.user;
+
+    console.log("order",user);
   }
 
  return (
@@ -24,25 +26,27 @@ export default function OrderHistory() {
           <Box>
             {user.purchases.map((order) => (
               <Box key={order._id} mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
-                <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
-                  {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
+
+                <Text my={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+                  {new Date(parseInt(order.purchaseDate)).toLocaleDateString()} from {order.sellerId}
                 </Text>
-                <Box d="flex" alignItems="baseline">
-                  {order.products.map(({ _id, image, name, price }, index) => (
-                    <Box key={_id} padding="4" bg="gray.100" maxW="3xl">
+
+
+                <Box d="flex" bg="gray.100" alignItems="top" justifyContent="center">
+                  {order.products.map(({ _id, image, name, price, quantity }, index) => (
+                    <Box key={_id} padding="4" bg="gray.100" maxW="150px">
                       <Link as={ReactLink} to={`/products/${_id}`}>
                         <Image
                           alt={name}
                           src={`/images/${image}`}
                         />
-                        <Box>{name}</Box>
+                        <Box>{quantity} {name}</Box>
                       </Link>
                         <Box>
                         <Text>${price}</Text>
                         </Box>
                     </Box>
-                  ))
-                  }         
+                  ))}
                 </Box>
               </Box>
             ))}

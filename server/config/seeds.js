@@ -117,8 +117,31 @@ db.once('open', async () => {
 
   console.log('products seeded');
 
-  await User.deleteMany();
   await Order.deleteMany();
+
+  const orders = await Order.insertMany([
+    {
+      products: [products[0]._id, products[0]._id, products[2]._id],
+      sellerId: 'Elijah',
+      buyerId: 'Pamela'
+    },
+    {
+      products: [products[1]._id],
+      sellerId: 'Bobbi',
+      buyerId: 'Pamela'
+    },
+    {
+      products: [products[1]._id, products[4]._id],
+      sellerId: 'Bobbi',
+      buyerId: 'Elijah'
+    }
+  ]);
+
+  console.log('orders seeded');
+
+
+  await User.deleteMany();
+
 
   await User.create({
     firstName: 'Pamela',
@@ -126,20 +149,12 @@ db.once('open', async () => {
     email: 'pamela@test.com',
     password: 'password12345',
     products: [products[0], products[2], products[3]],
-    sales: await Order.insertMany([
-      {
-        products: [products[0]._id, products[0]._id, products[2]._id],
-        sellerId: 'Elijah',
-        buyerId: 'Pamela'
-      }
-    ]),
-    purchases: await Order.insertMany([
-      {
-        products: [products[1]._id],
-        sellerId: 'Bobbi',
-        buyerId: 'Pamela'
-      }
-    ])
+    sales: [
+      orders[0]
+    ],
+    purchases: [
+      orders[1]
+    ]
   });
 
   await User.create({
@@ -148,19 +163,11 @@ db.once('open', async () => {
     email: 'bgraham@test.com',
     password: 'password12345',
     products: [products[1], products[4], products[8], products[9]],
-    purchases: await Order.insertMany([]),
-    sales: await Order.insertMany([
-      {
-        products: [products[1]._id],
-        sellerId: 'Bobbi',
-        buyerId: 'Pamela'
-      },
-      {
-        products: [products[1]._id, products[4]._id],
-        sellerId: 'Bobbi',
-        buyerId: 'Elijah'
-      }
-    ])
+    purchases: [],
+    sales: [
+      orders[1],
+      orders[2]
+    ]
   });
 
   await User.create({
@@ -168,18 +175,11 @@ db.once('open', async () => {
     lastName: 'Holt',
     email: 'eholt@test.com',
     password: 'password12345',
-    purchases: await Order.insertMany([
-      {
-        products: [products[0]._id, products[0]._id, products[2]._id],
-        sellerId: 'Pamela',
-        buyerId: 'Elijah'
-      },
-      {
-        products: [products[1]._id, products[4]._id],
-        sellerId: 'Bobbi',
-        buyerId: 'Elijah'
-      }
-    ])
+    purchases:[
+      orders[0],
+      orders[2]
+    ],
+    sales:[]
   });
 
   console.log('users seeded');

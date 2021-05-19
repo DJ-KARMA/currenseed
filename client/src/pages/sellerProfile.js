@@ -115,7 +115,6 @@ function SellerProfile() {
                         Seeds: {user.seeds} 
                     </Text>
                     <Button
-                            variantColor="teal"
                             variant="outline"
                             type="submit"
                             width=""
@@ -140,9 +139,9 @@ function SellerProfile() {
                     {state.products.length ? (
                         <Box d="flex" justifyContent="center" flexWrap="wrap">
                             {state.products.map(product => (
-                                <Box m="2">
+                                <Box key= {product._id} m="2">
                                 <ProductItem
-                                    key= {product._id}
+                                    
                                     _id={product._id}
                                     image={product.image}
                                     name={product.name}
@@ -202,13 +201,14 @@ function AddProduct() {
                 category: formState.category
             }
         });
+        console.log("mutationResponse.data.addProduct.products",mutationResponse.data.addProduct.products);
 
         dispatch({
             type: UPDATE_PRODUCTS,
             products: mutationResponse.data.addProduct.products
         });
 
-        console.log(mutationResponse.data.addProduct.products);
+        // console.log(mutationResponse.data.addProduct.products);
     };
   
     const handleChange = event => {

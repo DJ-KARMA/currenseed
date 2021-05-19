@@ -89,7 +89,8 @@ export const UPDATE_USER = gql`
           quantity
           price
         }
-        userId
+        buyerId
+        sellerId
       }
       sales {
         _id
@@ -102,7 +103,8 @@ export const UPDATE_USER = gql`
           quantity
           price
         }
-        userId
+        buyerId
+        sellerId
       }
     }
   }

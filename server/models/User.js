@@ -37,9 +37,9 @@ const userSchema = new Schema({
     required: true,
     default: "Niagara Region"
   },
-  purchases: [Purchases.schema],
+  purchases: [Order.schema],
   orders: [Order.schema],
-  sales: [Sales.schema],
+  sales: [Order.schema],
   products: [Product.schema]
 });
 
