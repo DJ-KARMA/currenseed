@@ -16,8 +16,7 @@ const productSchema = new Schema({
   },
   price: {
     type: Number,
-    required: true,
-    min: 0.99
+    required: true
   },
   quantity: {
     type: Number,
@@ -28,6 +27,9 @@ const productSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Category',
     required: true
+  },
+  sellerId: {
+    type: String
   }
 });
 
