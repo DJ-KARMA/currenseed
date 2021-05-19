@@ -22,7 +22,7 @@ function SellHistory() {
              {user.sales.map((order) => (
                <Box key={order._id} my={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
                  <Text my={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
-                    {new Date(parseInt(order.purchaseDate)).toLocaleDateString()} from {order.buyerId}
+                    {new Date(parseInt(order.purchaseDate)).toLocaleDateString()} to {order.buyerId}
                  </Text>
 
                  <Box d="flex" bg="gray.100" alignItems="top" justifyContent="center" >

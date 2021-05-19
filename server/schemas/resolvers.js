@@ -130,7 +130,7 @@ const resolvers = {
     addSeeds: async (parent, {_id, seeds }) => {
       const increment = Math.random().toPrecision(2);
 
-      return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }});
+      return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }},{new: true});
     },
     addProduct: async (parent,  data , context) => {
       if(context.user) {

@@ -18,7 +18,8 @@ const defaultState ={
   cartOpen: false, 
   categories: [],
   currentCategrory: '',
-  userId: ''
+  userId: '',
+  seeds:0
 }
 
   const reducer = (state=defaultState, action) => {
