@@ -25,6 +25,7 @@ function SellerProfile() {
     const state = useSelector(state => state);
     const dispatch = useDispatch();
 
+    const [loading2, setLoading] = useState(true);
 
     const { loading, data } = useQuery(QUERY_USER);
     
@@ -34,37 +35,35 @@ function SellerProfile() {
          user = data.user;
     }
 
-    // const text = "Click me!";
-    // const [buttonText, setButtonText] = useState(text);
-
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         setButtonText(text);
-    //     }, 1000);
-    //     return ()=> clearTimeout(timer);
-    // }, [buttonText])
-
     const [addSeeds] = useMutation(ADD_SEEDS);
 
     const handleSeedAdd = async event => {
         event.preventDefault(); 
         const mutationResponse = await addSeeds({ variables: { _id: user._id, seeds: user.seeds } }); 
-      
+        setLoading(true);
+        console.log(mutationResponse.data.addSeeds);
         dispatch({
             type: UPDATE_SEEDS,
-            products: mutationResponse.data.addSeeds
+            seeds: mutationResponse.data.addSeeds.seeds
         });
 
         console.log(mutationResponse.data.addSeeds);
     };
+    console.log("state",state);
+    console.log("user",user);
 
     useEffect(() => 
     {
-        console.log(state);
+        // console.log(state);
+      
         
         // if there's data to be stored
         if (data) 
         {
+            dispatch({
+                type: UPDATE_SEEDS,
+                seeds: user.seeds
+            });
             // let's store it in the global state object
             dispatch({
                 type: UPDATE_PRODUCTS,
@@ -90,11 +89,13 @@ function SellerProfile() {
                 });
             });
         }
-    }, [data, loading, dispatch]);
+    }, [state.products.length,state.seeds,data, loading, dispatch]);
     
-    useEffect(() => 
-    {
-    }, [state.products.length]);
+    // useEffect(() => 
+    // {
+    //     setLoading(false);
+
+    // }, [state.products.length]);
 
 
     return (
@@ -112,16 +113,16 @@ function SellerProfile() {
                         </Text>
                     </Box>
                     <Text m={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
-                        Seeds: {user.seeds} 
+                        Seeds: {state.seeds} 
                     </Text>
                     <Button
-                            variantColor="teal"
                             variant="outline"
                             type="submit"
                             width=""
                             mt={4}
                             id="seedbtn"
                             onClick={handleSeedAdd}
+                            disabled={loading2}
                         >
                             Click me!
                         </Button>
@@ -132,7 +133,7 @@ function SellerProfile() {
             <Heading width="100%" as="h2" textAlign="center" my="20px">Products Available:</Heading>
 
             <Box padding="10px" my="20px" mx="auto" textAlign="center">
-                <AddProduct />
+                <AddProduct setLoading={setLoading}/>
             </Box>
 
             <Box d="flex" height="100hv" alignItems="top" justifyContent="center" flexWrap="wrap" my="20px" >
@@ -140,9 +141,9 @@ function SellerProfile() {
                     {state.products.length ? (
                         <Box d="flex" justifyContent="center" flexWrap="wrap">
                             {state.products.map(product => (
-                                <Box m="2">
+                                <Box key= {product._id} m="2">
                                 <ProductItem
-                                    key= {product._id}
+                                    
                                     _id={product._id}
                                     image={product.image}
                                     name={product.name}
@@ -182,7 +183,7 @@ function SellerProfile() {
     
 }; 
 
-function AddProduct() {
+function AddProduct({setLoading}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
 
@@ -203,12 +204,13 @@ function AddProduct() {
             }
         });
 
+        setLoading(false);
+        console.log("mutationResponse.data.addProduct.products",mutationResponse.data.addProduct.products);
+
         dispatch({
             type: UPDATE_PRODUCTS,
-            products: mutationResponse.data.addProduct.products
+            products: data.user.products
         });
-
-        console.log(mutationResponse.data.addProduct.products);
     };
   
     const handleChange = event => {
@@ -228,6 +230,20 @@ function AddProduct() {
     if (data) {
          user = data.user;
     }
+
+    // const [addSeeds] = useMutation(ADD_SEEDS);
+
+    // const handleSeedAdd = async event => {
+    //     event.preventDefault(); 
+    //     const mutationResponse = await addSeeds({ variables: { _id: user._id, seeds: user.seeds } }); 
+      
+    //     dispatch({
+    //         type: UPDATE_SEEDS,
+    //         products: mutationResponse.data.addSeeds
+    //     });
+
+    //     console.log(mutationResponse.data.addSeeds);
+    // };
  
     return (
 <>
