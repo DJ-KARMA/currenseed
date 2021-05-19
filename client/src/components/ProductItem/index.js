@@ -84,7 +84,6 @@ function ProductItem(item) {
                         ${price}
                     </Text>
                     <Text as='h3' fontSize='lg' fontWeight='semibold'>
-                        5
                         {quantity} {/*pluralize("item", quantity)*/} in stock
                     </Text>
                 </Stack>
