@@ -65,21 +65,21 @@ const Cart = () => {
         }
     }, [data]);
 
-    if (!state.cartOpen) {
-        return (
-          <Box onClick={toggleCart}>
-            <Heading><Text
-              role="img"
-              aria-label="sunflower" align="center">🌻 Your cart</Text>
-              </Heading>
-          </Box>
-        );
-    }
+    // if (!state.cartOpen) {
+    //     return (
+    //       <Box onClick={toggleCart}>
+    //         <Heading><Text
+    //           role="img"
+    //           aria-label="sunflower" align="center">🌻 Your cart</Text>
+    //           </Heading>
+    //       </Box>
+    //     );
+    // }
 
   return (
 <Box>
  
-  <Button size="lg" onClick={toggleCart}>Close 🛒</Button>
+  {/* <Button size="lg" onClick={toggleCart}>Close 🛒</Button> */}
   
   {/* <Heading align="center">Cart</Heading> */}
 
