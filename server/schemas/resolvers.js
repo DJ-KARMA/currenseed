@@ -34,8 +34,20 @@ const resolvers = {
     },
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
+        const user = await User.findById(context.user._id)
+        .populate(
+        {
           path: 'orders.products',
+          populate: 'category'
+        })
+        .populate(
+        {
+          path: 'purchases.products',
+          populate: 'category'
+        })
+        .populate(
+        {
+          path: 'sales.products',
           populate: 'category'
         });
   
@@ -116,9 +128,9 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     addSeeds: async (parent, {_id, seeds }) => {
-      const increment = Math.floor(Math.random()* 21);
+      const increment = Math.random().toPrecision(2);
 
-      return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }});
+      return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }},{new: true});
     },
     addProduct: async (parent,  data , context) => {
       if(context.user) {
@@ -167,7 +179,6 @@ const resolvers = {
       }
       throw new AuthenticationError('You must be logged in to remove a product from your shop')
     },
-
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
   

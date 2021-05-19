@@ -60,7 +60,7 @@ export default function Login(props) {
             <Box textAlign="center">
               <Text>logged in!</Text>
               <Button
-                variantColor="orange"
+                // variantColor="orange"
                 variant="outline"
                 width="full"
                 mt={4}
@@ -103,7 +103,7 @@ export default function Login(props) {
                     />
                   </FormControl>
                   <Button
-                    variantColor="teal"
+                    // variantColor="teal"
                     variant="outline"
                     type="submit"
                     width="full"
