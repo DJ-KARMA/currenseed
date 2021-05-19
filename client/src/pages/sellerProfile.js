@@ -286,7 +286,7 @@ function AddProduct() {
                                     type="quantity"
                                     name="quantity"
                                     id="quantity"
-                                    placeholder="5"
+                                    placeholder=""
                                     size="lg"
                                     onChange={handleChange}
                                 />

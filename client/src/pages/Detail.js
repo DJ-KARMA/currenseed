@@ -150,7 +150,7 @@ function Detail() {
           </Text>
 
           <Image
-            //src={`/images/${currentProduct.image}`}
+            src={`/images/${currentProduct.image}`}
             alt={currentProduct.name}
           />
         </Box>
