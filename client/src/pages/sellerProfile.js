@@ -6,9 +6,9 @@ import SellHistory from "./SellHistory";
 import ProductItem from "../components/ProductItem";
 //import AddItem from "../components/AddItem";
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { QUERY_USER } from "../utils/queries";
+import { QUERY_USER, QUERY_CATEGORIES } from "../utils/queries";
 import { ADD_PRODUCT, ADD_SEEDS } from "../utils/mutations";
-import { UPDATE_PRODUCTS, UPDATE_SEEDS } from "../utils/actions"
+import { UPDATE_PRODUCTS, UPDATE_SEEDS, UPDATE_CATEGORIES } from "../utils/actions"
 import { idbPromise } from "../utils/helpers";
 
 // import { Link as ReactLink } from "react-router-dom";
@@ -29,11 +29,19 @@ function SellerProfile() {
 
     const { loading, data } = useQuery(QUERY_USER);
     
+    const { loading3, data2 } = useQuery(QUERY_CATEGORIES);
+
     let user;
 
     if (data) {
          user = data.user;
     }
+
+    // let categories;
+
+    // if (data2) {
+    //     categories = data2.categories;
+    // }
 
     const [addSeeds] = useMutation(ADD_SEEDS);
 
@@ -51,11 +59,37 @@ function SellerProfile() {
     };
     console.log("state",state);
     console.log("user",user);
+    // console.log("data2",data2);
+
 
     useEffect(() => 
     {
+        // console.log(data2,loading3)
         // console.log(state);
-      
+        // if(data2)
+        // {
+        //     dispatch({
+        //         type: UPDATE_CATEGORIES,
+        //         categories: categories
+        //     });
+        //     console.log("data2",data2);
+        //     data2.categories.forEach((category) => 
+        //     {
+        //         idbPromise('categories', 'put', category);
+        //     });
+
+        // }
+        // else if (!loading3) 
+        // {
+        //     idbPromise('categories', 'get').then((categories) => 
+        //     {
+        //         // use retrieved data to set global state for offline browsing
+        //         dispatch({
+        //             type: UPDATE_CATEGORIES,
+        //             categories: categories
+        //         });
+        //     });
+        // }
         
         // if there's data to be stored
         if (data) 
@@ -67,14 +101,16 @@ function SellerProfile() {
             // let's store it in the global state object
             dispatch({
                 type: UPDATE_PRODUCTS,
-                products: data.user.products
+                products: user.products
             });
+         
         
             // but let's also take each product and save it to IndexedDB using the helper function 
             data.user.products.forEach((product) => 
             {
                 idbPromise('products', 'put', product);
             });
+
             // add else if to check if `loading` is undefined in `useQuery()` Hook
         } 
         else if (!loading) 
@@ -88,8 +124,9 @@ function SellerProfile() {
                     products: products
                 });
             });
+
         }
-    }, [state.products.length,state.seeds,data, loading, dispatch]);
+    }, [state.products.length,state.seeds,data,state.categories.length, loading, dispatch]);
     
     // useEffect(() => 
     // {
@@ -186,6 +223,7 @@ function SellerProfile() {
 function AddProduct({setLoading}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
+    const state = useSelector(state => state);
 
     const [formState, setFormState] = useState({ name: '', description: '', price: '', quantity: '', category: ''});
     const [addProduct] = useMutation(ADD_PRODUCT);
@@ -309,8 +347,8 @@ function AddProduct({setLoading}) {
                             </FormControl>
                             <FormControl mt="5" isRequired>
                                 <FormLabel htmlFor="category">Product Category</FormLabel>
-                                    <Select placeholder="Category">
-                                        <option value="Craft Beers">Craft Beers</option>
+                                    <Select placeholder="Category" name="category" onChange={handleChange}>
+                                        <option value="Craft Beer">Craft Beer</option>
                                         <option value="Fresh Produce">Fresh Produce</option>
                                         <option value="Jewelry">Jewelry</option>
                                         <option value="Artisan Cheese">Artisan Cheese</option>

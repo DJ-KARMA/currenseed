@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, Box, Flex, Text, Button, Stack, IconButton } from "@chakra-ui/react";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaCoins } from "react-icons/fa";
 import { CloseButton} from "@chakra-ui/react";
 import Auth from "../../utils/auth"
 import Logo from "./Logo";
-import Cart from "../Cart";
+import SeedItem from "../SeedItem";
 import SellerProfile from "../../pages/sellerProfile";
 
 const Nav = (props) => {
@@ -103,6 +103,8 @@ const MenuLinks = ({ isOpen }) => {
               </Button>
             </MenuItem>
             <MenuItem to="/cart"><IconButton icon={<FaShoppingCart/>} size="md" ></IconButton></MenuItem>
+            <MenuItem to="/SeedItem"><IconButton icon={<FaCoins/>} size="md" >$</IconButton></MenuItem>
+
             
           </Stack>
         </Box>

@@ -24,7 +24,7 @@ export default function OrderHistory() {
         <Box>
           <Heading as="h2">Order History</Heading>
           <Box>
-            {user.purchases.map((order) => (
+            {user.orders.map((order) => (
               <Box key={order._id} mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
 
                 <Text my={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
