@@ -126,7 +126,12 @@ export default function Signup(props) {
                             />
                         </FormControl> */}
                         <Button
-                            // variantColor="teal"
+                            color={["white"]} 
+                            size="lg"
+                            bg={["brand.800"]}
+                                _hover={{
+                                color: ["brand.500"]
+                                }}
                             variant="outline"
                             type="submit"
                             width="full"

@@ -153,7 +153,12 @@ function SellerProfile() {
                         Seeds: {state.seeds} 
                     </Text>
                     <Button
-                            variant="outline"
+                        color={["white"]} 
+                        size="lg"
+                        bg={["brand.800"]}
+                         _hover={{
+                        color: ["brand.500"]
+                        }}
                             type="submit"
                             width=""
                             mt={4}
@@ -270,7 +275,14 @@ function AddProduct({setLoading}) {
  
     return (
 <>
-            <Button ref={btnRef} bgColor="brand.500" size="lg" onClick={onOpen}>
+            <Button ref={btnRef} 
+                    color={["white"]} 
+                    size="lg"
+                    bg={["brand.800"]}
+                    _hover={{
+                    color: ["brand.500"]
+                    }}
+            onClick={onOpen}>
                 Add Product
             </Button>
             <Drawer
@@ -345,12 +357,24 @@ function AddProduct({setLoading}) {
                             </FormControl>
                         </DrawerBody>
                         <DrawerFooter mt="8">
-                            <Button variant="outline" mr={3} onClick={onClose}>
+                            <Button 
+                                color={["white"]} 
+                                size="lg"
+                                bg={["brand.800"]}
+                                _hover={{
+                                 color: ["brand.500"]
+                                 }}
+                            
+                            mr={3} onClick={onClose}>
                                 Cancel
                             </Button>
                             <Button
-                                // variantColor="teal"
-                                variant="outline"
+                                color={["white"]} 
+                                size="lg"
+                                bg={["brand.800"]}
+                                    _hover={{
+                                    color: ["brand.500"]
+                                    }}
                                 type="submit"
                                 width="full"
                                 // mt={4}
