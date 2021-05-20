@@ -135,6 +135,30 @@ const resolvers = {
   
       throw new AuthenticationError('Not logged in');
     },
+    addPurchase: async (parent, { products }, context) => {
+      console.log(context);
+      if (context.user) {
+        const purchase = new Purchases({ products });
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { purchases: purchase } });
+  
+        return purchase;
+      }
+  
+      throw new AuthenticationError('Not logged in');
+    },
+    addSale: async (parent, { products }, context) => {
+      console.log(context);
+      if (context.user) {
+        const sale = new Sales({ products });
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { sales: sale } });
+  
+        return sale;
+      }
+  
+      throw new AuthenticationError('Not logged in');
+    },
     addSeeds: async (parent, {_id, seeds }) => {
       const increment = Math.random().toPrecision(2);
 

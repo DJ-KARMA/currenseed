@@ -30,6 +30,42 @@ export const ADD_ORDER = gql`
   }
 `;
 
+export const ADD_PURCHASE_ = gql`
+  mutation addPurchase($products: [ID]!) {
+    addPurchase(products: $products) {
+      purchaseDate
+      products {
+        _id
+        name
+        description
+        price
+        quantity
+        category {
+          name
+        } 
+      }
+    }
+  }
+`;
+
+export const ADD_SALE = gql`
+  mutation addSale($products: [ID]!) {
+    addSale(products: $products) {
+      purchaseDate
+      products {
+        _id
+        name
+        description
+        price
+        quantity
+        category {
+          name
+        } 
+      }
+    }
+  }
+`;
+
 export const ADD_PRODUCT = gql`
 mutation addProduct($name: String!, $description: String!, $price: Float!, $quantity: Int!, $category: String!) {    
   addProduct(name: $name, description: $description, price: $price, quantity: $quantity, category: $category) {
