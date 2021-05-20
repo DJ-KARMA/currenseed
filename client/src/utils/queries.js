@@ -107,8 +107,8 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout($products: [ID]!) {
-    checkout(products: $products) {
+  query getCheckout($price: String, $quantity: String) {
+    checkout(price: $price, quantity:$quantity) {
       session
     }
   }

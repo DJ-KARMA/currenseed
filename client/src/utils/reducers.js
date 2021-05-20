@@ -9,7 +9,8 @@ import {
     UPDATE_CART_QUANTITY,
     CLEAR_CART,
     TOGGLE_CART,
-    GET_USERID
+    GET_USERID,
+    PURCHASE_SEED
 } from './actions';
 
 const defaultState ={
@@ -19,7 +20,8 @@ const defaultState ={
   categories: [],
   currentCategrory: '',
   userId: '',
-  seeds:0
+  seeds:0,
+  parchaseSeeds:0
 }
 
   const reducer = (state=defaultState, action) => {
@@ -45,6 +47,12 @@ const defaultState ={
         return {
           ...state, 
           seeds: action.seeds
+        }
+
+      case PURCHASE_SEED: 
+        return {
+          ...state, 
+          parchaseSeeds: action.parchaseSeeds
         }
       case ADD_TO_CART: 
         return {
