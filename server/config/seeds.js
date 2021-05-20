@@ -6,16 +6,37 @@ db.once('open', async () => {
 
   const categories = await Category.insertMany([
     { name: 'Craft Beer',
-      description: '',
-      image: ''
+      description: 'Hop on over to see some local craft beers.',
+      image: 'https://images.unsplash.com/photo-1581338772961-e1a4c9b36580?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80'
     },
-    { name: 'Fresh Produce' },
-    { name: 'Jewelry' },
-    { name: 'Artisan Cheese' },
-    { name: 'Fresh Meat' },
-    { name: 'Handmade Items' },
-    { name: 'Baked Goods' },
-    { name: 'Wine' }
+    { name: 'Fresh Produce',
+      description: 'Check out some local farmers selling fresh produce.',
+      image: 'https://images.unsplash.com/photo-1543076659-9380cdf10613?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGZydWl0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60'
+    },
+    { name: 'Jewelry',
+      description: 'Handmade jewelry made with love.',
+      image: 'https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8amV3ZWxyeXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60'
+    },
+    { name: 'Artisan Cheese',
+      description: 'We like it cheesy.',
+      image: 'https://images.unsplash.com/photo-1517093602195-b40af9688b46?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2hlZXNlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60'
+    },
+    { name: 'Fresh Meat',
+      description: 'So fresh its still mooing.', 
+      image: 'https://images.unsplash.com/photo-1616589717939-cda1709a292e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDB8fG1lYXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60'
+    },
+    { name: 'Handmade Items',
+      description: 'Incense, soap, babies...', 
+      image: 'https://images.unsplash.com/photo-1618840313409-66c0d92d6f26?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fHNvYXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60'
+    },
+    { name: 'Baked Goods',
+      description: 'Cookies, cakes, bread...',
+      image: 'https://images.unsplash.com/photo-1598839950984-034f6dc7b495?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y29va2llc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60' 
+    },
+    { name: 'Wine',
+      description: 'Wine and dine.',
+      image: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d2luZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60'
+    }
   ]);
 
   console.log('categories seeded');

@@ -5,6 +5,8 @@ export const QUERY_CATEGORIES = gql`
   categories {
     _id
     name
+    image
+    description
   }
 }
 `;
@@ -41,6 +43,10 @@ export const QUERY_USER = gql`
       price
       quantity
       image
+      category{
+        _id
+        name
+      }
     }
     orders {
       _id
@@ -54,6 +60,10 @@ export const QUERY_USER = gql`
         price
         quantity
         image
+        category{
+          _id
+          name
+        }
       }
     }
     purchases {
@@ -66,6 +76,10 @@ export const QUERY_USER = gql`
         image
         quantity
         price
+        category{
+          _id
+          name
+        }
       }
       buyerId
       sellerId
@@ -80,6 +94,10 @@ export const QUERY_USER = gql`
         image
         quantity
         price
+        category{
+          _id
+          name
+        }
       }
       buyerId
       sellerId
@@ -89,8 +107,8 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout($products: [ID]!) {
-    checkout(products: $products) {
+  query getCheckout($price: String, $quantity: String) {
+    checkout(price: $price, quantity:$quantity) {
       session
     }
   }

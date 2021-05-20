@@ -18,13 +18,13 @@ export const ADD_ORDER = gql`
       purchaseDate
       products {
         _id
-      name
-      description
-      price
-      quantity
-      category {
         name
-      } 
+        description
+        price
+        quantity
+        category {
+          name
+        } 
       }
     }
   }
@@ -79,6 +79,38 @@ export const UPDATE_USER = gql`
       firstName
       lastName
       email
+      seeds
+      location
+      products{
+        _id
+        name
+        description
+        price
+        quantity
+        image
+        category{
+          _id
+          name
+        }
+      }
+      orders {
+        _id
+        purchaseDate
+        sellerId
+        buyerId
+        products {
+          _id
+          name
+          description
+          price
+          quantity
+          image
+          category{
+            _id
+            name
+          }
+        }
+      }
       purchases {
         _id
         purchaseDate
@@ -89,6 +121,10 @@ export const UPDATE_USER = gql`
           image
           quantity
           price
+          category{
+            _id
+            name
+          }
         }
         buyerId
         sellerId
@@ -103,6 +139,10 @@ export const UPDATE_USER = gql`
           image
           quantity
           price
+          category{
+            _id
+            name
+          }
         }
         buyerId
         sellerId
@@ -133,4 +173,13 @@ export const ADD_SEEDS = gql`
       seeds
     }
   }
-`;
+`
+
+export const PURCHASE_SEEDS = gql`
+  mutation purchaseSeeds($seeds: Float!) {
+    purchaseSeeds(seeds: $seeds) {
+      _id
+      seeds
+    }
+}
+`

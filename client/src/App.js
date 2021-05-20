@@ -22,6 +22,7 @@ import sellerProfile from "./pages/sellerProfile";
 //import SellHistory from "./pages/SellHistory";
 import CategoryDetail from "./pages/CategoryDetail"
 import Cart from "./components/Cart";
+import SeedItem from './components/SeedItem';
 
 
 const client = new ApolloClient({
@@ -68,11 +69,15 @@ function App() {
             <Route exact path="/products/:id" component={Detail} />
             <Route exact path="/cart" component={Cart}/>
             <Route exact path="/profile" component={sellerProfile}/>
+            <Route exact path="/SeedItem" component={SeedItem}/>
+
             {/*
             <Route exact path="/orderHistory" component={OrderHistory} />
             <Route exact path="/products/:id" component={Detail} />
+                        
             <Route component={NoMatch} />
             */}
+
           </Switch>
           <Footer/>
           </Provider>
