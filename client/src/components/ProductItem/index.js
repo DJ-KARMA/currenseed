@@ -63,7 +63,7 @@ function ProductItem(item) {
             <Box p={5}>
                 <Stack isInline align='baseline'>
                     <Badge variant='solid' bg='brand.800' rounded='full' px={2}>
-                        {category}
+                        {category.name}
                     </Badge>
                     <Text
                         textTransform='uppercase'

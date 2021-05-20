@@ -43,6 +43,10 @@ export const QUERY_USER = gql`
       price
       quantity
       image
+      category{
+        _id
+        name
+      }
     }
     orders {
       _id
@@ -56,6 +60,10 @@ export const QUERY_USER = gql`
         price
         quantity
         image
+        category{
+          _id
+          name
+        }
       }
     }
     purchases {
@@ -68,6 +76,10 @@ export const QUERY_USER = gql`
         image
         quantity
         price
+        category{
+          _id
+          name
+        }
       }
       buyerId
       sellerId
@@ -82,6 +94,10 @@ export const QUERY_USER = gql`
         image
         quantity
         price
+        category{
+          _id
+          name
+        }
       }
       buyerId
       sellerId
