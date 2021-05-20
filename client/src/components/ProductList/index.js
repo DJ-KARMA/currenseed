@@ -31,7 +31,10 @@ function ProductList({ categoryId }) {
         type: UPDATE_PRODUCTS,
         products: data.products
       });
-  
+
+      console.log("data",data);
+      console.log("categoryId",categoryId);
+
       // but let's also take each product and save it to IndexedDB using the helper function 
       data.products.forEach((product) => {
         idbPromise('products', 'put', product);
