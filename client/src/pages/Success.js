@@ -1,8 +1,7 @@
-
 import React, { useEffect } from "react";
 import { useMutation } from '@apollo/react-hooks';
 import { PURCHASE_SEEDS } from "../utils/mutations";
-import { Box, Text, Input, Image, Button, Heading } from "@chakra-ui/react";
+import { Box, Text, Input, Image, Button, Heading, Flex, Stack, Container } from "@chakra-ui/react";
 import { idbPromise } from '../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import {PURCHASE_SEED} from '../utils/actions';
@@ -43,17 +42,25 @@ function Success() {
 
         saveOrder();
     }, [purchaseSeeds]);
+
     //convert to Chakra 
     return (
-      <Box m="30px">
-          <Heading as="h1" m="20px">Success!</Heading>
-          <Text as="h2" m="20px">
-            Thank you for your purchase!
-            </Text>
-          <Text as="h2" m="20px">
-            You will now be redirected to the homepage
-            </Text>
-      </Box>
+      <Flex m="5" justifyContent="center">
+			<Stack m="2" alignContent="center" >
+				<Box fontSize="lg" align="center">
+					<Container>
+          🎉SUCCESS!🎉
+					</Container>
+					<Container>
+          🙌Thank you for your purchase!🙌
+					</Container>
+					<Container>
+						You will now be redirected back to the homepage. 
+					</Container>
+				</Box>
+      </Stack>
+      </Flex>
+
     );
   };
 
