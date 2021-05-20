@@ -146,7 +146,7 @@ const resolvers = {
     addPurchase: async (parent, { products }, context) => {
       console.log(context);
       if (context.user) {
-        const purchase = new Purchases({ products });
+        const purchase = new Order({ products });
 
         await User.findByIdAndUpdate(context.user._id, { $push: { purchases: purchase } });
   
@@ -158,7 +158,7 @@ const resolvers = {
     addSale: async (parent, { products }, context) => {
       console.log(context);
       if (context.user) {
-        const sale = new Sales({ products });
+        const sale = new Order({ products });
 
         await User.findByIdAndUpdate(context.user._id, { $push: { sales: sale } });
   
