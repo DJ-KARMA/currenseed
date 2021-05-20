@@ -1,40 +1,59 @@
 
 import React, { useEffect } from "react";
 import { useMutation } from '@apollo/react-hooks';
-import { ADD_ORDER, ADD_SEEDS } from "../utils/mutations";
+import { PURCHASE_SEEDS } from "../utils/mutations";
+import { Box, Text, Input, Image, Button, Heading } from "@chakra-ui/react";
 import { idbPromise } from '../utils/helpers';
+import { useDispatch, useSelector } from 'react-redux';
+import {PURCHASE_SEED} from '../utils/actions';
 
 function Success() {
-    const [addOrder] = useMutation(ADD_ORDER, ADD_SEEDS);
+    const [purchaseSeeds] = useMutation(PURCHASE_SEEDS);
+    const state = useSelector(state => state);
+    const dispatch = useDispatch();
 
     useEffect(() => {
+
         async function saveOrder() {
-            const cart = await idbPromise('cart', 'get');
-            const products = cart.map(item => item._id);
-            const seeds = cart.map(item => item.price)
-            if (products.length) {
-                const { data } = await addOrder({ variables: { products, seeds } });
-                const productData = data.addOrder.products;
-                const seedData = data.addOrder.seeds; 
-              
-                productData.forEach((item) => {
-                  idbPromise('cart', 'delete', item);
-                });
-            }
+
+          
+          const pseeds = localStorage.getItem("seed");
+
+          localStorage.removeItem("seed");
+
+          purchaseSeeds({ variables: { seeds: parseFloat(pseeds) } });
+
+
+          // const products = cart.map(item => item._id);
+          // if (products.length) 
+          // {
+          //     const { data } = await addOrder({ variables: { products } });
+          //     const productData = data.addOrder.products;
+          
+          //     productData.forEach((item) => {
+          //         idbPromise('cart', 'delete', item);
+          //     });
+          // }
+  
+          setTimeout(()=>{
+              window.location.assign("/");
+          },3000);
+
         }
+
         saveOrder();
-    }, [addOrder]);
+    }, [purchaseSeeds]);
     //convert to Chakra 
     return (
-      <div>
-          <h1>Success!</h1>
-          <h2>
+      <Box m="30px">
+          <Heading as="h1" m="20px">Success!</Heading>
+          <Text as="h2" m="20px">
             Thank you for your purchase!
-          </h2>
-          <h2>
+            </Text>
+          <Text as="h2" m="20px">
             You will now be redirected to the homepage
-          </h2>
-      </div>
+            </Text>
+      </Box>
     );
   };
 
