@@ -12,14 +12,14 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Home from "./pages/Home";
 import Footer from './pages/Footer';
 import Detail from "./pages/Detail";
-// import NoMatch from "./pages/NoMatch";
+import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Success from "./pages/Success";
 import Nav from "./components/Nav";
 import sellerProfile from "./pages/sellerProfile";
-//import OrderHistory from "./pages/OrderHistory";
-//import SellHistory from "./pages/SellHistory";
+import OrderHistory from "./pages/OrderHistory";
+import SellHistory from "./pages/SellHistory";
 import CategoryDetail from "./pages/CategoryDetail"
 import Cart from "./components/Cart";
 import SeedItem from './components/SeedItem';
@@ -70,13 +70,9 @@ function App() {
             <Route exact path="/cart" component={Cart}/>
             <Route exact path="/profile" component={sellerProfile}/>
             <Route exact path="/SeedItem" component={SeedItem}/>
-
-            {/*
             <Route exact path="/orderHistory" component={OrderHistory} />
-            <Route exact path="/products/:id" component={Detail} />
-                        
+            <Route exact path="/sellHistory" component={SellHistory} />
             <Route component={NoMatch} />
-            */}
 
           </Switch>
           <Footer/>

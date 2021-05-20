@@ -89,7 +89,7 @@ const Cart = () => {
         <CartItem key={item._id} item={item} />
       ))}
       <Box align="center">
-        <Heading>Seeds: {calculateTotal()}</Heading>
+        <Heading> ${calculateTotal()}</Heading>
         {
           Auth.loggedIn() ?
             <Button 

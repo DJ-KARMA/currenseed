@@ -198,21 +198,6 @@ function SellerProfile() {
                     )}
                 </Box>
             </Box>
-            
-            <Box d="flex" height="100hv" width="100%" alignItems="top" justifyContent="space-around" flexWrap="wrap">
-
-                <Box m="1" width="48%" minWidth="450px" textAlign="center" borderWidth={1} borderRadius={8} boxShadow="lg">
-                    <Box borderWidth="1px" width="90%" minHeight="400px"  my="20px" mx="auto" textAlign="center">
-                        <OrderHistory/>
-                    </Box>
-                </Box> 
-
-                <Box m="1" width="48%" minWidth="450px" textAlign="center" borderWidth={1} borderRadius={8} boxShadow="lg">
-                    <Box borderWidth="1px" width="90%" minHeight="400px"  my="20px" mx="auto" textAlign="center">
-                        <SellHistory/>
-                    </Box>
-                </Box>
-            </Box>
         </Box> 
         ) : null}
         </>

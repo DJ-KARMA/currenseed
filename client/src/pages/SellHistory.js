@@ -47,7 +47,9 @@ function SellHistory() {
          </Box>
              
        
-       ) : null }
+      ) : (
+        <Heading>No sales yet!</Heading>
+      )}
      </Box>
                  
    </Flex>
