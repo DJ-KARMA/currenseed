@@ -4,6 +4,8 @@ import { FaShoppingCart, FaCoins } from "react-icons/fa";
 import { CloseButton} from "@chakra-ui/react";
 import Auth from "../../utils/auth"
 import Logo from "./Logo";
+import OrderHistory from "../../pages/OrderHistory";
+import SellHistory from "../../pages/SellHistory";
 import SeedItem from "../SeedItem";
 import SellerProfile from "../../pages/sellerProfile";
 
@@ -88,6 +90,8 @@ const MenuLinks = ({ isOpen }) => {
           >
             <MenuItem to="/">Home</MenuItem>
             <MenuItem to="/profile/">My Profile</MenuItem>
+            <MenuItem to="/orderHistory">My Orders</MenuItem>
+            <MenuItem to="/sellHistory">My Sales</MenuItem>
             <MenuItem to="/">
               <Button
                 onClick={() => Auth.logout()}

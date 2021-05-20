@@ -79,7 +79,7 @@ function ProductList({ categoryId }) {
             ))}
         </Box>
       ) : (
-        <Heading>You haven't added any products yet!</Heading>
+        <Heading>No products yet!</Heading>
       )}
     </Box>
   );

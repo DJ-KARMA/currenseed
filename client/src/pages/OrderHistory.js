@@ -54,7 +54,9 @@ export default function OrderHistory() {
         </Box>
             
       
-      ) : null }
+      ) : (
+        <Heading>No orders yet!</Heading>
+      )}
     </Box>
                 
   </Flex>

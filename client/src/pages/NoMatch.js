@@ -3,7 +3,7 @@ import React from "react";
 const NoMatch = () => {
   return (
     <div>
-        <h1>404 Page Not Found</h1>
+        <h1>You're super lost...</h1>
         <h1>
           <span role="img" aria-label="sad leaves">
           😢🍃

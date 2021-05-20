@@ -56,12 +56,12 @@ const SeedItem = () => {
         overflow='sm'
         bg='brand.700'>
           <Image
-            src={`images/beer-1-min.jpg`}
+            src={`images/flower-1-min.jpg`}
             alt=""
           />
         </Box>
         <Box>
-          <Box>Seed $1</Box>
+          <Box>1 Seed = $1</Box>
           <Box>
             <Text mb="8px" align="center">Qty:</Text>
             <Input
