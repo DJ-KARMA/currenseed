@@ -4,9 +4,9 @@ import { Box, Text} from "@chakra-ui/react";
 const Logo = (props) => {
   return (
     <Box {...props}>
-      <Text fontSize="lg" fontWeight="bold">
+      <a fontSize="lg" fontWeight="bold" href="/">
         CurrenSeed<span>🌱</span>
-      </Text>
+      </a>
     </Box>
   );
 }
