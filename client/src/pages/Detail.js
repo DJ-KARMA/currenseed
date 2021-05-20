@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 
-import { QUERY_PRODUCTS } from "../utils/queries";
+
+import { QUERY_PRODUCTS, QUERY_USER } from "../utils/queries";
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
@@ -12,12 +13,21 @@ import {
   UPDATE_PRODUCTS,
 } from '../utils/actions';
 
+import { ADD_SEEDS } from "../utils/mutations";
+
 import Cart from '../components/Cart';
 import { idbPromise } from "../utils/helpers";
 
 import { Button, Box, Heading, Flex, Image, Text, Stack, Container, Center, Spacer, SimpleGrid} from "@chakra-ui/react";
 
 function Detail() {
+  const { data } = useQuery(QUERY_USER);
+  let user;
+
+  if (data) {
+       user = data.user;
+  }
+
   const state = useSelector((state) => {
     return state
   });
@@ -28,7 +38,7 @@ function Detail() {
 
   const [currentProduct, setCurrentProduct] = useState({})
 
-  const { loading, data } = useQuery(QUERY_PRODUCTS);
+  const { loading } = useQuery(QUERY_PRODUCTS);
 
   const { products, cart } = state;
     
@@ -92,6 +102,16 @@ function Detail() {
       // upon removal from cart, delete the item from IndexedDB using the `currentProduct._id` to locate what to remove
       idbPromise('cart', 'delete', { ...currentProduct });
     };
+
+    //add seeds when adding items to cart 
+    const [addSeeds] = useMutation(ADD_SEEDS);
+
+    const handleSeedAdd = async event => {
+        event.preventDefault(); 
+        const mutationResponse = await addSeeds({ variables: { _id: user._id, seeds: user.seeds } }); 
+        const seedCount = mutationResponse.data.addSeeds; 
+    };
+
   //convert to Chakra
   return (
     <>
@@ -118,7 +138,7 @@ function Detail() {
             <strong>Price:</strong>
             ${currentProduct.price}
             {" "}
-            <Button onClick={addToCart}>
+            <Button onClick={addToCart, handleSeedAdd}>
               Add to Cart
             </Button>
             <Button 
@@ -130,7 +150,7 @@ function Detail() {
           </Text>
 
           <Image
-            //src={`/images/${currentProduct.image}`}
+            src={`/images/${currentProduct.image}`}
             alt={currentProduct.name}
           />
         </Box>

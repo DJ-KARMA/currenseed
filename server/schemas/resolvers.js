@@ -34,8 +34,20 @@ const resolvers = {
     },
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
+        const user = await User.findById(context.user._id)
+        .populate(
+        {
           path: 'orders.products',
+          populate: 'category'
+        })
+        .populate(
+        {
+          path: 'purchases.products',
+          populate: 'category'
+        })
+        .populate(
+        {
+          path: 'sales.products',
           populate: 'category'
         });
   
@@ -115,13 +127,19 @@ const resolvers = {
   
       throw new AuthenticationError('Not logged in');
     },
+    addSeeds: async (parent, {_id, seeds }) => {
+      const increment = Math.random().toPrecision(2);
+
+      return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }},{new: true});
+    },
     addProduct: async (parent,  data , context) => {
       if(context.user) {
         console.log("data",data);
         const category = new Category({name:data.category});
-        const product = new Product ( {name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category });
+        console.log("category", category)
+        const product = new Product ( {name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category.name, userId: context.user._id });
         console.log("product",product);
-        const user = await User.findByIdAndUpdate(context.user._id, { $push: { products: product } });
+        const user = await User.findByIdAndUpdate(context.user._id, { $push: { products: product } }, {new: true});
         // console.log("user",user);
 
         return user; 
@@ -161,7 +179,6 @@ const resolvers = {
       }
       throw new AuthenticationError('You must be logged in to remove a product from your shop')
     },
-
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
   

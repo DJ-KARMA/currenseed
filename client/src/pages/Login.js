@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { LOGIN } from "../utils/mutations"
 import Auth from "../utils/auth";
 
+
 import {
   Flex,
   Box,
@@ -34,7 +35,7 @@ export default function Login(props) {
       } catch (e) {
         console.log(e)
       }
-    };
+    };   
   
     const handleChange = event => {
       const { name, value } = event.target;
@@ -59,7 +60,7 @@ export default function Login(props) {
             <Box textAlign="center">
               <Text>logged in!</Text>
               <Button
-                variantColor="orange"
+                // variantColor="orange"
                 variant="outline"
                 width="full"
                 mt={4}
@@ -102,7 +103,7 @@ export default function Login(props) {
                     />
                   </FormControl>
                   <Button
-                    variantColor="teal"
+                    // variantColor="teal"
                     variant="outline"
                     type="submit"
                     width="full"

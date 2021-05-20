@@ -34,9 +34,19 @@ export const QUERY_USER = gql`
     email
     seeds
     location
+    products{
+      _id
+      name
+      description
+      price
+      quantity
+      image
+    }
     orders {
       _id
       purchaseDate
+      sellerId
+      buyerId
       products {
         _id
         name
@@ -57,7 +67,8 @@ export const QUERY_USER = gql`
         quantity
         price
       }
-      userId
+      buyerId
+      sellerId
     }
     sales {
       _id
@@ -70,7 +81,8 @@ export const QUERY_USER = gql`
         quantity
         price
       }
-      userId
+      buyerId
+      sellerId
     }
   }
 }

@@ -42,6 +42,7 @@ mutation addProduct($name: String!, $description: String!, $price: Float!, $quan
       description
       price
       quantity
+      image
       category{
         _id
         name
@@ -51,20 +52,17 @@ mutation addProduct($name: String!, $description: String!, $price: Float!, $quan
 }
 `
 
-export const ADD_SEEDS = gql`
-  mutation addSeeds($products: [ID]!) {
-    addSeeds(products: $products) {
-      products {
-        price
-      }
+export const DELETE_PRODUCT = gql `
+  mutation deleteProduct($products: [ID]!) {
+    deleteProduct(products: $products){
+      _id
     }
   }
-`;
-
+`
 
 export const ADD_USER = gql`
-  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!, $seeds: Float!) {
+    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, location: $location, seeds: $seeds) {
       token
       user {
         _id
@@ -92,7 +90,8 @@ export const UPDATE_USER = gql`
           quantity
           price
         }
-        userId
+        buyerId
+        sellerId
       }
       sales {
         _id
@@ -105,14 +104,15 @@ export const UPDATE_USER = gql`
           quantity
           price
         }
-        userId
+        buyerId
+        sellerId
       }
     }
   }
 `
 
 export const UPDATE_PRODUCT = gql`
-  mutation updateProduct($_id: ID!, $quantity: INT!) {
+  mutation updateProduct($_id: ID!, $quantity: Int!) {
     updateProduct(_id: $_id, quantity: $quantity) {
       _id
       name
@@ -126,3 +126,11 @@ export const UPDATE_PRODUCT = gql`
     }
   }
 `
+export const ADD_SEEDS = gql`
+  mutation addSeeds($_id: ID!, $seeds: Float!) {
+    addSeeds(_id: $_id, seeds: $seeds) {
+      _id
+      seeds
+    }
+  }
+`;

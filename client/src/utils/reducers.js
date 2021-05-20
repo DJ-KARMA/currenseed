@@ -1,6 +1,7 @@
 import {
     UPDATE_PRODUCTS,
     UPDATE_CATEGORIES,
+    UPDATE_SEEDS,
     UPDATE_CURRENT_CATEGORY,
     ADD_TO_CART,
     ADD_MULTIPLE_TO_CART,
@@ -17,7 +18,8 @@ const defaultState ={
   cartOpen: false, 
   categories: [],
   currentCategrory: '',
-  userId: ''
+  userId: '',
+  seeds:0
 }
 
   const reducer = (state=defaultState, action) => {
@@ -26,7 +28,7 @@ const defaultState ={
       case UPDATE_PRODUCTS:
         return {
           ...state,
-          products: [...action.products]
+          products: action.products
         };
       // if action type value is the value of `UPDATE_CATEGORIES`, return a new state object with an updated categories array
       case UPDATE_CATEGORIES:
@@ -39,6 +41,11 @@ const defaultState ={
           ...state,
           currentCategory: action.currentCategory
         };
+      case UPDATE_SEEDS: 
+        return {
+          ...state, 
+          seeds: action.seeds
+        }
       case ADD_TO_CART: 
         return {
             ...state, 
@@ -85,8 +92,8 @@ const defaultState ={
       case GET_USERID:
         return {
           ...state,
-          cartOpen: !state.cartOpen
-        };  
+          userId: action.user._id
+        }
       default:
         return state;
     }

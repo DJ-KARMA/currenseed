@@ -30,16 +30,16 @@ const userSchema = new Schema({
   },
   seeds: {
     type: Number, 
-    default: 50
+    default: 25.00
   },
   location: {
     type: String,
     required: true,
     default: "Niagara Region"
   },
-  purchases: [Purchases.schema],
+  purchases: [Order.schema],
   orders: [Order.schema],
-  sales: [Sales.schema],
+  sales: [Order.schema],
   products: [Product.schema]
 });
 
