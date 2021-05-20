@@ -1,40 +1,53 @@
-
 import React, { useEffect } from "react";
 import { useMutation } from '@apollo/react-hooks';
-import { ADD_ORDER, ADD_SEEDS } from "../utils/mutations";
+import { ADD_ORDER} from "../utils/mutations";
 import { idbPromise } from '../utils/helpers';
+import { Box, Flex, Stack, Container } from "@chakra-ui/react";
 
 function Success() {
-    const [addOrder] = useMutation(ADD_ORDER, ADD_SEEDS);
+  const [addOrder] = useMutation(ADD_ORDER);
 
-    useEffect(() => {
-        async function saveOrder() {
-            const cart = await idbPromise('cart', 'get');
-            const products = cart.map(item => item._id);
-            const seeds = cart.map(item => item.price)
-            if (products.length) {
-                const { data } = await addOrder({ variables: { products, seeds } });
-                const productData = data.addOrder.products;
-                const seedData = data.addOrder.seeds; 
-              
-                productData.forEach((item) => {
-                  idbPromise('cart', 'delete', item);
-                });
-            }
-        }
-        saveOrder();
-    }, [addOrder]);
+  useEffect(() => {
+    async function saveOrder() {
+      const cart = await idbPromise('cart', 'get');
+      const products = cart.map(item => item._id);
+      
+      if (products.length) {
+        const { data } = await addOrder({ variables: { products } });
+        const productData = data.addOrder.products;
+        alert(products);
+    
+        productData.forEach((item) => {
+          idbPromise('cart', 'delete', item);
+        });
+      }
+        
+      setTimeout(() => {
+        window.location.assign('/');
+      }, 3000);
+    }
+
+    saveOrder();
+  }, [addOrder]);
+
     //convert to Chakra 
     return (
-      <div>
-          <h1>Success!</h1>
-          <h2>
-            Thank you for your purchase!
-          </h2>
-          <h2>
-            You will now be redirected to the homepage
-          </h2>
-      </div>
+      <Flex m="5" justifyContent="center">
+			<Stack m="2" alignContent="center" >
+				<Box fontSize="lg" align="center">
+					<Container>
+          🎉SUCCESS!🎉
+					</Container>
+					<Container>
+          🙌Thank you for your purchase!🙌
+					</Container>
+					<Container>
+						You will now be redirected back to the homepage. 
+					</Container>
+				</Box>
+      </Stack>
+      </Flex>
+
     );
   };
 
