@@ -20,9 +20,9 @@ const typeDefs = gql`
   type Order {
     _id: ID
     purchaseDate: String
+    products: [Product]
     sellerId: String
     buyerId: String
-    products: [Product]
   }
   type User {
     _id: ID
@@ -35,6 +35,9 @@ const typeDefs = gql`
     seeds: Float
     products: [Product]
     location: String
+  }
+  type Checkout {
+    session: ID
   }
   type Auth {
     token: ID!
@@ -71,9 +74,7 @@ const typeDefs = gql`
     createProduct(productInfo: NewProduct!): User
     deleteProduct(productId: ID!): User
   }
-  type Checkout {
-    session: ID
-  }
+
 `;
 
 module.exports = typeDefs;

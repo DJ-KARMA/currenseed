@@ -81,14 +81,14 @@ const resolvers = {
         const product = await stripe.products.create({
           name: products[i].name,
           description: products[i].description,
-          //images: [`${url}/images/${products[i].image}`]
+          images: [`${url}/images/${products[i].image}`]
         });
   
         // generate price id using the product id
         const price = await stripe.prices.create({
           product: product.id,
-          //unit_amount: products[i].price * 100,
-          //currency: 'usd',
+          unit_amount: products[i].price * 100,
+          currency: 'cad',
         });
   
         // add price id to the line items array
