@@ -10,16 +10,24 @@ const resolvers = {
     },
     products: async (parent, { category, name }) => {
       const params = {};
-  
+
+      console.log("category",category);
+      console.log("name", name);
+
       if (category) {
         params.category = category;
+        console.log("params1",params);
       }
   
       if (name) {
         params.name = {
           $regex: name
         };
+
+        console.log("params2",params);
       }
+
+
   
       return await Product.find(params).populate('category');
     },
@@ -150,7 +158,8 @@ const resolvers = {
         console.log("data",data);
         const category = await Category.findOne({name:data.category});
         console.log("category", category)
-        const product = new Product ( {name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category._id, userId: context.user._id });
+        // const product = new Product ( {name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category._id, userId: context.user._id });
+        const product = await Product.create({name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category._id, userId: context.user._id });
         console.log("product",product);
         const user = await User.findByIdAndUpdate(context.user._id, { $push: { products: product } }, {new: true});
         console.log("user",user);
