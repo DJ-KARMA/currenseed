@@ -35,9 +35,9 @@ const Cart = () => {
           sum += item.price * item.purchaseQuantity;
         });
         return sum.toFixed(2);
-    }
+    };
 
-    function submitOrder() {
+    function submitPurchase() {
         const productIds = [];
       
         state.cart.forEach((item) => {
@@ -45,7 +45,6 @@ const Cart = () => {
             productIds.push(item._id);
           }
         });
-        alert("Thank you for your order! You will now be redirected to your order history.")
     }
 
     return (
@@ -56,25 +55,8 @@ const Cart = () => {
                 <CartItem key={item._id} item={item} />
               ))}
               <Box align="center">
-                <Heading> Seeds: {calculateTotal()}</Heading>
-                {
-                  Auth.loggedIn() ?
-                    <Button 
-                    onClick={submitOrder}
-                    size="sm"
-                    rounded="md"
-                    color={["brand.500"]}
-                    bg={["brand.800"]}
-                    _hover={{
-                      bg: ["white"]
-                    }}
-                  >          
-                    Checkout
-                    </Button>
-                    :
-                    <Text>(log in to check out)</Text>
-                }
-          
+                <Heading>Total due:</Heading>
+                <Heading>{calculateTotal() + "🌱"}</Heading>          
               </Box>
             </SimpleGrid>
           ) : (

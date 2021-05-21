@@ -7,7 +7,9 @@ import ProductList from '../components/ProductList';
 function CategoryDetail ({ }) {
    const { categoryId } = useParams();
 
-    return <ProductList categoryId={categoryId} />
+    return (
+    <ProductList categoryId={categoryId} />
+    )
 }
 
 export default CategoryDetail;
