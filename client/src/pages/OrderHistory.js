@@ -22,7 +22,7 @@ export default function OrderHistory() {
     <Box>
       {user ? (
         <Box>
-          <Heading as="h2">Order History</Heading>
+          <Heading as="h2">Order History</Heading> 
           <Box>
             {user.orders.map((order) => (
               <Box key={order._id} mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
@@ -52,13 +52,10 @@ export default function OrderHistory() {
             ))}
            </Box>
         </Box>
-            
-      
       ) : (
-        <Heading>No orders yet!</Heading>
+          <Heading>No orders yet!</Heading>
       )}
-    </Box>
-                
+    </Box>              
   </Flex>
   </Box> 
 )

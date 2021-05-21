@@ -3,9 +3,7 @@ import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
-import { QUERY_CHECKOUT } from '../../utils/queries';
 import { loadStripe } from '@stripe/stripe-js';
-import { useLazyQuery } from '@apollo/react-hooks';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Text, Button, Heading, SimpleGrid } from "@chakra-ui/react";
 
@@ -19,8 +17,6 @@ const Cart = () => {
 
     const dispatch = useDispatch(); 
     
-    const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-
     useEffect(() => {
         async function getCart() {
           const cart = await idbPromise('cart', 'get');
@@ -44,7 +40,7 @@ const Cart = () => {
         return sum.toFixed(2);
     }
 
-    function submitCheckout() {
+    function submitOrder() {
         const productIds = [];
       
         state.cart.forEach((item) => {
@@ -52,75 +48,49 @@ const Cart = () => {
             productIds.push(item._id);
           }
         });
-
-        getCheckout({
-            variables: { products: productIds }
-        });
+        alert("Thank you for your order! You will now be redirected to your order history.")
     }
-    useEffect(() => {
-        if (data) {
-          stripePromise.then((res) => {
-            res.redirectToCheckout({ sessionId: data.checkout.session });
-          });
-        }
-    }, [data]);
 
-    // if (!state.cartOpen) {
-    //     return (
-    //       <Box onClick={toggleCart}>
-    //         <Heading><Text
-    //           role="img"
-    //           aria-label="sunflower" align="center">🌻 Your cart</Text>
-    //           </Heading>
-    //       </Box>
-    //     );
-    // }
-
-  return (
-<Box>
- 
-  {/* <Button size="lg" onClick={toggleCart}>Close 🛒</Button> */}
-  
-  {/* <Heading align="center">Cart</Heading> */}
-
-  {state.cart.length ? (
-    <SimpleGrid columns={[1, null, 2, null, 4]} gap={4}>
-      {state.cart.map(item => (
-        <CartItem key={item._id} item={item} />
-      ))}
-      <Box align="center">
-        <Heading> ${calculateTotal()}</Heading>
-        {
-          Auth.loggedIn() ?
-            <Button 
-            onClick={submitCheckout}
-            size="sm"
-            rounded="md"
-            color={["brand.500"]}
-            bg={["brand.800"]}
-            _hover={{
-              bg: ["white"]
-            }}
-          >          
-            Checkout
-            </Button>
-            :
-            <Text>(log in to check out)</Text>
-        }
-  
-      </Box>
-    </SimpleGrid>
-  ) : (
-    <Heading>
-      <Text role="img" aria-label="sad flower" align="center">
-      🥀
-      
-      Your cart is empty!
-      </Text>
-    </Heading>
-  )}
-</Box>
-  );
+    return (
+        <Box>
+          {state.cart.length ? (
+            <SimpleGrid columns={[1, null, 2, null, 4]} gap={4}>
+              {state.cart.map(item => (
+                <CartItem key={item._id} item={item} />
+              ))}
+              <Box align="center">
+                <Heading> Seeds: {calculateTotal()}</Heading>
+                {
+                  Auth.loggedIn() ?
+                    <Button 
+                    onClick={submitOrder}
+                    size="sm"
+                    rounded="md"
+                    color={["brand.500"]}
+                    bg={["brand.800"]}
+                    _hover={{
+                      bg: ["white"]
+                    }}
+                  >          
+                    Checkout
+                    </Button>
+                    :
+                    <Text>(log in to check out)</Text>
+                }
+          
+              </Box>
+            </SimpleGrid>
+          ) : (
+            <Heading>
+              <Text role="img" aria-label="sad flower" align="center">
+              🥀
+              
+              Your cart is empty!
+              </Text>
+            </Heading>
+          )}
+        </Box>
+          );
 };
 
 export default Cart;

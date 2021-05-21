@@ -124,6 +124,44 @@ const resolvers = {
       return { session: session.id };
     }
   },
+//   checkoutproducts: async (parent, { price, quantity }, context) => {
+//     const url = new URL(context.headers.referer).origin;
+//     const order = new Order({ products: args.products });
+//     const { products } = await order.populate('products').execPopulate();
+//     const line_items = [];
+
+//     for (let i = 0; i < products.length; i++) 
+//       {
+//       // // generate product id
+//       // const product = await stripe.products.create({
+//       //   name: `${quantity} seeds`,
+//       //   description: "100",
+//       //   images: [`${url}/images/${products[i].image}`]
+//       // });
+
+//       // // generate price id using the product id
+//       // const price1 = await stripe.prices.create({
+//       //   product: product.id,
+//       //   unit_amount: parseFloat( price) * 100,
+//       //   currency: 'usd',
+//       // });
+
+//       // add price id to the line items array
+//       line_items.push({
+//         products
+//       });
+//     // }
+//     // const session = await stripe.checkout.sessions.create({
+//     //   payment_method_types: ['card'],
+//     //   line_items,
+//     //   mode: 'payment',
+//     //   success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+//     //   cancel_url: `${url}/`
+//     // });
+      
+//     return products;
+//   }
+// },
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);

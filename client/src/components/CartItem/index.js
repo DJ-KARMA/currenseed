@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import { useMutation } from '@apollo/react-hooks';
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
+import { ADD_ORDER } from "../../utils/mutations";
 import { idbPromise } from "../../utils/helpers";
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Text, Input, Image, Container } from "@chakra-ui/react";
 
 const CartItem = ({ item }) => {
-
   const state = useSelector((state) => {
     return state
   });
+
+  const [addOrder] = useMutation(ADD_ORDER);
   
   const dispatch = useDispatch();
 
@@ -40,6 +43,25 @@ const CartItem = ({ item }) => {
             idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(value) });
           }
       };
+
+      useEffect(() => {
+          async function saveOrder() {
+              const cart = await idbPromise('cart', 'get');
+              const products = cart.map(item => item._id);
+              if (products.length) {
+                  const { data } = await addOrder({ variables: { products } });
+                  const productData = data.addOrder.products;
+                  productData.forEach((item) => {
+                    idbPromise('cart', 'delete', item);
+                  });
+              }
+            setTimeout(()=>{
+                window.location.assign("/orderHistory");
+            },7000);
+          }
+  
+          saveOrder();
+      }, [addOrder]);
       
   return (
     <Container>
@@ -57,7 +79,8 @@ const CartItem = ({ item }) => {
         />
       </Box>
       <Box>
-        <Box>{item.name} {item.price}</Box>
+        <Box>{item.name}</Box>
+        <Box> Seeds: {item.price}</Box>
         <Box>
           <Text mb="8px" align="center">Qty:</Text>
           <Input

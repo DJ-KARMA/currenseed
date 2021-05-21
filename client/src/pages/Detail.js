@@ -15,7 +15,7 @@ import {
 
 import { ADD_SEEDS } from "../utils/mutations";
 
-import Cart from '../components/Cart';
+import SeedCart from '../components/SeedCart';
 import { idbPromise } from "../utils/helpers";
 
 import { Button, Box, Heading, Flex, Image, Text, Stack, Container, Center, Spacer, SimpleGrid} from "@chakra-ui/react";
@@ -156,7 +156,7 @@ function Detail() {
         </Box>
         </Box>
       ) : null}
-      <Cart />
+      <SeedCart />
     </>
   );
 };
