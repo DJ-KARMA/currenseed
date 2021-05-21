@@ -18,6 +18,7 @@ import { Box, Image, Flex, Text, Divider, useDisclosure, Drawer,
     DrawerHeader,
     DrawerOverlay,
     DrawerContent,
+    useToast,
     DrawerCloseButton, Heading, Input, FormControl, FormLabel, Select, Button } from '@chakra-ui/react';
 
 function SellerProfile() {
@@ -128,12 +129,6 @@ function SellerProfile() {
         }
     }, [state.products.length,state.seeds,data,state.categories.length, loading, dispatch]);
     
-    // useEffect(() => 
-    // {
-    //     setLoading(false);
-
-    // }, [state.products.length]);
-
 
     return (
         <>
@@ -212,7 +207,8 @@ function AddProduct({setLoading}) {
 
     const [formState, setFormState] = useState({ name: '', description: '', price: '', quantity: '', category: ''});
     const [addProduct] = useMutation(ADD_PRODUCT);
-    
+    const toast = useToast();
+
     const handleFormSubmit = async event => 
     {
         event.preventDefault();
@@ -226,6 +222,27 @@ function AddProduct({setLoading}) {
                 category: formState.category
             }
         });
+
+        if(mutationResponse)
+        {
+            toast({
+                title: "Product added.",
+                description: "Your Product has been added to you kosik.",
+                status: "success",
+                // duration: 9000,
+                isClosable: true,
+            })
+        }
+        else
+        {
+            toast({
+                title: "Product failed.",
+                description: "Your Product has failed to be added to you kosik.",
+                status: "error",
+                // duration: 9000,
+                isClosable: true,
+            })
+        }
 
         setLoading(false);
         console.log("mutationResponse.data.addProduct.products",mutationResponse.data.addProduct.products);
