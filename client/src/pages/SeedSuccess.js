@@ -1,10 +1,11 @@
+//dependencies
 import React, { useEffect } from "react";
 import { useMutation } from '@apollo/react-hooks';
-import { PURCHASE_SEEDS } from "../utils/mutations";
-import { Box, Text, Input, Image, Button, Heading, Flex, Stack, Container } from "@chakra-ui/react";
-import { idbPromise } from '../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
-import {PURCHASE_SEED} from '../utils/actions';
+//utilities
+import { PURCHASE_SEEDS } from "../utils/mutations";
+//chakra ui
+import { Box, Flex, Stack, Container } from "@chakra-ui/react";
 
 function SeedSuccess() {
     const [purchaseSeeds] = useMutation(PURCHASE_SEEDS);
@@ -21,18 +22,6 @@ function SeedSuccess() {
           localStorage.removeItem("seed");
 
           purchaseSeeds({ variables: { seeds: parseFloat(pseeds) } });
-
-
-          // const products = cart.map(item => item._id);
-          // if (products.length) 
-          // {
-          //     const { data } = await addOrder({ variables: { products } });
-          //     const productData = data.addOrder.products;
-          
-          //     productData.forEach((item) => {
-          //         idbPromise('cart', 'delete', item);
-          //     });
-          // }
   
           setTimeout(()=>{
               window.location.assign("/profile");
@@ -43,7 +32,6 @@ function SeedSuccess() {
         saveOrder();
     }, [purchaseSeeds]);
 
-    //convert to Chakra 
     return (
       <Flex m="5" justifyContent="center">
 			<Stack m="2" alignContent="center" >

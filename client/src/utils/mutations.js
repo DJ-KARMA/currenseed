@@ -219,3 +219,12 @@ export const PURCHASE_SEEDS = gql`
     }
 }
 `
+
+export const SPEND_SEEDS = gql`
+  mutation spendSeeds($seeds: Float!) {
+    spendSeeds(seeds: $seeds) {
+      _id
+      seeds
+    }
+}
+`

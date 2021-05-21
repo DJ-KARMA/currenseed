@@ -1,9 +1,7 @@
+//dependencies
 import React from "react";
+//chakra ui
 import { Button, Box, Flex, Container, SimpleGrid} from "@chakra-ui/react";
-
-
-
-
 
 const Footer = () => {
 
@@ -30,7 +28,7 @@ const FooterLinks = () => {
         <Flex justifyContent="center" bg="brand.600" width="100%">
             <Box>
                 <Container align="center"pb="3" fontSize="xl">CONTRIBUTORS</Container>
-                    <SimpleGrid columns={[3, null, 4]} gap={4}>
+                    <SimpleGrid columns={[2, null, 4]} gap={4}>
                         {data.map((item, i) => {
                             return <Button
                             key={i}
@@ -53,7 +51,5 @@ const FooterLinks = () => {
         </Flex>
     )
 }
-
-
 
 export default Footer;

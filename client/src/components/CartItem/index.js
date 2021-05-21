@@ -1,20 +1,24 @@
+//dependencies
 import React, { useEffect } from "react";
 import { useMutation } from '@apollo/react-hooks';
-import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
-import { ADD_ORDER } from "../../utils/mutations";
-import { idbPromise } from "../../utils/helpers";
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Text, Input, Image, Container } from "@chakra-ui/react";
+//utilities
+import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
+import { ADD_ORDER, SPEND_SEEDS } from "../../utils/mutations";
+import { idbPromise } from "../../utils/helpers";
+//chakra ui
+import { Box, Text, Input, Image, Container, Button } from "@chakra-ui/react";
 
 const CartItem = ({ item }) => {
-  const state = useSelector((state) => {
-    return state
-  });
 
-  const [addOrder] = useMutation(ADD_ORDER);
-  
+  const state = useSelector(state => state);
   const dispatch = useDispatch();
 
+  localStorage.setItem("seeds", item.price);
+
+   const [addOrder] = useMutation(ADD_ORDER);
+   const [spendSeeds] = useMutation(SPEND_SEEDS);
+  
     const removeFromCart = item => {
         dispatch({
           type: REMOVE_FROM_CART,
@@ -46,6 +50,13 @@ const CartItem = ({ item }) => {
 
       useEffect(() => {
           async function saveOrder() {
+
+              const sseeds = localStorage.getItem("seeds");
+
+              localStorage.removeItem("seeds");
+
+              spendSeeds({ variables: {seeds: parseFloat(sseeds)} })
+
               const cart = await idbPromise('cart', 'get');
               const products = cart.map(item => item._id);
               if (products.length) {
@@ -61,7 +72,7 @@ const CartItem = ({ item }) => {
           }
   
           saveOrder();
-      }, [addOrder]);
+      }, [spendSeeds, addOrder]);
       
   return (
     <Container>
