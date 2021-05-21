@@ -48,7 +48,7 @@ export default function Login(props) {
     return (
      
 
-      <Flex width="full" align="center" justifyContent="center">
+      <Flex width="full" align="center" justifyContent="center" pb={8}>
         <Box
           p={8}
           maxWidth="500px"
