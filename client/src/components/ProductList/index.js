@@ -63,7 +63,7 @@ function ProductList({ categoryId }) {
   return (
     <Box fontSize="lg" align="center">
       {state.products.length ? (
-        <Box className="flex-row">
+        <Box d="flex" justifyContent="center" m="20px" flexWrap="wrap">
             {filterProducts().map(product => (
                 <ProductItem
                   key= {product._id}
