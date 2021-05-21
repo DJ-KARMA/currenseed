@@ -10,7 +10,8 @@ import {
     CLEAR_CART,
     TOGGLE_CART,
     GET_USERID,
-    PURCHASE_SEED
+    PURCHASE_SEED,
+    SPEND_SEED
 } from './actions';
 
 const defaultState ={
@@ -53,6 +54,11 @@ const defaultState ={
         return {
           ...state, 
           parchaseSeeds: action.parchaseSeeds
+        }
+      case SPEND_SEED: 
+        return {
+          ...state, 
+          spendSeeds: action.spendSeeds
         }
       case ADD_TO_CART: 
         return {

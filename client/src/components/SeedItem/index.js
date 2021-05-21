@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLazyQuery } from '@apollo/react-hooks';
 //utilities
 import Auth from '../../utils/auth';
-import {  QUERY_CHECKOUT} from "../../utils/queries";
+import {QUERY_CHECKOUT} from "../../utils/queries";
 //stripe functionality
 import { loadStripe } from '@stripe/stripe-js';
 //chakra ui 
