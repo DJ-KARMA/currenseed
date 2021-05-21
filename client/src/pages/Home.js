@@ -62,7 +62,7 @@ const { data } = useQuery(QUERY_CATEGORIES);
 										size="lg"
 										bg={["brand.800"]}
 										_hover={{
-											bg: ["white"]
+											bg: ["whitesmoke"]
 											}}
 										>
 											See More
