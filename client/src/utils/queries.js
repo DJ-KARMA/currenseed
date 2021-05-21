@@ -113,3 +113,11 @@ export const QUERY_CHECKOUT = gql`
     }
   }
 `;
+
+export const QUERY_PRODUCT_CHECKOUT = gql`
+  query getCheckout($price: Float, $quantity: Int) {
+    checkoutproducts(price: $price, quantity: $quantity) {
+      products
+    }
+  }
+`;
