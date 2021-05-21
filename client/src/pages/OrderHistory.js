@@ -16,8 +16,8 @@ export default function OrderHistory() {
     console.log("order",user);
   }
 
- return (
-   <Box>   
+  return (
+  <Box>   
   <Flex height="100hv" alignItems="center" justifyContent="center">
     <Box>
       {user ? (
@@ -50,7 +50,7 @@ export default function OrderHistory() {
                 </Box>
               </Box>
             ))}
-           </Box>
+          </Box>
         </Box>
       ) : (
           <Heading>No orders yet!</Heading>
@@ -58,5 +58,4 @@ export default function OrderHistory() {
     </Box>              
   </Flex>
   </Box> 
-)
- }  
+)}  

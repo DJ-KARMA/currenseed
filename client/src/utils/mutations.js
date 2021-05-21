@@ -30,7 +30,7 @@ export const ADD_ORDER = gql`
   }
 `;
 
-export const ADD_PURCHASE_ = gql`
+export const ADD_PURCHASE = gql`
   mutation addPurchase($products: [ID]!) {
     addPurchase(products: $products) {
       purchaseDate
