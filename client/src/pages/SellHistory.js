@@ -17,7 +17,7 @@ function SellHistory() {
    return (
     <Box>   
    <Flex height="100hv" alignItems="center" justifyContent="center">
-     <Box>
+     <Box m="20px">
        {user ? (
          <Box>
            <Heading as="h2">Sell History</Heading>

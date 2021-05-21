@@ -217,7 +217,7 @@ function AddProduct({setLoading}) {
             type: UPDATE_PRODUCTS,
             products: data.user.products
         });
-        alert(data.user.products)
+        // alert(data.user.products)
     };
   
     const handleChange = event => {

@@ -19,12 +19,12 @@ export default function OrderHistory() {
  return (
    <Box>   
   <Flex height="100hv" alignItems="center" justifyContent="center">
-    <Box>
+    <Box m ="20px">
       {user ? (
         <Box>
           <Heading as="h2">Order History</Heading> 
           <Box>
-            {user.orders.map((order) => (
+            {user.purchases.map((order) => (
               <Box key={order._id} mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
 
                 <Text my={2} fontSize="xl" fontWeight="semibold" lineHeight="short">

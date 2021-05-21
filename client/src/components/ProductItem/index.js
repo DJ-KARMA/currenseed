@@ -51,6 +51,7 @@ function ProductItem(item) {
 
   return (
     <Box
+        m="20px"
         w='300px'
         border='2px'
         borderColor= 'brand.900'
