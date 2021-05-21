@@ -1,13 +1,13 @@
+//dependencies
 import React from "react";
+//utilities
+import Auth from "../../utils/auth"
+//chakra ui
 import { Link, Box, Flex, Text, Button, Stack, IconButton } from "@chakra-ui/react";
 import { FaShoppingCart, FaCoins } from "react-icons/fa";
 import { CloseButton} from "@chakra-ui/react";
-import Auth from "../../utils/auth"
 import Logo from "./Logo";
-import OrderHistory from "../../pages/OrderHistory";
-import SellHistory from "../../pages/SellHistory";
-import SeedItem from "../SeedItem";
-import SellerProfile from "../../pages/sellerProfile";
+
 
 const Nav = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -89,7 +89,7 @@ const MenuLinks = ({ isOpen }) => {
             pt={[4, 4, 0, 0]}
           >
             <MenuItem to="/">Home</MenuItem>
-            <MenuItem to="/profile/">My Profile</MenuItem>
+            <MenuItem to="/profile/">My Kiosk</MenuItem>
             <MenuItem to="/orderHistory">My Orders</MenuItem>
             <MenuItem to="/sellHistory">My Sales</MenuItem>
             <MenuItem to="/">
@@ -127,7 +127,7 @@ const MenuLinks = ({ isOpen }) => {
             pt={[4, 4, 0, 0]}
           >
             <MenuItem to="/">Home</MenuItem>
-            <MenuItem to="/login">My Profile</MenuItem>
+            <MenuItem to="/login">My Kiosk</MenuItem>
             <MenuItem to="/signup">
               <Button
                 size="sm"

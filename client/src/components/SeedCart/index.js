@@ -1,12 +1,17 @@
+//dependencies
 import React, { useEffect } from 'react';
-import CartItem from '../CartItem';
-import Auth from '../../utils/auth';
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
-import { idbPromise } from '../../utils/helpers';
-import { QUERY_CHECKOUT } from '../../utils/queries';
-import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { useDispatch, useSelector } from 'react-redux';
+//components
+import CartItem from '../CartItem';
+//utilities
+import Auth from '../../utils/auth';
+import { ADD_MULTIPLE_TO_CART } from '../../utils/actions';
+import { idbPromise } from '../../utils/helpers';
+import { QUERY_CHECKOUT } from '../../utils/queries';
+//stripe functionality 
+import { loadStripe } from '@stripe/stripe-js';
+//chakra ui
 import { Box, Text, Button, Heading, SimpleGrid } from "@chakra-ui/react";
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
@@ -31,10 +36,6 @@ const SeedCart = () => {
           getCart();
         }
     }, [state.cart.length, dispatch]);
-
-    function toggleCart() {
-        dispatch({ type: TOGGLE_CART });
-    }
 
     function calculateTotal() {
         let sum = 0;
@@ -65,23 +66,8 @@ const SeedCart = () => {
         }
     }, [data]);
 
-    // if (!state.cartOpen) {
-    //     return (
-    //       <Box onClick={toggleCart}>
-    //         <Heading><Text
-    //           role="img"
-    //           aria-label="sunflower" align="center">🌻 Your cart</Text>
-    //           </Heading>
-    //       </Box>
-    //     );
-    // }
-
   return (
 <Box>
- 
-  {/* <Button size="lg" onClick={toggleCart}>Close 🛒</Button> */}
-  
-  {/* <Heading align="center">Cart</Heading> */}
 
   {state.cart.length ? (
     <SimpleGrid columns={[1, null, 2, null, 4]} gap={4}>

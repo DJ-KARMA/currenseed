@@ -1,9 +1,7 @@
+//dependencies
 import React from "react";
+//chakra ui
 import { Button, Box, Flex, Container, SimpleGrid} from "@chakra-ui/react";
-
-
-
-
 
 const Footer = () => {
 
@@ -53,7 +51,5 @@ const FooterLinks = () => {
         </Flex>
     )
 }
-
-
 
 export default Footer;
