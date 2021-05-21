@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 //import { pluralize } from "../../utils/helpers"
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
+import { ADD_TO_CART, UPDATE_CART_QUANTITY, REMOVE_FROM_CART } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -49,6 +49,13 @@ function ProductItem(item) {
       idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
   }
+  const removeFromCart = product => {
+    dispatch({
+        type: REMOVE_FROM_CART,
+        _id: product._id
+    });
+    idbPromise('cart', 'delete', { ...product._id});
+};
 
   return (
     <Box
@@ -91,8 +98,12 @@ function ProductItem(item) {
             </Box>
         </Link>
         <Box textAlign='center' paddingBottom={5}>
-            <Button to= "/cart" bg="#005C13" color='white' size='lg' mt={3} boxShadow='sm' onClick={addToCart}>add to cart</Button>
-            
+            <Link to= "/cart" >
+            <Button
+            bg="#005C13" color='white' size='lg' mt={3} boxShadow='sm' onClick={addToCart}>add to cart
+            </Button>
+            </Link> 
+            <Button to= "/profile" bg="#005C13" color='white' size='lg' mt={3} boxShadow='sm' onClick={removeFromCart}>remove item</Button>
         </Box>
     </Box>
   );
