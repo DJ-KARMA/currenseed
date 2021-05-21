@@ -1,6 +1,8 @@
+//dependencies
 import React from "react";
 import { Link } from "react-router-dom";
-import { Box, Text} from "@chakra-ui/react";
+//chakra ui
+import { Box } from "@chakra-ui/react";
 
 const Logo = (props) => {
   return (

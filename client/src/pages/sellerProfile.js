@@ -1,18 +1,16 @@
+//dependencies
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import OrderHistory from "./OrderHistory";
-import SellHistory from "./SellHistory";
-import ProductItem from "../components/ProductItem";
-//import AddItem from "../components/AddItem";
 import { useQuery, useMutation } from '@apollo/react-hooks';
+//components
+import ProductItem from "../components/ProductItem";
+//utilities
 import { QUERY_USER, QUERY_CATEGORIES } from "../utils/queries";
 import { ADD_PRODUCT, ADD_SEEDS } from "../utils/mutations";
-import { UPDATE_PRODUCTS, UPDATE_SEEDS, UPDATE_CATEGORIES } from "../utils/actions"
+import { UPDATE_PRODUCTS, UPDATE_SEEDS } from "../utils/actions"
 import { idbPromise } from "../utils/helpers";
-
-// import { Link as ReactLink } from "react-router-dom";
-import { Box, Image, Flex, Text, Divider, useDisclosure, Drawer,
+//chakra ui
+import { Box, Flex, Text, Divider, useDisclosure, Drawer,
     DrawerBody,
     DrawerFooter,
     DrawerHeader,
@@ -38,12 +36,6 @@ function SellerProfile() {
          user = data.user;
     }
 
-    // let categories;
-
-    // if (data2) {
-    //     categories = data2.categories;
-    // }
-
     const [addSeeds] = useMutation(ADD_SEEDS);
 
     const handleSeedAdd = async event => {
@@ -60,38 +52,9 @@ function SellerProfile() {
     };
     console.log("state",state);
     console.log("user",user);
-    // console.log("data2",data2);
-
 
     useEffect(() => 
-    {
-        // console.log(data2,loading3)
-        // console.log(state);
-        // if(data2)
-        // {
-        //     dispatch({
-        //         type: UPDATE_CATEGORIES,
-        //         categories: categories
-        //     });
-        //     console.log("data2",data2);
-        //     data2.categories.forEach((category) => 
-        //     {
-        //         idbPromise('categories', 'put', category);
-        //     });
-
-        // }
-        // else if (!loading3) 
-        // {
-        //     idbPromise('categories', 'get').then((categories) => 
-        //     {
-        //         // use retrieved data to set global state for offline browsing
-        //         dispatch({
-        //             type: UPDATE_CATEGORIES,
-        //             categories: categories
-        //         });
-        //     });
-        // }
-        
+    {        
         // if there's data to be stored
         if (data) 
         {
@@ -234,7 +197,6 @@ function AddProduct({setLoading}) {
                 title: "Product added.",
                 description: "Your Product has been added to you kosik.",
                 status: "success",
-                // duration: 9000,
                 isClosable: true,
             })
         }
@@ -244,7 +206,6 @@ function AddProduct({setLoading}) {
                 title: "Product failed.",
                 description: "Your Product has failed to be added to you kosik.",
                 status: "error",
-                // duration: 9000,
                 isClosable: true,
             })
         }
@@ -276,20 +237,6 @@ function AddProduct({setLoading}) {
     if (data) {
          user = data.user;
     }
-
-    // const [addSeeds] = useMutation(ADD_SEEDS);
-
-    // const handleSeedAdd = async event => {
-    //     event.preventDefault(); 
-    //     const mutationResponse = await addSeeds({ variables: { _id: user._id, seeds: user.seeds } }); 
-      
-    //     dispatch({
-    //         type: UPDATE_SEEDS,
-    //         products: mutationResponse.data.addSeeds
-    //     });
-
-    //     console.log(mutationResponse.data.addSeeds);
-    // };
  
     return (
 <>
@@ -395,7 +342,6 @@ function AddProduct({setLoading}) {
                                     }}
                                 type="submit"
                                 width="full"
-                                // mt={4}
                             >
                                 Add Product to Kiosk
                             </Button>

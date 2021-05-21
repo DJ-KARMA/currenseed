@@ -1,10 +1,13 @@
+//dependencies
 import React, { useEffect } from "react";
-import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
 import { useQuery } from '@apollo/react-hooks';
+import { useDispatch, useSelector } from 'react-redux';
+//utilities
+import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
 import { QUERY_CATEGORIES } from "../../utils/queries";
 import { idbPromise } from '../../utils/helpers';
-import { useDispatch, useSelector } from 'react-redux';
-import { Box, Image, Flex, Text, Button,Stack, Container, SimpleGrid, Heading, Link } from "@chakra-ui/react";
+//chakra ui
+import { Box, Flex, Button,Stack, Container, Heading, Link } from "@chakra-ui/react";
 
 
 

@@ -1,9 +1,11 @@
+//dependencies
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
+//utilities
 import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
-
+//chakra ui 
 import {
     Flex,
     Box,
@@ -12,11 +14,7 @@ import {
     FormLabel,
     Input,
     Button,
-    //Checkbox,
-    //Stack,
     Text
-    //setFirstName, 
-    //setLastName
 } from '@chakra-ui/react';
 
 export default function Signup(props) {
@@ -114,17 +112,6 @@ export default function Signup(props) {
                                 onChange={handleChange}
                             />
                         </FormControl>
-                        {/* <FormControl isRequired>
-                            <FormLabel htmlFor="seeds">Enter a number between 1 and 100</FormLabel>
-                            <Input
-                                type="seeds"
-                                name="seeds"
-                                id="seeds"
-                                placeholder="Niagara Region"
-                                size="lg"
-                                onChange={handleChange}
-                            />
-                        </FormControl> */}
                         <Button
                             color={["white"]} 
                             size="lg"
