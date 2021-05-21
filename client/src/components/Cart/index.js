@@ -1,13 +1,14 @@
+//dependencies 
 import React, { useEffect } from 'react';
-import CartItem from '../CartItem';
-import Auth from '../../utils/auth';
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
-import { idbPromise } from '../../utils/helpers';
-import { loadStripe } from '@stripe/stripe-js';
 import { useDispatch, useSelector } from 'react-redux';
+//components
+import CartItem from '../CartItem';
+//utilities
+import Auth from '../../utils/auth';
+import { ADD_MULTIPLE_TO_CART } from '../../utils/actions';
+import { idbPromise } from '../../utils/helpers';
+//chakra ui
 import { Box, Text, Button, Heading, SimpleGrid } from "@chakra-ui/react";
-
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
 
@@ -27,10 +28,6 @@ const Cart = () => {
           getCart();
         }
     }, [state.cart.length, dispatch]);
-
-    function toggleCart() {
-        dispatch({ type: TOGGLE_CART });
-    }
 
     function calculateTotal() {
         let sum = 0;

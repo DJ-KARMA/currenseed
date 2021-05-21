@@ -1,13 +1,14 @@
+//dependencies
 import React,{useState, useEffect} from 'react';
-import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY , PURCHASE_SEED} from '../../utils/actions';
-import { idbPromise } from "../../utils/helpers";
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Text, Input, Image, Button, Heading } from "@chakra-ui/react";
-import Auth from '../../utils/auth';
 import { useLazyQuery } from '@apollo/react-hooks';
-import {  QUERY_CHECKOUT} from "../../utils/queries";
+//utilities
+import Auth from '../../utils/auth';
+import {QUERY_CHECKOUT} from "../../utils/queries";
+//stripe functionality
 import { loadStripe } from '@stripe/stripe-js';
-
+//chakra ui 
+import { Box, Text, Input, Image, Button, Heading } from "@chakra-ui/react";
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 

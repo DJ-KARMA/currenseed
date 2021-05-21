@@ -1,8 +1,11 @@
+//dependencies
 import React from "react";
 import { Link as ReactLink } from "react-router-dom";
-import { Box, Image, Flex, Text, Button, Stack, Center, SimpleGrid, Link, Heading } from '@chakra-ui/react';
 import { useQuery } from '@apollo/react-hooks';
+//utilities
 import { QUERY_USER } from "../utils/queries";
+//chakra ui 
+import { Box, Image, Flex, Text, Link, Heading } from '@chakra-ui/react';
 
 function SellHistory() {
   const { data } = useQuery(QUERY_USER);
@@ -14,7 +17,7 @@ function SellHistory() {
    return (
     <Box>   
    <Flex height="100hv" alignItems="center" justifyContent="center">
-     <Box>
+     <Box m="20px">
        {user ? (
          <Box>
            <Heading as="h2">Sell History</Heading>

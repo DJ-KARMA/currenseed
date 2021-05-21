@@ -1,10 +1,10 @@
+//dependencies
 import React from "react";
-import { Link as ReactLink } from "react-router-dom";
-
+//utilities
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_USER } from "../utils/queries";
-
-import { Box, Image, Flex, Text, Button, Stack, Center, SimpleGrid, Link, Heading } from '@chakra-ui/react';
+//chakra ui
+import { Box, Image, Flex, Text, Heading } from '@chakra-ui/react';
 
 export default function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
@@ -19,7 +19,7 @@ export default function OrderHistory() {
  return (
    <Box>   
   <Flex height="100hv" alignItems="center" justifyContent="center">
-    <Box>
+    <Box m ="20px">
       {user ? (
         <Box>
           <Heading as="h2">Order History</Heading> 
@@ -35,13 +35,11 @@ export default function OrderHistory() {
                 <Box d="flex" bg="gray.100" alignItems="top" justifyContent="center">
                   {order.products.map(({ _id, image, name, price, quantity }, index) => (
                     <Box key={_id} padding="4" bg="gray.100" maxW="150px">
-                      <Link as={ReactLink} to={`/products/${_id}`}>
                         <Image
                           alt={name}
                           src={`${image}`}
                         />
                         <Box>{quantity} {name}</Box>
-                      </Link>
                         <Box>
                         <Text>${price}</Text>
                         </Box>
