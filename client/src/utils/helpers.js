@@ -15,6 +15,7 @@ export function idbPromise(storeName, method, object) {
       db.createObjectStore('sales', { keyPath: '_id' });
       db.createObjectStore('purchases', { keyPath: '_id' });
       db.createObjectStore('cart', { keyPath: '_id' });
+      db.createObjectStore('seeds',{ keyPath: '_id' });
     };
 
     // handle any errors with connecting

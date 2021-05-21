@@ -70,6 +70,7 @@ const typeDefs = gql`
     addSale(products: [ID]!): Order
     addProduct(name: String!, description: String!, price: Float!, quantity: Int!, category: String!): User
     addSeeds(_id: ID!, seeds: Float!): User
+    spendSeeds(seeds: Float!): User
     purchaseSeeds(seeds: Float!): User
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateProduct(_id: ID!, quantity: Int!): Product
