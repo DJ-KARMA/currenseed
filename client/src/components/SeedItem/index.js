@@ -56,7 +56,7 @@ const SeedItem = () => {
         overflow='sm'
         bg='brand.700'>
           <Image
-            src={`images/flower-1-min.jpg`}
+            src={`images/flowers-1-min.jpg`}
             alt=""
           />
         </Box>

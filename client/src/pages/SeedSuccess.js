@@ -6,7 +6,7 @@ import { idbPromise } from '../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import {PURCHASE_SEED} from '../utils/actions';
 
-function Success() {
+function SeedSuccess() {
     const [purchaseSeeds] = useMutation(PURCHASE_SEEDS);
     const state = useSelector(state => state);
     const dispatch = useDispatch();
@@ -35,7 +35,7 @@ function Success() {
           // }
   
           setTimeout(()=>{
-              window.location.assign("/");
+              window.location.assign("/profile");
           },3000);
 
         }
@@ -52,10 +52,10 @@ function Success() {
           🎉SUCCESS!🎉
 					</Container>
 					<Container>
-          🙌Thank you for your purchase!🙌
+          🙌Thank you for purchasing seeds!🙌
 					</Container>
 					<Container>
-						You will now be redirected back to the homepage. 
+						You will now be redirected back to your profile. 
 					</Container>
 				</Box>
       </Stack>
@@ -64,4 +64,4 @@ function Success() {
     );
   };
 
-export default Success; 
+export default SeedSuccess; 
