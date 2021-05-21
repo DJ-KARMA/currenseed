@@ -18,6 +18,7 @@ import { Box, Image, Flex, Text, Divider, useDisclosure, Drawer,
     DrawerHeader,
     DrawerOverlay,
     DrawerContent,
+    useToast,
     DrawerCloseButton, Heading, Input, FormControl, FormLabel, Select, Button } from '@chakra-ui/react';
 
 function SellerProfile() {
@@ -128,12 +129,6 @@ function SellerProfile() {
         }
     }, [state.products.length,state.seeds,data,state.categories.length, loading, dispatch]);
     
-    // useEffect(() => 
-    // {
-    //     setLoading(false);
-
-    // }, [state.products.length]);
-
 
     return (
         <>
@@ -153,7 +148,12 @@ function SellerProfile() {
                         Seeds: {state.seeds} 
                     </Text>
                     <Button
-                            variant="outline"
+                        color={["white"]} 
+                        size="lg"
+                        bg={["brand.800"]}
+                         _hover={{
+                        color: ["brand.500"]
+                        }}
                             type="submit"
                             width=""
                             mt={4}
@@ -212,7 +212,8 @@ function AddProduct({setLoading}) {
 
     const [formState, setFormState] = useState({ name: '', description: '', price: '', quantity: '', category: ''});
     const [addProduct] = useMutation(ADD_PRODUCT);
-    
+    const toast = useToast();
+
     const handleFormSubmit = async event => 
     {
         event.preventDefault();
@@ -226,6 +227,27 @@ function AddProduct({setLoading}) {
                 category: formState.category
             }
         });
+
+        if(mutationResponse)
+        {
+            toast({
+                title: "Product added.",
+                description: "Your Product has been added to you kosik.",
+                status: "success",
+                // duration: 9000,
+                isClosable: true,
+            })
+        }
+        else
+        {
+            toast({
+                title: "Product failed.",
+                description: "Your Product has failed to be added to you kosik.",
+                status: "error",
+                // duration: 9000,
+                isClosable: true,
+            })
+        }
 
         setLoading(false);
         console.log("mutationResponse.data.addProduct.products",mutationResponse.data.addProduct.products);
@@ -271,7 +293,14 @@ function AddProduct({setLoading}) {
  
     return (
 <>
-            <Button ref={btnRef} bgColor="brand.500" size="lg" onClick={onOpen}>
+            <Button ref={btnRef} 
+                    color={["white"]} 
+                    size="lg"
+                    bg={["brand.800"]}
+                    _hover={{
+                    color: ["brand.500"]
+                    }}
+            onClick={onOpen}>
                 Add Product
             </Button>
             <Drawer
@@ -346,12 +375,24 @@ function AddProduct({setLoading}) {
                             </FormControl>
                         </DrawerBody>
                         <DrawerFooter mt="8">
-                            <Button variant="outline" mr={3} onClick={onClose}>
+                            <Button 
+                                color={["white"]} 
+                                size="lg"
+                                bg={["brand.800"]}
+                                _hover={{
+                                 color: ["brand.500"]
+                                 }}
+                            
+                            mr={3} onClick={onClose}>
                                 Cancel
                             </Button>
                             <Button
-                                // variantColor="teal"
-                                variant="outline"
+                                color={["white"]} 
+                                size="lg"
+                                bg={["brand.800"]}
+                                    _hover={{
+                                    color: ["brand.500"]
+                                    }}
                                 type="submit"
                                 width="full"
                                 // mt={4}
