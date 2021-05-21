@@ -1,10 +1,8 @@
+//dependencies
 import React from "react";
 import { useParams } from 'react-router-dom';
-// import { Box, Heading, Flex, Image, Text} from "@chakra-ui/react";
+//components
 import ProductList from '../components/ProductList';
-// import { QUERY_PRODUCTS} from "../utils/queries";
-
-// /categories/:categoryId
 
 function CategoryDetail ({ }) {
    const { categoryId } = useParams();
@@ -12,4 +10,4 @@ function CategoryDetail ({ }) {
     return <ProductList categoryId={categoryId} />
 }
 
-export default CategoryDetail
+export default CategoryDetail;

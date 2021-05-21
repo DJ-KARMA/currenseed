@@ -1,11 +1,10 @@
+//dependencies
 import React from "react";
-import { Link } from "react-router-dom";
-//import { pluralize } from "../../utils/helpers"
+import { useSelector, useDispatch } from 'react-redux';
+//utilities
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
-import { useSelector, useDispatch } from 'react-redux';
-
-
+//chakra ui
 import {Box , Image, Badge, Text, Stack, Button} from "@chakra-ui/react";
 
 
@@ -58,7 +57,6 @@ function ProductItem(item) {
         rounded='20px'
         overflow='sm'
         bg='brand.700'>
-        <Link to={`/products/${_id}`}>
             <Image boxSize='300px' roundedTop='20px' objectFit="cover" src={`${image}`} alt={name} />
             <Box p={5}>
                 <Stack isInline align='baseline'>
@@ -85,11 +83,10 @@ function ProductItem(item) {
                     </Text>
                     <Text as='h3' fontSize='lg' fontWeight='semibold'>
 
-                        {quantity} {/*pluralize("item", quantity)*/} in stock
+                        {quantity} in stock
                     </Text>
                 </Stack>
             </Box>
-        </Link>
         <Box textAlign='center' paddingBottom={5}>
             <Button to= "/cart" bg="#005C13" color='white' size='lg' mt={3} boxShadow='sm' onClick={addToCart}>add to cart</Button>
             

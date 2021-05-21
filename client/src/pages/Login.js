@@ -1,7 +1,8 @@
-
+//dependencies
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from "react-router-dom";
+//utilities
 import { LOGIN } from "../utils/mutations"
 import Auth from "../utils/auth";
 
@@ -18,13 +19,12 @@ import {
   CircularProgress,
   isLoggedIn, 
   setIsLoggedIn, 
-  //ErrorMessage,
   isLoading
 } from '@chakra-ui/react';
 
 export default function Login(props) {
     const [formState, setFormState] = useState({ email: '', password: '' })
-    const [login, { error }] = useMutation(LOGIN);
+    const [login] = useMutation(LOGIN);
   
     const handleFormSubmit = async event => {
       event.preventDefault();
@@ -60,7 +60,6 @@ export default function Login(props) {
             <Box textAlign="center">
               <Text>logged in!</Text>
               <Button
-                // variantColor="orange"
                 variant="outline"
                 width="full"
                 mt={4}
@@ -79,7 +78,6 @@ export default function Login(props) {
               </Box>
               <Box my={4} textAlign="left">
                 <form onSubmit={handleFormSubmit}>
-                  {/* {error && <ErrorMessage message={error} />} */}
                   <FormControl isRequired>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
@@ -103,7 +101,6 @@ export default function Login(props) {
                     />
                   </FormControl>
                   <Button
-                    // variantColor="teal"
                     color={["white"]} 
                     size="lg"
                     bg={["brand.800"]}

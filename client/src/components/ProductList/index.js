@@ -1,13 +1,14 @@
+//dependencies 
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-
-import ProductItem from "../ProductItem";
-import { QUERY_PRODUCTS } from "../../utils/queries";
-
 import { useSelector, useDispatch } from 'react-redux';
+//components
+import ProductItem from "../ProductItem";
+//utilities
+import { QUERY_PRODUCTS } from "../../utils/queries";
 import { UPDATE_PRODUCTS } from '../../utils/actions';
-
 import { idbPromise } from "../../utils/helpers";
+//chakra ui
 import { Heading, Box } from '@chakra-ui/layout';
 
 function ProductList({ categoryId }) {
