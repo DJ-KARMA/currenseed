@@ -73,7 +73,7 @@ function App() {
 
             
             <Route exact path="/category/:categoryId" component={CategoryDetail} />
-            <Route exact path="/products/:id" component={Detail} />
+            {/* <Route exact path="/products/:id" component={Detail} /> */}
 
             <Route exact path="/SeedCart" component={SeedCart}/>
             <Route exact path="/SeedSuccess" component={SeedSuccess} />
