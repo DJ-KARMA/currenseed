@@ -11,7 +11,8 @@ import {
     TOGGLE_CART,
     GET_USERID,
     PURCHASE_SEED,
-    SPEND_SEED
+    SPEND_SEED,
+    REMOVE_FROM_KIOSK
 } from './actions';
 
 const defaultState ={
@@ -79,6 +80,14 @@ const defaultState ={
           ...state,
           cartOpen: newState.length > 0,
           cart: newState
+        };
+      case REMOVE_FROM_KIOSK:
+        let kioskState = state.products.filter(product => {
+          return product._id !== action._id;
+        });
+        return {
+          ...state,
+          products: kioskState
         };
 
       case UPDATE_CART_QUANTITY:
