@@ -1,16 +1,19 @@
 //dependencies
 import React from "react";
+import { Box, Image, Flex, Text, Heading } from '@chakra-ui/react';
 
 const NoMatch = () => {
   return (
-    <div>
-        <h1>You're super lost...</h1>
-        <h1>
-          <span role="img" aria-label="sad leaves">
+    <Box>
+    <Flex height="100hv" alignItems="center" justifyContent="center">
+        <Heading as="h2">You're super lost...</Heading>
+        <Heading as="h2">
+          <Text role="img" aria-label="sad leaves">
           😢🍃
-          </span>
-        </h1>
-    </div>
+          </Text>
+        </Heading>
+        </Flex>
+    </Box>
   );
 };
 
