@@ -2,12 +2,13 @@
 import React from "react";
 //utilities
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_USER } from "../utils/queries";
+import { QUERY_USER, QUERY_USER_BY_ID } from "../utils/queries";
 //chakra ui
 import { Box, Image, Flex, Text, Heading } from '@chakra-ui/react';
 
 export default function OrderHistory({ item }) {
   const { data } = useQuery(QUERY_USER);
+
   let user;
 
   if (data) {
@@ -34,7 +35,7 @@ export default function OrderHistory({ item }) {
 
                 <Box d="flex" bg="gray.100" alignItems="top" justifyContent="center">
                   {order.products.map(({ _id, image, name, price, quantity }, index) => (
-                    <Box key={_id} padding="4" bg="gray.100" maxW="150px">
+                    <Box key={_id} padding="4" bg="gray.100" maxW="150px" textAlign="center">
                         <Image
                           alt={name}
                           src={`${image}`}
