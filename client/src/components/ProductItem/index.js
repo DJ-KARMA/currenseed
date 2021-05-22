@@ -1,13 +1,14 @@
 //dependencies
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 //utilities
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 import { DELETE_PRODUCT } from "../../utils/mutations";
 //chakra ui
 import {Box , Image, Badge, Text, Stack, Button, useToast} from "@chakra-ui/react";
+import { QUERY_USER } from "../../utils/queries";
 
 
 function ProductItem(item) {
@@ -22,11 +23,20 @@ function ProductItem(item) {
     sellerId
   } = item;
 
+  const {data} = useQuery(QUERY_USER)
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   const toast = useToast();
 
+  let userId;
+
+  if(data)
+  {
+    userId = data.user._id;
+  }
+
+  console.log("userId",userId,"sellerId",sellerId);
 
   const { cart } = state;
 
@@ -74,13 +84,13 @@ function ProductItem(item) {
                     <Badge variant='solid' bg='brand.800' rounded='full' px={2}>
                         {category.name}
                     </Badge>
-                    <Text
+                    {/* <Text
                         textTransform='uppercase'
                         fontSize='sm'
                         color='gray.500'
                         letterSpacing='wide'>
                         {sellerId}
-                    </Text>
+                    </Text> */}
                 </Stack>
                 <Text as='h2' fontWeight='semibold' fontSize='xl' my={2}>
                     {name}
@@ -98,9 +108,13 @@ function ProductItem(item) {
                     </Text>
                 </Stack>
             </Box>
+            
         <Box textAlign='center' paddingBottom={5}>
-            <Button to= "/cart" bg="#005C13" color='white' size='lg' mt={3} boxShadow='sm' onClick={addToCart}>add to cart</Button>
+        { (sellerId!=userId) ? 
+            (<Button to= "/cart" bg="#005C13" color='white' size='lg' mt={3} boxShadow='sm' onClick={addToCart}  >add to cart</Button>)
+        : (<Text color="brand.500">It is your product</Text>)}
         </Box>
+     
     </Box>
   );
 }
