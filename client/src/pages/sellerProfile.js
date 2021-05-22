@@ -98,7 +98,7 @@ function SellerProfile() {
         {user ? (
         <Box margin={10}>   
             <Box>
-                <Flex height="100hv" alignItems="top" justifyContent="space-between">  
+                <Flex height="100hv" alignItems="top" justifyContent="space-between"  flexWrap="wrap">  
                     <Box>   
                         <Text m={2} fontSize="xx-large" fontWeight="semibold" lineHeight="short">
                             {user.firstName}'s Kiosk
@@ -151,7 +151,7 @@ function SellerProfile() {
                                     quantity={product.quantity}
                                     description={product.description}
                                     category={product.category}
-                                    userId={product.userId}
+                                    sellerId={product.sellerId}
                                 />
                                 </Box>
                             ))}
@@ -173,6 +173,10 @@ function AddProduct({setLoading}) {
     const btnRef = React.useRef()
     const state = useSelector(state => state);
 
+    const dispatch = useDispatch();
+
+    const { loading, data } = useQuery(QUERY_USER);
+
     const [formState, setFormState] = useState({ name: '', description: '', price: '', quantity: '', category: ''});
     const [addProduct] = useMutation(ADD_PRODUCT);
     const toast = useToast();
@@ -187,7 +191,8 @@ function AddProduct({setLoading}) {
                 description: formState.description,
                 price: parseFloat(formState.price), 
                 quantity: parseInt(formState.quantity),
-                category: formState.category
+                category: formState.category,
+                sellerId: data.user._id
             }
         });
 
@@ -217,7 +222,6 @@ function AddProduct({setLoading}) {
             type: UPDATE_PRODUCTS,
             products: data.user.products
         });
-        // alert(data.user.products)
     };
   
     const handleChange = event => {
@@ -228,15 +232,7 @@ function AddProduct({setLoading}) {
       });
     };
 
-    const dispatch = useDispatch();
 
-    const { loading, data } = useQuery(QUERY_USER);
-    
-    let user;
-
-    if (data) {
-         user = data.user;
-    }
  
     return (
 <>

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 //chakra ui
-import {Box , Image, Badge, Text, Stack, Button} from "@chakra-ui/react";
+import {Box , Image, Badge, Text, Stack, Button, useToast} from "@chakra-ui/react";
 
 
 function ProductItem(item) {
@@ -17,11 +17,14 @@ function ProductItem(item) {
     quantity,
     description,
     category,
-    userId
+    sellerId
   } = item;
 
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+
+  const toast = useToast();
+
 
   const { cart } = state;
 
@@ -47,7 +50,11 @@ function ProductItem(item) {
       });
       idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
-    alert('This item was added to your cart!')
+    toast({
+      description: 'This item was added to your cart!',
+      status: "success",
+      isClosable: true,
+  })
   }
 
   return (
@@ -70,7 +77,7 @@ function ProductItem(item) {
                         fontSize='sm'
                         color='gray.500'
                         letterSpacing='wide'>
-                        {userId}
+                        {sellerId}
                     </Text>
                 </Stack>
                 <Text as='h2' fontWeight='semibold' fontSize='xl' my={2}>

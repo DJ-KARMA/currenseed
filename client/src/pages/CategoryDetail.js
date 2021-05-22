@@ -24,5 +24,5 @@ function CategoryDetail ({ }) {
 	</Box>
     <ProductList categoryId={categoryId} />
     </Box>)
-
+}
 export default CategoryDetail;

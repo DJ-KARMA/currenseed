@@ -51,7 +51,7 @@ const SeedItem = () => {
       <Box align='center' m="30px" width="500px">
         <Box 
         align='center'
-        w='300px'
+        w='200px'
         border='2px'
         borderColor= 'brand.900'
         overflow='sm'
@@ -80,6 +80,7 @@ const SeedItem = () => {
         {
           Auth.loggedIn() ?
             <Button 
+            m="20px"
             onClick={submitCheckout}
             size="sm"
             rounded="md"

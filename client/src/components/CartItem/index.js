@@ -1,36 +1,18 @@
 //dependencies
-import React, { useEffect } from "react";
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 //utilities
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
-import { ADD_PURCHASE, SPEND_SEEDS } from "../../utils/mutations";
-import { QUERY_USER } from "../../utils/queries";
 import { idbPromise } from "../../utils/helpers";
-import Auth from '../../utils/auth';
 //chakra ui
-import { Box, Text, Input, Image, Container} from "@chakra-ui/react";
+import { Box, Text, Input, Image, Container, Button} from "@chakra-ui/react";
 
 const CartItem = ({ item }) => {
-  const { data } = useQuery(QUERY_USER);
-
-  let user;
-  let seeds;
-
-  if (data) {
-       user = data.user;
-       seeds = data.seeds; 
-  }
 
   const state = useSelector(state => state);
   
   const dispatch = useDispatch();
 
-  localStorage.setItem("seeds", item.price);
-
-   const [addPurchase] = useMutation(ADD_PURCHASE);
-   const [spendSeeds] = useMutation(SPEND_SEEDS);
-  
     const removeFromCart = item => {
         dispatch({
           type: REMOVE_FROM_CART,
@@ -60,38 +42,15 @@ const CartItem = ({ item }) => {
           }
       };
 
-      const addToPurchaseHistory = () => {
-          async function savePurchase() {
 
-              const sseeds = localStorage.getItem("seeds");
-
-              localStorage.removeItem("seeds");
-
-              spendSeeds({ variables: {seeds: parseFloat(sseeds)} })
-
-              const cart = await idbPromise('cart', 'get');
-              const products = cart.map(item => item._id);
-              if (products.length) {
-                  const { data } = await addPurchase({ variables: { products } });
-                  const productData = data.addPurchase.products;
-                  productData.forEach((item) => {
-                    idbPromise('cart', 'delete', item);
-                  });
-              }
-            alert("Thank you for your purchase. You will be redirected to your purchase history.")
-            setTimeout(()=>{
-                window.location.assign("/orderHistory");
-            },1000);
-          }
-        savePurchase();
-      }
       
   return (
-    <Container>
-    <Box align='center'>
+    <>
+    <Box align='center'  m="20px" >
       <Box 
+
       align='center'
-      w='300px'
+      w='150px'
       border='2px'
       borderColor= 'brand.900'
       overflow='sm'
@@ -124,28 +83,10 @@ const CartItem = ({ item }) => {
             onChange={onChange}
           />
         </Box>
-        <Box>
-          {
-          Auth.loggedIn() ?
-            <Button 
-            onClick={addToPurchaseHistory}
-            size="md"
-            rounded="md"
-            color={["brand.500"]}
-            bg={["brand.800"]}
-            _hover={{
-              bg: ["white"]
-            }}
-          >          
-            Checkout
-            </Button>
-            :
-            <Text>(log in to check out)</Text>
-          }
-        </Box>
+        
       </Box>
     </Box>
-    </Container>
+    </>
   );
 }
 

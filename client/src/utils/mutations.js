@@ -25,13 +25,14 @@ export const ADD_ORDER = gql`
         category {
           name
         } 
+        sellerId
       }
     }
   }
 `;
 
 export const ADD_PURCHASE = gql`
-  mutation addPurchase($products: [ID]!) {
+  mutation addPurchase($products: [ID]) {
     addPurchase(products: $products) {
       purchaseDate
       products {
@@ -42,33 +43,36 @@ export const ADD_PURCHASE = gql`
         quantity
         category {
           name
-        } 
+        }
+        sellerId
       }
     }
   }
 `;
 
-export const ADD_SALE = gql`
-  mutation addSale($products: [ID]!) {
-    addSale(products: $products) {
-      purchaseDate
-      products {
-        _id
+export const ADD_SALE_BY_ID = gql`
+mutation addSaleById($_id : ID ,$products: [ID]) {
+  addSaleById(_id:$_id,products: $products) {
+    purchaseDate
+    products {
+      _id
+      name
+      description
+      price
+      quantity
+      category {
         name
-        description
-        price
-        quantity
-        category {
-          name
-        } 
       }
+      sellerId
     }
   }
+}
 `;
+
 
 export const ADD_PRODUCT = gql`
-mutation addProduct($name: String!, $description: String!, $price: Float!, $quantity: Int!, $category: String!) {    
-  addProduct(name: $name, description: $description, price: $price, quantity: $quantity, category: $category) {
+mutation addProduct($name: String!, $description: String!, $price: Float!, $quantity: Int!, $category: String!, $sellerId: String!) {    
+  addProduct(name: $name, description: $description, price: $price, quantity: $quantity, category: $category, sellerId: $sellerId) {
     _id
     firstName
     lastName
@@ -83,6 +87,7 @@ mutation addProduct($name: String!, $description: String!, $price: Float!, $quan
         _id
         name
       }
+      sellerId
     }
 }
 }
@@ -128,6 +133,7 @@ export const UPDATE_USER = gql`
           _id
           name
         }
+        sellerId
       }
       orders {
         _id
@@ -145,6 +151,7 @@ export const UPDATE_USER = gql`
             _id
             name
           }
+          sellerId
         }
       }
       purchases {
@@ -161,6 +168,7 @@ export const UPDATE_USER = gql`
             _id
             name
           }
+          sellerId
         }
         buyerId
         sellerId
@@ -179,6 +187,7 @@ export const UPDATE_USER = gql`
             _id
             name
           }
+          sellerId
         }
         buyerId
         sellerId
@@ -197,14 +206,25 @@ export const UPDATE_PRODUCT = gql`
       quantity
       price
       category {
+        _id
         name
       }
+      sellerId
     }
   }
 `
 export const ADD_SEEDS = gql`
   mutation addSeeds($_id: ID!, $seeds: Float!) {
     addSeeds(_id: $_id, seeds: $seeds) {
+      _id
+      seeds
+    }
+  }
+`
+
+export const ADD_SEEDS_BY_ID = gql`
+  mutation addSeedsById($_id: ID!, $seeds: Float!) {
+    addSeedsById(_id: $_id, seeds: $seeds) {
       _id
       seeds
     }
