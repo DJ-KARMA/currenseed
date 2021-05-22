@@ -54,46 +54,9 @@ const SellerProfile = ({ item }) => {
     console.log("state",state);
     console.log("user",user);
 
-    const [deleteProduct] = useMutation(DELETE_PRODUCT);
     const toast = useToast();
     let productId; 
 
-    const removeFromKiosk = async event => 
-    {
-        onClose();
-        const mutationResponse = await deleteProduct({
-            variables: {
-                productId: data.user.product._id
-            }
-        });
-
-        if(mutationResponse)
-        {
-            toast({
-                title: "Product delete.",
-                description: "Your Product has been deleted from your kosik.",
-                status: "success",
-                isClosable: true,
-            })
-        }
-        else
-        {
-            toast({
-                title: "Product failed.",
-                description: "Your Product could not be deleted from your kiosk.",
-                status: "error",
-                isClosable: true,
-            })
-        }
-
-        setLoading(false);
-        console.log("mutationResponse.data.addProduct.products",mutationResponse.data.deleteProduct.products);
-
-        dispatch({
-            type: UPDATE_PRODUCTS,
-            products: data.user.products
-        });
-    };
 
     useEffect(() => 
     {        
@@ -104,6 +67,11 @@ const SellerProfile = ({ item }) => {
                 type: UPDATE_PRODUCTS,
                 products: user.products
             });
+
+            dispatch({
+                type: UPDATE_SEEDS,
+                seeds: user.seeds
+            });         
          
         
             // but let's also take each product and save it to IndexedDB using the helper function 
@@ -238,7 +206,7 @@ function AddProduct({setLoading}) {
         {
             toast({
                 title: "Product added.",
-                description: "Your Product has been added to you kosik.",
+                description: "Your Product has been added to your kiosk.",
                 status: "success",
                 isClosable: true,
             })
@@ -247,7 +215,7 @@ function AddProduct({setLoading}) {
         {
             toast({
                 title: "Product failed.",
-                description: "Your Product has failed to be added to you kosik.",
+                description: "Your Product has failed to be added to your kiosk.",
                 status: "error",
                 isClosable: true,
             })
