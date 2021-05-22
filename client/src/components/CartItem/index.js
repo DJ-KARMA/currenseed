@@ -1,22 +1,34 @@
 //dependencies
 import React, { useEffect } from "react";
-import { useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { useDispatch, useSelector } from 'react-redux';
 //utilities
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
-import { ADD_ORDER, SPEND_SEEDS } from "../../utils/mutations";
+import { ADD_PURCHASE, SPEND_SEEDS } from "../../utils/mutations";
+import { QUERY_USER } from "../../utils/queries";
 import { idbPromise } from "../../utils/helpers";
+import Auth from '../../utils/auth';
 //chakra ui
 import { Box, Text, Input, Image, Container} from "@chakra-ui/react";
 
 const CartItem = ({ item }) => {
+  const { data } = useQuery(QUERY_USER);
+
+  let user;
+  let seeds;
+
+  if (data) {
+       user = data.user;
+       seeds = data.seeds; 
+  }
 
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
 
   localStorage.setItem("seeds", item.price);
 
-   const [addOrder] = useMutation(ADD_ORDER);
+   const [addPurchase] = useMutation(ADD_PURCHASE);
    const [spendSeeds] = useMutation(SPEND_SEEDS);
   
     const removeFromCart = item => {
@@ -48,8 +60,8 @@ const CartItem = ({ item }) => {
           }
       };
 
-      useEffect(() => {
-          async function saveOrder() {
+      const addToPurchaseHistory = () => {
+          async function savePurchase() {
 
               const sseeds = localStorage.getItem("seeds");
 
@@ -60,19 +72,19 @@ const CartItem = ({ item }) => {
               const cart = await idbPromise('cart', 'get');
               const products = cart.map(item => item._id);
               if (products.length) {
-                  const { data } = await addOrder({ variables: { products } });
-                  const productData = data.addOrder.products;
+                  const { data } = await addPurchase({ variables: { products } });
+                  const productData = data.addPurchase.products;
                   productData.forEach((item) => {
                     idbPromise('cart', 'delete', item);
                   });
               }
+            alert("Thank you for your purchase. You will be redirected to your purchase history.")
             setTimeout(()=>{
                 window.location.assign("/orderHistory");
-            },7000);
+            },1000);
           }
-  
-          saveOrder();
-      }, [spendSeeds, addOrder]);
+        savePurchase();
+      }
       
   return (
     <Container>
@@ -90,8 +102,17 @@ const CartItem = ({ item }) => {
         />
       </Box>
       <Box>
-        <Box>{item.name}</Box>
-        <Box> Seeds: {item.price}</Box>
+        <Box>{item.name}
+          <Text
+            role="img"
+            size="lg"
+            aria-label="trash"
+            onClick={() => removeFromCart(item)}
+          >
+            🗑️
+          </Text>
+        </Box>
+        <Box> {item.price} 🌱</Box>
         <Box>
           <Text mb="8px" align="center">Qty:</Text>
           <Input
@@ -102,14 +123,25 @@ const CartItem = ({ item }) => {
             value={item.purchaseQuantity}
             onChange={onChange}
           />
-          <Text
-            role="img"
-            size="lg"
-            aria-label="trash"
-            onClick={() => removeFromCart(item)}
-          >
-            🗑️
-          </Text>
+        </Box>
+        <Box>
+          {
+          Auth.loggedIn() ?
+            <Button 
+            onClick={addToPurchaseHistory}
+            size="md"
+            rounded="md"
+            color={["brand.500"]}
+            bg={["brand.800"]}
+            _hover={{
+              bg: ["white"]
+            }}
+          >          
+            Checkout
+            </Button>
+            :
+            <Text>(log in to check out)</Text>
+          }
         </Box>
       </Box>
     </Box>

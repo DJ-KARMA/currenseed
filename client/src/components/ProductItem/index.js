@@ -81,7 +81,7 @@ function ProductItem(item) {
                 </Text>
                 <Stack isInline justify='space-between'>
                     <Text fontWeight ='semibold' fontSize='lg'>
-                        ${price}
+                        {price} 🌱
                     </Text>
                     <Text as='h3' fontSize='lg' fontWeight='semibold'>
 

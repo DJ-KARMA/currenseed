@@ -62,7 +62,7 @@ const SeedItem = () => {
           />
         </Box>
         <Box>
-          <Box>1 Seed = $1</Box>
+          <Box>1 🌱 = $1</Box>
           <Box>
             <Text mb="8px" align="center">Qty:</Text>
             <Input
@@ -76,7 +76,7 @@ const SeedItem = () => {
         </Box>
       </Box>
       <Box  width="300px" m="30px">
-        <Heading>Seeds: ${total?total:0}</Heading>
+        <Heading>{total?total:0}🌱= ${total?total:0}</Heading>
         {
           Auth.loggedIn() ?
             <Button 
