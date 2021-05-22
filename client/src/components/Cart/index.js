@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 //components
 import CartItem from '../CartItem';
 //utilities
-import Auth from '../../utils/auth';
 import { ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 //chakra ui
-import { Box, Text, Button, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Box, Text, Heading, SimpleGrid } from "@chakra-ui/react";
 
 const Cart = () => {
 
@@ -37,15 +36,15 @@ const Cart = () => {
         return sum.toFixed(2);
     };
 
-    function submitPurchase() {
-        const productIds = [];
+    // function submitPurchase() {
+    //     const productIds = [];
       
-        state.cart.forEach((item) => {
-          for (let i = 0; i < item.purchaseQuantity; i++) {
-            productIds.push(item._id);
-          }
-        });
-    }
+    //     state.cart.forEach((item) => {
+    //       for (let i = 0; i < item.purchaseQuantity; i++) {
+    //         productIds.push(item._id);
+    //       }
+    //     });
+    // }
 
     return (
         <Box>

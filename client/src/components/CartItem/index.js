@@ -15,28 +15,18 @@ const CartItem = ({ item }) => {
   const { data } = useQuery(QUERY_USER);
 
   let user;
+  let seeds;
 
   if (data) {
        user = data.user;
+       seeds = data.seeds; 
   }
-
-  console.log(user);
 
   const state = useSelector(state => state);
   
   const dispatch = useDispatch();
 
   localStorage.setItem("seeds", item.price);
-
-
-  
-
-  // if(item.price >) {
-  //   alert("You don't have enough seeds!")
-  //   setTimeout(()=>{
-  //     window.location.assign("/SeedItem");
-  //   },3000);
-  // }
 
    const [addPurchase] = useMutation(ADD_PURCHASE);
    const [spendSeeds] = useMutation(SPEND_SEEDS);
@@ -93,8 +83,7 @@ const CartItem = ({ item }) => {
                 window.location.assign("/orderHistory");
             },1000);
           }
-  
-          savePurchase();
+        savePurchase();
       }
       
   return (
