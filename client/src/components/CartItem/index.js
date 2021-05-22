@@ -9,7 +9,7 @@ import { QUERY_USER } from "../../utils/queries";
 import { idbPromise } from "../../utils/helpers";
 import Auth from '../../utils/auth';
 //chakra ui
-import { Box, Text, Input, Image, Container} from "@chakra-ui/react";
+import { Box, Text, Input, Image, Container, Button } from "@chakra-ui/react";
 
 const CartItem = ({ item }) => {
   const { data } = useQuery(QUERY_USER);
@@ -18,8 +18,8 @@ const CartItem = ({ item }) => {
   let seeds;
 
   if (data) {
-       user = data.user;
-       seeds = data.seeds; 
+    user = data.user;
+    seeds = data.seeds; 
   }
 
   const state = useSelector(state => state);
@@ -28,63 +28,63 @@ const CartItem = ({ item }) => {
 
   localStorage.setItem("seeds", item.price);
 
-   const [addPurchase] = useMutation(ADD_PURCHASE);
-   const [spendSeeds] = useMutation(SPEND_SEEDS);
+  const [addPurchase] = useMutation(ADD_PURCHASE);
+  const [spendSeeds] = useMutation(SPEND_SEEDS);
   
-    const removeFromCart = item => {
-        dispatch({
-          type: REMOVE_FROM_CART,
-          _id: item._id
-        });
-        idbPromise('cart', 'delete', { ...item });
-    };
+  const removeFromCart = item => {
+    dispatch({
+      type: REMOVE_FROM_CART,
+      _id: item._id
+    });
+    idbPromise('cart', 'delete', { ...item });
+  };
 
-    const onChange = (e) => {
-        const value = e.target.value;
+  const onChange = (e) => {
+    const value = e.target.value;
       
-        if (value === '0') {
-            dispatch({
-              type: REMOVE_FROM_CART,
-              _id: item._id
-            });
+    if (value === '0') {
+      dispatch({
+        type: REMOVE_FROM_CART,
+        _id: item._id
+      });
           
-            idbPromise('cart', 'delete', { ...item });
-          } else {
-            dispatch({
-              type: UPDATE_CART_QUANTITY,
-              _id: item._id,
-              purchaseQuantity: parseInt(value)
-            });
+      idbPromise('cart', 'delete', { ...item });
+    } else {
+      dispatch({
+        type: UPDATE_CART_QUANTITY,
+        _id: item._id,
+        purchaseQuantity: parseInt(value)
+      });
           
-            idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(value) });
-          }
-      };
+      idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(value) });
+    }
+  };
 
-      const addToPurchaseHistory = () => {
-          async function savePurchase() {
+  const addToPurchaseHistory = () => {
+    async function savePurchase() {
 
-              const sseeds = localStorage.getItem("seeds");
+      const sseeds = localStorage.getItem("seeds");
 
-              localStorage.removeItem("seeds");
+      localStorage.removeItem("seeds");
 
-              spendSeeds({ variables: {seeds: parseFloat(sseeds)} })
+      spendSeeds({ variables: {seeds: parseFloat(sseeds)} })
 
-              const cart = await idbPromise('cart', 'get');
-              const products = cart.map(item => item._id);
-              if (products.length) {
-                  const { data } = await addPurchase({ variables: { products } });
-                  const productData = data.addPurchase.products;
-                  productData.forEach((item) => {
-                    idbPromise('cart', 'delete', item);
-                  });
-              }
-            alert("Thank you for your purchase. You will be redirected to your purchase history.")
-            setTimeout(()=>{
-                window.location.assign("/orderHistory");
-            },1000);
-          }
-        savePurchase();
+      const cart = await idbPromise('cart', 'get');
+      const products = cart.map(item => item._id);
+      if (products.length) {
+        const { data } = await addPurchase({ variables: { products } });
+        const productData = data.addPurchase.products;
+        productData.forEach((item) => {
+          idbPromise('cart', 'delete', item);
+        });
       }
+      alert("Thank you for your purchase. You will be redirected to your purchase history.")
+      setTimeout(()=>{
+        window.location.assign("/orderHistory");
+      },1000);
+    }
+    savePurchase();
+  }
       
   return (
     <Container>

@@ -9,8 +9,8 @@ import ProductList from '../components/ProductList';
 import { Box, Container } from "@chakra-ui/react";
 
 function CategoryDetail ({ }) {
-   const { categoryId } = useParams();
-   const { data } = useQuery(QUERY_CATEGORIES);
+  const { categoryId } = useParams();
+  const { data } = useQuery(QUERY_CATEGORIES);
     let categories = [];
         if (data) {
         categories = data.categories;
@@ -24,5 +24,6 @@ function CategoryDetail ({ }) {
 	</Box>
     <ProductList categoryId={categoryId} />
     </Box>)
+}
 
 export default CategoryDetail;

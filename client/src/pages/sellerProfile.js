@@ -33,7 +33,7 @@ function SellerProfile() {
     let user;
 
     if (data) {
-         user = data.user;
+        user = data.user;
     }
 
     const [addSeeds] = useMutation(ADD_SEEDS);
