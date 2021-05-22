@@ -4,7 +4,7 @@ import React from "react";
 import Auth from "../../utils/auth"
 //chakra ui
 import { Link, Box, Flex, Text, Button, Stack, IconButton } from "@chakra-ui/react";
-import { FaShoppingCart, FaCoins } from "react-icons/fa";
+import { FaShoppingCart, FaSeedling } from "react-icons/fa";
 import { CloseButton} from "@chakra-ui/react";
 import Logo from "./Logo";
 
@@ -107,8 +107,7 @@ const MenuLinks = ({ isOpen }) => {
               </Button>
             </MenuItem>
             <MenuItem to="/cart"><IconButton icon={<FaShoppingCart/>} size="md" ></IconButton></MenuItem>
-            <MenuItem to="/SeedItem"><IconButton icon={<FaCoins/>} size="md" >$</IconButton></MenuItem>
-
+            <MenuItem to="/SeedItem"><IconButton icon={<FaSeedling/>} size="md" >$</IconButton></MenuItem>
             
           </Stack>
         </Box>
