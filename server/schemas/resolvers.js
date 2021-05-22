@@ -183,7 +183,7 @@ const resolvers = {
         const category = await Category.findOne({name:data.category});
         console.log("category", category)
         // const product = new Product ( {name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category._id, userId: context.user._id });
-        const product = await Product.create({name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category._id, userId: context.user._id });
+        const product = await Product.create({name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category._id, sellerId: context.user._id });
         console.log("product",product);
         const user = await User.findByIdAndUpdate(context.user._id, { $push: { products: product } }, {new: true});
         console.log("user",user);

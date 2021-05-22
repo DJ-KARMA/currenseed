@@ -51,7 +51,8 @@ db.once('open', async () => {
       image: '/images/baked-goods-2-min.jpg',
       category: categories[6]._id,
       price: 10,
-      quantity: 20
+      quantity: 20,
+      sellerId: ''
     },
     {
       name: 'Necklaces',

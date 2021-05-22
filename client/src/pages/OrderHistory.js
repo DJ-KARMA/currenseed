@@ -39,7 +39,7 @@ export default function OrderHistory({ item }) {
                           alt={name}
                           src={`${image}`}
                         />
-                        <Box>{name}</Box>
+                        <Box>{quantity} {name}</Box>
                         <Box>
                         <Text>{price}🌱</Text>
                         </Box>

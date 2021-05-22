@@ -60,7 +60,7 @@ export const ADD_SALE = gql`
         quantity
         category {
           name
-        } 
+        }
       }
     }
   }

@@ -15,7 +15,7 @@ const typeDefs = gql`
     quantity: Int
     price: Float
     category: Category
-    userId: String
+    sellerId: String
   }
   type Order {
     _id: ID

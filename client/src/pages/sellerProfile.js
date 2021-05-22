@@ -67,7 +67,7 @@ function SellerProfile() {
                 type: UPDATE_PRODUCTS,
                 products: user.products
             });
-         
+        
         
             // but let's also take each product and save it to IndexedDB using the helper function 
             data.user.products.forEach((product) => 
@@ -90,7 +90,7 @@ function SellerProfile() {
             });
 
         }
-    }, [state.products.length,state.seeds,data,state.categories.length, loading, dispatch]);
+    }, [state.products.length, state.seeds, data,state.categories.length, loading, dispatch]);
     
 
     return (
@@ -235,9 +235,9 @@ function AddProduct({setLoading}) {
     let user;
 
     if (data) {
-         user = data.user;
+      user = data.user;
     }
- 
+
     return (
 <>
             <Button ref={btnRef} 

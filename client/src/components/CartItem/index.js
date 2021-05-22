@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { useDispatch, useSelector } from 'react-redux';
 //utilities
-import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
-import { ADD_PURCHASE, SPEND_SEEDS } from "../../utils/mutations";
+import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY, UPDATE_PRODUCTS } from '../../utils/actions';
+import { UPDATE_PRODUCT, ADD_PURCHASE, ADD_SALE, SPEND_SEEDS } from "../../utils/mutations";
 import { QUERY_USER } from "../../utils/queries";
 import { idbPromise } from "../../utils/helpers";
 import Auth from '../../utils/auth';
@@ -29,6 +29,8 @@ const CartItem = ({ item }) => {
   localStorage.setItem("seeds", item.price);
 
   const [addPurchase] = useMutation(ADD_PURCHASE);
+  const [addSale] = useMutation(ADD_SALE);
+  const [updateProduct] = useMutation(UPDATE_PRODUCT);
   const [spendSeeds] = useMutation(SPEND_SEEDS);
   
   const removeFromCart = item => {
@@ -61,7 +63,38 @@ const CartItem = ({ item }) => {
   };
 
   const addToPurchaseHistory = () => {
-    async function savePurchase() {
+
+    const purchaseItems = {};
+    state.cart.forEach(item => {
+      purchaseItems[item._id] = item.purchaseQuantity;
+    });
+
+    for(const [key,value] of Object.entries(purchaseItems)) {
+      // loop through cart to find all ids = key
+      state.cart.find([key])
+
+      const newTotal = item.quantity - value;
+      updateProduct(key, newTotal);
+
+      console.log(newTotal);
+    }
+
+    async function saveSale () {
+      
+
+      function calculateTotal() {
+        let sum = 0;
+        state.cart.forEach(item => {
+          sum += item.price * item.purchaseQuantity;
+        });
+        return sum.toFixed(2);
+    };
+
+    const totalSeeds = calculateTotal()
+
+    }
+
+      async function savePurchase() {
 
       const sseeds = localStorage.getItem("seeds");
 
@@ -79,9 +112,9 @@ const CartItem = ({ item }) => {
         });
       }
       alert("Thank you for your purchase. You will be redirected to your purchase history.")
-      setTimeout(()=>{
-        window.location.assign("/orderHistory");
-      },1000);
+      // setTimeout(()=>{
+      //   window.location.assign("/orderHistory");
+      // },1000);
     }
     savePurchase();
   }
