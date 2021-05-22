@@ -85,7 +85,7 @@ function ProductItem(item) {
       {
           toast({
               title: "Product delete.",
-              description: "Your Product has been deleted from your kosik.",
+              description: "Your Product has been deleted from your kiosk.",
               status: "success",
               isClosable: true,
           })
