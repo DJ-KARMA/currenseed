@@ -4,7 +4,7 @@
 
 Please visit our completed webpage at:  https://sheltered-stream-52499.herokuapp.com/
 
-![website screenshot](./public/images/homepage.png?raw=true) 
+![website screenshot](./client/public/images/homepage.png?raw=true) 
 
 ## Table of Contents 
 
@@ -65,10 +65,10 @@ https://sheltered-stream-52499.herokuapp.com/
 
 ## Screenshots
 
-![sample screenshot](./public/images/signup.png?raw=true) <br /><br />
-![sample screenshot](./public/images/login.png?raw=true) <br /><br />
-![sample screenshot](./public/images/productpage.png?raw=true) <br /><br />
-![sample screenshot](./public/images/addproduct.png?raw=true) <br /><br />
+![sample screenshot](./client/public/images/signup.png?raw=true) <br /><br />
+![sample screenshot](./client/public/images/login.png?raw=true) <br /><br />
+![sample screenshot](./client/public/images/productpage.png?raw=true) <br /><br />
+![sample screenshot](./client/public/images/addproduct.png?raw=true) <br /><br />
 
 ## License
 
