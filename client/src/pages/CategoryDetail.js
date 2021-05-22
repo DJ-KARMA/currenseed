@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { QUERY_CATEGORIES } from "../utils/queries";
 //components
 import ProductList from '../components/ProductList';
-import { Box, Image, Flex, Text, Button,Stack, Container, SimpleGrid } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 
 function CategoryDetail ({ }) {
    const { categoryId } = useParams();
@@ -15,10 +15,8 @@ function CategoryDetail ({ }) {
         if (data) {
         categories = data.categories;
         }
-    console.log(categories)
 
     const currentCategory = categories.find(category => categoryId === category._id);
-    console.log(currentCategory)
     return (
     <Box>
     <Box>
