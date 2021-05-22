@@ -1,11 +1,14 @@
 //dependencies
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 //utilities
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
+import { ADD_TO_CART, UPDATE_CART_QUANTITY, UPDATE_PRODUCTS } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
+import { DELETE_PRODUCT } from "../../utils/mutations";
 //chakra ui
-import {Box , Image, Badge, Text, Stack, Button} from "@chakra-ui/react";
+import {Box , Image, Badge, Text, Stack, Button, useToast} from "@chakra-ui/react";
+import { QUERY_USER } from "../../utils/queries";
 
 
 function ProductItem(item) {
@@ -17,11 +20,23 @@ function ProductItem(item) {
     quantity,
     description,
     category,
-    userId
+    sellerId,
   } = item;
 
+  const {data} = useQuery(QUERY_USER)
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+
+  const toast = useToast();
+
+  let userId;
+
+  if(data)
+  {
+    userId = data.user._id;
+  }
+
+  console.log("userId",userId,"sellerId",sellerId, "productId", _id);
 
   const { cart } = state;
 
@@ -47,8 +62,28 @@ function ProductItem(item) {
       });
       idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
-    alert('This item was added to your cart!')
+    toast({
+      description: 'This item was added to your cart!',
+      status: "success",
+      isClosable: true,
+  })
   }
+  //let productId; 
+  const [deleteProduct] = useMutation(DELETE_PRODUCT);
+  const removeFromKiosk = async event => 
+  {
+      const mutationResponse = await deleteProduct({
+          variables: {
+              productId: _id
+          }
+      });
+      console.log("mutationResponse.data.addProduct.products",mutationResponse.data.deleteProduct.products);
+
+      dispatch({
+          type: UPDATE_PRODUCTS,
+          _id: _id
+      });
+  };
 
   return (
     <Box
@@ -65,13 +100,13 @@ function ProductItem(item) {
                     <Badge variant='solid' bg='brand.800' rounded='full' px={2}>
                         {category.name}
                     </Badge>
-                    <Text
+                    {/* <Text
                         textTransform='uppercase'
                         fontSize='sm'
                         color='gray.500'
                         letterSpacing='wide'>
-                        {userId}
-                    </Text>
+                        {sellerId}
+                    </Text> */}
                 </Stack>
                 <Text as='h2' fontWeight='semibold' fontSize='xl' my={2}>
                     {name}
@@ -89,10 +124,16 @@ function ProductItem(item) {
                     </Text>
                 </Stack>
             </Box>
-        <Box textAlign='center' paddingBottom={5}>
-            <Button to= "/cart" bg="#005C13" color='white' size='lg' mt={3} boxShadow='sm' onClick={addToCart}>add to cart</Button>
             
+        <Box textAlign='center' paddingBottom={5}>
+        { (sellerId!=userId) ? 
+            (<Button to= "/cart" bg="#005C13" color='white' size='lg' mt={3} boxShadow='sm' onClick={addToCart}  >add to cart</Button>)
+            
+        : (<Button bg="#005C13" color="white" size="lg" boxShadow="sm" onClick={removeFromKiosk}>remove from kiosk</Button>)
+        // (<Text color="brand.500">It is your product</Text>)
+        }
         </Box>
+     
     </Box>
   );
 }

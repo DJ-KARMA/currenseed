@@ -6,8 +6,8 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import ProductItem from "../components/ProductItem";
 //utilities
 import { QUERY_USER, QUERY_CATEGORIES } from "../utils/queries";
-import { ADD_PRODUCT, ADD_SEEDS } from "../utils/mutations";
-import { UPDATE_PRODUCTS, UPDATE_SEEDS } from "../utils/actions"
+import { ADD_PRODUCT, ADD_SEEDS, DELETE_PRODUCT } from "../utils/mutations";
+import { UPDATE_PRODUCTS, UPDATE_SEEDS, REMOVE_FROM_KIOSK } from "../utils/actions"
 import { idbPromise } from "../utils/helpers";
 //chakra ui
 import { Box, Flex, Text, Divider, useDisclosure, Drawer,
@@ -19,7 +19,7 @@ import { Box, Flex, Text, Divider, useDisclosure, Drawer,
     useToast,
     DrawerCloseButton, Heading, Input, FormControl, FormLabel, Select, Button } from '@chakra-ui/react';
 
-function SellerProfile() {
+const SellerProfile = ({ item }) => {
 
     const state = useSelector(state => state);
     const dispatch = useDispatch();
@@ -27,6 +27,7 @@ function SellerProfile() {
     const [loading2, setLoading] = useState(true);
 
     const { loading, data } = useQuery(QUERY_USER);
+    const { isOpen, onOpen, onClose } = useDisclosure()
     
     const { loading3, data2 } = useQuery(QUERY_CATEGORIES);
 
@@ -53,16 +54,52 @@ function SellerProfile() {
     console.log("state",state);
     console.log("user",user);
 
+    const [deleteProduct] = useMutation(DELETE_PRODUCT);
+    const toast = useToast();
+    let productId; 
+
+    const removeFromKiosk = async event => 
+    {
+        onClose();
+        const mutationResponse = await deleteProduct({
+            variables: {
+                productId: data.user.product._id
+            }
+        });
+
+        if(mutationResponse)
+        {
+            toast({
+                title: "Product delete.",
+                description: "Your Product has been deleted from your kosik.",
+                status: "success",
+                isClosable: true,
+            })
+        }
+        else
+        {
+            toast({
+                title: "Product failed.",
+                description: "Your Product could not be deleted from your kiosk.",
+                status: "error",
+                isClosable: true,
+            })
+        }
+
+        setLoading(false);
+        console.log("mutationResponse.data.addProduct.products",mutationResponse.data.deleteProduct.products);
+
+        dispatch({
+            type: UPDATE_PRODUCTS,
+            products: data.user.products
+        });
+    };
+
     useEffect(() => 
     {        
         // if there's data to be stored
         if (data) 
         {
-            dispatch({
-                type: UPDATE_SEEDS,
-                seeds: user.seeds
-            });
-            // let's store it in the global state object
             dispatch({
                 type: UPDATE_PRODUCTS,
                 products: user.products
@@ -72,7 +109,7 @@ function SellerProfile() {
             // but let's also take each product and save it to IndexedDB using the helper function 
             data.user.products.forEach((product) => 
             {
-                idbPromise('products', 'put', product);
+                idbPromise('products', 'pull', product);
             });
 
             // add else if to check if `loading` is undefined in `useQuery()` Hook
@@ -92,13 +129,14 @@ function SellerProfile() {
         }
     }, [state.products.length,state.seeds,data,state.categories.length, loading, dispatch]);
     
+    const pseeds = state.seeds.toFixed(2);
 
     return (
         <>
         {user ? (
         <Box margin={10}>   
             <Box>
-                <Flex height="100hv" alignItems="top" justifyContent="space-between">  
+                <Flex height="100hv" alignItems="top" justifyContent="space-between"  flexWrap="wrap">  
                     <Box>   
                         <Text m={2} fontSize="xx-large" fontWeight="semibold" lineHeight="short">
                             {user.firstName}'s Kiosk
@@ -108,7 +146,7 @@ function SellerProfile() {
                         </Text>
                     </Box>
                     <Text m={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
-                        Seeds: {state.seeds} 
+                        {pseeds}🌱 
                     </Text>
                     <Button
                         color={["white"]} 
@@ -151,7 +189,7 @@ function SellerProfile() {
                                     quantity={product.quantity}
                                     description={product.description}
                                     category={product.category}
-                                    userId={product.userId}
+                                    sellerId={product.sellerId}
                                 />
                                 </Box>
                             ))}
@@ -173,6 +211,10 @@ function AddProduct({setLoading}) {
     const btnRef = React.useRef()
     const state = useSelector(state => state);
 
+    const dispatch = useDispatch();
+
+    const { loading, data } = useQuery(QUERY_USER);
+
     const [formState, setFormState] = useState({ name: '', description: '', price: '', quantity: '', category: ''});
     const [addProduct] = useMutation(ADD_PRODUCT);
     const toast = useToast();
@@ -187,7 +229,8 @@ function AddProduct({setLoading}) {
                 description: formState.description,
                 price: parseFloat(formState.price), 
                 quantity: parseInt(formState.quantity),
-                category: formState.category
+                category: formState.category,
+                sellerId: data.user._id
             }
         });
 
@@ -217,7 +260,6 @@ function AddProduct({setLoading}) {
             type: UPDATE_PRODUCTS,
             products: data.user.products
         });
-        // alert(data.user.products)
     };
   
     const handleChange = event => {
@@ -228,15 +270,7 @@ function AddProduct({setLoading}) {
       });
     };
 
-    const dispatch = useDispatch();
 
-    const { loading, data } = useQuery(QUERY_USER);
-    
-    let user;
-
-    if (data) {
-         user = data.user;
-    }
  
     return (
 <>

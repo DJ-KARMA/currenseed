@@ -66,6 +66,34 @@ const resolvers = {
   
       throw new AuthenticationError('Not logged in');
     },
+    getUserById: async (parent, args, context) => {
+      
+        const user = await User.findById(args._id)
+        .populate(
+        {
+          path: 'orders.products',
+          populate: 'category'
+        })
+        .populate(
+        {
+          path: 'purchases.products',
+          populate: 'category'
+        })
+        .populate(
+        {
+          path: 'sales.products',
+          populate: 'category'
+        });
+  
+        user.purchases.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        user.sales.sort((a, b) => b.purchaseDate - a.purchaseDate);
+
+      if (user) {
+        return user;
+      }
+  
+      throw new AuthenticationError('Not available');
+    },
     orders: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -145,21 +173,23 @@ const resolvers = {
   
       throw new AuthenticationError('Not logged in');
     },
-    addSale: async (parent, { products }, context) => {
-      console.log(context);
-      if (context.user) {
+    addSaleById: async (parent, {_id, products}, context) => {
+
         const sale = new Order({ products });
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { sales: sale } });
+        await User.findByIdAndUpdate(_id, { $push: { sales: sale } },{new: true});
   
         return sale;
-      }
-  
-      throw new AuthenticationError('Not logged in');
-    },
+      },
+
     addSeeds: async (parent, {_id, seeds }) => {
       const increment = Math.random().toPrecision(2);
 
+      return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }},{new: true});
+    },
+    addSeedsById: async (parent, {_id, seeds }) => {
+      const increment = parseFloat(seeds);
+      console.log("increment",increment);
       return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }},{new: true});
     },
     purchaseSeeds: async (parent, {seeds },context) => {
@@ -169,12 +199,6 @@ const resolvers = {
     },
     spendSeeds: async (parent, {seeds}, context) => {
       const decrease = parseFloat(seeds);
-      if (decrease > seeds) {
-        alert("You don't have enough seeds!")
-        setTimeout(()=>{
-          window.location.assign("/SeedItem");
-        },1000);
-      }
       return await User.findByIdAndUpdate(context.user._id, {$inc: {seeds: - decrease }}, {new: true})
     },
     addProduct: async (parent,  data , context) => {
@@ -183,7 +207,7 @@ const resolvers = {
         const category = await Category.findOne({name:data.category});
         console.log("category", category)
         // const product = new Product ( {name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category._id, userId: context.user._id });
-        const product = await Product.create({name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category._id, userId: context.user._id });
+        const product = await Product.create({name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category._id, sellerId: context.user._id });
         console.log("product",product);
         const user = await User.findByIdAndUpdate(context.user._id, { $push: { products: product } }, {new: true});
         console.log("user",user);
@@ -218,7 +242,7 @@ const resolvers = {
       if (context.user) {
         const updateUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { products: { productId } } },
+          { $pull: { products: {productId } } },
           { new: true }
         );
         return updateUser;
