@@ -148,7 +148,7 @@ function ProductItem(item) {
             </Box>
             
         <Box textAlign='center' paddingBottom={5}>
-        { (sellerId!=userId) ? 
+        { (sellerId!==userId) ? 
             (<Button to= "/cart" bg="#005C13" color='white' size='lg' mt={3} boxShadow='sm' onClick={addToCart}  >add to cart</Button>)
             
         : (
