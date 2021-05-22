@@ -10,4 +10,5 @@ export const CLEAR_CART = 'CLEAR_CART';
 export const TOGGLE_CART = 'TOGGLE_CART';
 export const GET_USERID = 'GET_USERID';
 export const PURCHASE_SEED = 'PURCHASE_SEED';
-export const SPEND_SEED = 'SPEND_SEED'
+export const SPEND_SEED = 'SPEND_SEED';
+export const REMOVE_FROM_KIOSK = "REMOVE_FROM_KIOSK";

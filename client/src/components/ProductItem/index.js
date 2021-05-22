@@ -1,9 +1,9 @@
 //dependencies
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 //utilities
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
+import { ADD_TO_CART, UPDATE_CART_QUANTITY, UPDATE_PRODUCTS } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 import { DELETE_PRODUCT } from "../../utils/mutations";
 //chakra ui
@@ -20,7 +20,7 @@ function ProductItem(item) {
     quantity,
     description,
     category,
-    sellerId
+    sellerId,
   } = item;
 
   const {data} = useQuery(QUERY_USER)
@@ -36,7 +36,7 @@ function ProductItem(item) {
     userId = data.user._id;
   }
 
-  console.log("userId",userId,"sellerId",sellerId);
+  console.log("userId",userId,"sellerId",sellerId, "productId", _id);
 
   const { cart } = state;
 
@@ -68,6 +68,22 @@ function ProductItem(item) {
       isClosable: true,
   })
   }
+  //let productId; 
+  const [deleteProduct] = useMutation(DELETE_PRODUCT);
+  const removeFromKiosk = async event => 
+  {
+      const mutationResponse = await deleteProduct({
+          variables: {
+              productId: _id
+          }
+      });
+      console.log("mutationResponse.data.addProduct.products",mutationResponse.data.deleteProduct.products);
+
+      dispatch({
+          type: UPDATE_PRODUCTS,
+          _id: _id
+      });
+  };
 
   return (
     <Box
@@ -112,7 +128,10 @@ function ProductItem(item) {
         <Box textAlign='center' paddingBottom={5}>
         { (sellerId!=userId) ? 
             (<Button to= "/cart" bg="#005C13" color='white' size='lg' mt={3} boxShadow='sm' onClick={addToCart}  >add to cart</Button>)
-        : (<Text color="brand.500">It is your product</Text>)}
+            
+        : (<Button bg="#005C13" color="white" size="lg" boxShadow="sm" onClick={removeFromKiosk}>remove from kiosk</Button>)
+        // (<Text color="brand.500">It is your product</Text>)
+        }
         </Box>
      
     </Box>
