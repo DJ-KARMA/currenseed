@@ -21,7 +21,7 @@ const defaultState ={
   categories: [],
   currentCategrory: '',
   userId: '',
-  seeds:0,
+  seeds: 0,
   parchaseSeeds:0
 }
 

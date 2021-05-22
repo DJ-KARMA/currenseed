@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 //components
 import CartItem from '../CartItem';
 //utilities
-import Auth from '../../utils/auth';
 import { ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 //chakra ui
-import { Box, Text, Button, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Box, Text, Heading, SimpleGrid } from "@chakra-ui/react";
 
 const Cart = () => {
 
@@ -35,18 +34,17 @@ const Cart = () => {
           sum += item.price * item.purchaseQuantity;
         });
         return sum.toFixed(2);
-    }
+    };
 
-    function submitOrder() {
-        const productIds = [];
+    // function submitPurchase() {
+    //     const productIds = [];
       
-        state.cart.forEach((item) => {
-          for (let i = 0; i < item.purchaseQuantity; i++) {
-            productIds.push(item._id);
-          }
-        });
-        alert("Thank you for your order! You will now be redirected to your order history.")
-    }
+    //     state.cart.forEach((item) => {
+    //       for (let i = 0; i < item.purchaseQuantity; i++) {
+    //         productIds.push(item._id);
+    //       }
+    //     });
+    // }
 
     return (
         <Box>
@@ -56,25 +54,8 @@ const Cart = () => {
                 <CartItem key={item._id} item={item} />
               ))}
               <Box align="center">
-                <Heading> Seeds: {calculateTotal()}</Heading>
-                {
-                  Auth.loggedIn() ?
-                    <Button 
-                    onClick={submitOrder}
-                    size="sm"
-                    rounded="md"
-                    color={["brand.500"]}
-                    bg={["brand.800"]}
-                    _hover={{
-                      bg: ["white"]
-                    }}
-                  >          
-                    Checkout
-                    </Button>
-                    :
-                    <Text>(log in to check out)</Text>
-                }
-          
+                <Heading>Total due:</Heading>
+                <Heading>{calculateTotal() + "🌱"}</Heading>          
               </Box>
             </SimpleGrid>
           ) : (

@@ -90,7 +90,7 @@ const MenuLinks = ({ isOpen }) => {
           >
             <MenuItem to="/">Home</MenuItem>
             <MenuItem to="/profile/">My Kiosk</MenuItem>
-            <MenuItem to="/orderHistory">My Orders</MenuItem>
+            <MenuItem to="/orderHistory">My Purchases</MenuItem>
             <MenuItem to="/sellHistory">My Sales</MenuItem>
             <MenuItem to="/">
               <Button

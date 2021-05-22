@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { useDispatch, useSelector } from 'react-redux';
 //components
-import CartItem from '../CartItem';
+import SeedItem from '../CartItem';
 //utilities
 import Auth from '../../utils/auth';
 import { ADD_MULTIPLE_TO_CART } from '../../utils/actions';
@@ -72,7 +72,7 @@ const SeedCart = () => {
   {state.cart.length ? (
     <SimpleGrid columns={[1, null, 2, null, 4]} gap={4}>
       {state.cart.map(item => (
-        <CartItem key={item._id} item={item} />
+        <SeedItem key={item._id} item={item} />
       ))}
       <Box align="center">
         <Heading> ${calculateTotal()}</Heading>
