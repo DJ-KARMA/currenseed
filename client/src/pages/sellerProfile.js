@@ -5,9 +5,9 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 //components
 import ProductItem from "../components/ProductItem";
 //utilities
-import { QUERY_USER, QUERY_CATEGORIES } from "../utils/queries";
-import { ADD_PRODUCT, ADD_SEEDS, DELETE_PRODUCT } from "../utils/mutations";
-import { UPDATE_PRODUCTS, UPDATE_SEEDS, REMOVE_FROM_KIOSK } from "../utils/actions"
+import { QUERY_USER } from "../utils/queries";
+import { ADD_PRODUCT, ADD_SEEDS } from "../utils/mutations";
+import { UPDATE_PRODUCTS, UPDATE_SEEDS } from "../utils/actions"
 import { idbPromise } from "../utils/helpers";
 //chakra ui
 import { Box, Flex, Text, Divider, useDisclosure, Drawer,
@@ -27,9 +27,6 @@ const SellerProfile = ({ item }) => {
     const [loading2, setLoading] = useState(true);
 
     const { loading, data } = useQuery(QUERY_USER);
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    
-    const { loading3, data2 } = useQuery(QUERY_CATEGORIES);
 
     let user;
 
@@ -53,11 +50,7 @@ const SellerProfile = ({ item }) => {
     };
     console.log("state",state);
     console.log("user",user);
-
-    const toast = useToast();
-    let productId; 
-
-
+    
     useEffect(() => 
     {        
         // if there's data to be stored
@@ -177,11 +170,10 @@ const SellerProfile = ({ item }) => {
 function AddProduct({setLoading}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
-    const state = useSelector(state => state);
 
     const dispatch = useDispatch();
 
-    const { loading, data } = useQuery(QUERY_USER);
+    const { data } = useQuery(QUERY_USER);
 
     const [formState, setFormState] = useState({ name: '', description: '', price: '', quantity: '', category: ''});
     const [addProduct] = useMutation(ADD_PRODUCT);
@@ -237,8 +229,6 @@ function AddProduct({setLoading}) {
         [name]: value
       });
     };
-
-
  
     return (
 <>

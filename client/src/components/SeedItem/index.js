@@ -42,7 +42,7 @@ const SeedItem = () => {
         res.redirectToCheckout({ sessionId: data.checkout.session });
       });
     }
-  }, [data]);
+  }, [data, state]);
 
   return (
     <Box align="center"  d="flex" justifyContent="center" alignItems="center">
