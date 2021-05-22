@@ -36,8 +36,11 @@ function SellHistory() {
                            alt={name}
                            src={`${image}`}
                          />
-                         <Box>{quantity} {name}</Box>
+                         <Box>{name}</Box>
                        </Link>
+                       <Box>
+                        <Text>QTY: {quantity}</Text>
+                        </Box>
                          <Box>
                          <Text>${price}</Text>
                          </Box>
