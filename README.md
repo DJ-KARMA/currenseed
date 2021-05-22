@@ -56,7 +56,7 @@ https://sheltered-stream-52499.herokuapp.com/
 - [React](https://reactjs.org/ "React")<br />
 - [Redux](https://redux.js.org/ "Redux")<br />
 - [Graphql](https://graphql.org/ "Graphql")<br />
-- [Apollo]("https://www.apollographql.com/" "Apollo")<br />
+- [Apollo](https://www.apollographql.com/ "Apollo")<br />
 - [Bcrypt](https://www.npmjs.com/package/bcrypt "Bcrypt")<br />
 - [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken "Jsonwebtoken")<br />
 - [Stripe](https://stripe.com/docs/api "Stripe")<br />
