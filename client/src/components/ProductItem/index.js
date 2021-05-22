@@ -2,6 +2,7 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useParams } from 'react-router-dom';
 //utilities
 import { ADD_TO_CART, UPDATE_CART_QUANTITY, UPDATE_PRODUCTS } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
@@ -26,6 +27,7 @@ function ProductItem(item) {
   const {data} = useQuery(QUERY_USER)
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+  const { categoryId } = useParams();
 
   const toast = useToast();
 
@@ -77,13 +79,33 @@ function ProductItem(item) {
               productId: _id
           }
       });
-      console.log("mutationResponse.data.addProduct.products",mutationResponse.data.deleteProduct.products);
+      console.log("mutationResponse.data.deleteProduct.products",mutationResponse.data.deleteProduct.products);
+
+      if(mutationResponse)
+      {
+          toast({
+              title: "Product delete.",
+              description: "Your Product has been deleted from your kosik.",
+              status: "success",
+              isClosable: true,
+          })
+      }
+      else
+      {
+          toast({
+              title: "Product failed.",
+              description: "Your Product could not be deleted from your kiosk.",
+              status: "error",
+              isClosable: true,
+          })
+      }
 
       dispatch({
           type: UPDATE_PRODUCTS,
-          _id: _id
+          products: data.user.products
       });
   };
+
 
   return (
     <Box
@@ -129,7 +151,12 @@ function ProductItem(item) {
         { (sellerId!=userId) ? 
             (<Button to= "/cart" bg="#005C13" color='white' size='lg' mt={3} boxShadow='sm' onClick={addToCart}  >add to cart</Button>)
             
-        : (<Button bg="#005C13" color="white" size="lg" boxShadow="sm" onClick={removeFromKiosk}>remove from kiosk</Button>)
+        : (
+          (!categoryId) ?
+               ( <Button bg="red.500" color="white" size="lg" boxShadow="sm" onClick={removeFromKiosk}>remove from kiosk</Button>)
+               :
+               (<Text color="brand.500">It is your product</Text>)
+        )
         // (<Text color="brand.500">It is your product</Text>)
         }
         </Box>
