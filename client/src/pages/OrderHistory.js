@@ -6,7 +6,7 @@ import { QUERY_USER } from "../utils/queries";
 //chakra ui
 import { Box, Image, Flex, Text, Heading } from '@chakra-ui/react';
 
-export default function OrderHistory() {
+export default function OrderHistory({ item }) {
   const { data } = useQuery(QUERY_USER);
   let user;
 
@@ -22,13 +22,13 @@ export default function OrderHistory() {
     <Box m ="20px">
       {user ? (
         <Box>
-          <Heading as="h2">Order History</Heading> 
+          <Heading as="h2">Purchase History for {user.firstName}</Heading> 
           <Box>
             {user.purchases.map((order) => (
               <Box key={order._id} mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
 
                 <Text my={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
-                  {new Date(parseInt(order.purchaseDate)).toLocaleDateString()} from {order.sellerId}
+                  {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
                 </Text>
 
 
@@ -39,9 +39,9 @@ export default function OrderHistory() {
                           alt={name}
                           src={`${image}`}
                         />
-                        <Box>{quantity} {name}</Box>
+                        <Box>{name}</Box>
                         <Box>
-                        <Text>${price}</Text>
+                        <Text>{price}🌱</Text>
                         </Box>
                     </Box>
                   ))}

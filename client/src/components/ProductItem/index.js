@@ -47,6 +47,7 @@ function ProductItem(item) {
       });
       idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
+    alert('This item was added to your cart!')
   }
 
   return (
@@ -80,7 +81,7 @@ function ProductItem(item) {
                 </Text>
                 <Stack isInline justify='space-between'>
                     <Text fontWeight ='semibold' fontSize='lg'>
-                        ${price}
+                        {price} 🌱
                     </Text>
                     <Text as='h3' fontSize='lg' fontWeight='semibold'>
 

@@ -20,7 +20,7 @@ function SellHistory() {
      <Box m="20px">
        {user ? (
          <Box>
-           <Heading as="h2">Sell History</Heading>
+           <Heading as="h2">Sell History for {user.firstName}</Heading>
            <Box>
              {user.sales.map((order) => (
                <Box key={order._id} my={2} fontSize="xl" fontWeight="semibold" lineHeight="short">

@@ -169,6 +169,12 @@ const resolvers = {
     },
     spendSeeds: async (parent, {seeds}, context) => {
       const decrease = parseFloat(seeds);
+      if (decrease > seeds) {
+        alert("You don't have enough seeds!")
+        setTimeout(()=>{
+          window.location.assign("/SeedItem");
+        },1000);
+      }
       return await User.findByIdAndUpdate(context.user._id, {$inc: {seeds: - decrease }}, {new: true})
     },
     addProduct: async (parent,  data , context) => {
