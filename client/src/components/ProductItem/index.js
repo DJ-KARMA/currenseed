@@ -1,9 +1,11 @@
 //dependencies
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import { useMutation } from '@apollo/react-hooks';
 //utilities
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
+import { DELETE_PRODUCT } from "../../utils/mutations";
 //chakra ui
 import {Box , Image, Badge, Text, Stack, Button, useToast} from "@chakra-ui/react";
 
@@ -98,7 +100,6 @@ function ProductItem(item) {
             </Box>
         <Box textAlign='center' paddingBottom={5}>
             <Button to= "/cart" bg="#005C13" color='white' size='lg' mt={3} boxShadow='sm' onClick={addToCart}>add to cart</Button>
-            
         </Box>
     </Box>
   );

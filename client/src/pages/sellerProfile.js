@@ -92,6 +92,7 @@ function SellerProfile() {
         }
     }, [state.products.length,state.seeds,data,state.categories.length, loading, dispatch]);
     
+    const pseeds = state.seeds.toFixed(2);
 
     return (
         <>
@@ -108,7 +109,7 @@ function SellerProfile() {
                         </Text>
                     </Box>
                     <Text m={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
-                        Seeds: {state.seeds} 
+                        {pseeds}🌱 
                     </Text>
                     <Button
                         color={["white"]} 
