@@ -47,6 +47,7 @@ function ProductItem(item) {
       });
       idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
+    alert('This item was added to your cart!')
   }
 
   return (

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 //utilities
 import { PURCHASE_SEEDS } from "../utils/mutations";
 //chakra ui
-import { Box, Flex, Stack, Container } from "@chakra-ui/react";
+import { Box, Flex, Stack, Container, Heading } from "@chakra-ui/react";
 
 function SeedSuccess() {
     const [purchaseSeeds] = useMutation(PURCHASE_SEEDS);
@@ -25,7 +25,7 @@ function SeedSuccess() {
   
           setTimeout(()=>{
               window.location.assign("/profile");
-          },3000);
+          },9000);
 
         }
 
@@ -37,13 +37,13 @@ function SeedSuccess() {
 			<Stack m="2" alignContent="center" >
 				<Box fontSize="lg" align="center">
 					<Container>
-          🎉SUCCESS!🎉
+          <Heading as="h2">🎉SUCCESS!🎉</Heading>
 					</Container>
 					<Container>
-          🙌Thank you for purchasing seeds!🙌
+          <Heading as="h2">🙌Thank you for purchasing seeds!🙌</Heading>
 					</Container>
 					<Container>
-						You will now be redirected back to your profile. 
+					<Heading as="h2"></Heading>	You will now be redirected back to your Kiosk. 
 					</Container>
 				</Box>
       </Stack>
