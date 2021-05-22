@@ -9,7 +9,7 @@ import { QUERY_USER } from "../../utils/queries";
 import { idbPromise } from "../../utils/helpers";
 import Auth from '../../utils/auth';
 //chakra ui
-import { Box, Text, Input, Image, Container} from "@chakra-ui/react";
+import { Box, Text, Input, Image, Container, Button} from "@chakra-ui/react";
 
 const CartItem = ({ item }) => {
   const { data } = useQuery(QUERY_USER);

@@ -25,7 +25,7 @@ function SeedSuccess() {
   
           setTimeout(()=>{
               window.location.assign("/profile");
-          },9000);
+          },3000);
 
         }
 
