@@ -206,7 +206,7 @@ function AddProduct({setLoading}) {
         {
             toast({
                 title: "Product added.",
-                description: "Your Product has been added to you kosik.",
+                description: "Your Product has been added to your kiosk.",
                 status: "success",
                 isClosable: true,
             })
@@ -215,7 +215,7 @@ function AddProduct({setLoading}) {
         {
             toast({
                 title: "Product failed.",
-                description: "Your Product has failed to be added to you kosik.",
+                description: "Your Product has failed to be added to your kiosk.",
                 status: "error",
                 isClosable: true,
             })
