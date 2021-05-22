@@ -16,7 +16,6 @@ Please visit our completed webpage at:  https://sheltered-stream-52499.herokuapp
 - [Screenshots](#screenshots)
 - [License](#license)
 - [Contributing](#contributing)
-- [Learning](#learning)
 
 ## Description
 
@@ -88,9 +87,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 If you would like to contribute, please reach out to us. You can find us at https://github.com/orgs/DJ-KARMA/people
 
 
-## Learning
-Here are the highlights of what we learned and issues we had while writing this code:
-
-1. // INSERT LEARNING HIGHLIGHTS
 
 
