@@ -2,9 +2,9 @@
 
 ![GitHub license](https://img.shields.io/badge/license-MIT-ff69b4.svg)
 
-Please visit our completed webpage at:  // INSERT DEPLOYED PAGE HERE
+Please visit our completed webpage at:  https://sheltered-stream-52499.herokuapp.com/
 
-![website screenshot](https://github.com/) // INSERT SCREENSHOT HERE
+![website screenshot](./public/images/homepage.png?raw=true) 
 
 ## Table of Contents 
 
@@ -12,19 +12,17 @@ Please visit our completed webpage at:  // INSERT DEPLOYED PAGE HERE
 - [Installation](#installation)
 - [Usage](#usage)
 - [Deployed Link](#deployed-link)
-- [Demo](#demo)
 - [Languages and Technology](#languages-and-technology)
 - [Screenshots](#screenshots)
-- [Wireframe](#wireframe)
 - [License](#license)
 - [Contributing](#contributing)
 - [Learning](#learning)
 
 ## Description
 
-Currenseed is an online farmer’s market. There is no real world currency here. Products are paid for using “seeds” which can be purchased via credit card, earned by doing certain tasks such as logging in, and by interacting with the website (ie. Buying and making sales). Buyer’s can browse kiosks based on their location, to ensure that they are able to buy fresh produce and other items locally.
+Currenseed is an online farmer’s market. There is no real world currency here. Products are paid for using “seeds” which can be purchased via credit card, earned by doing certain tasks such as logging in, and by interacting with the website (ie. Buying and making sales). Buyer’s can browse kiosks based on their location, to ensure that they are able to buy fresh produce and other items locally. Buy local, online.
 
-Motivation for this idea was driven by the continued lock down and the change in weather. For many people, warmer weather means going to farmer’s markets and buying local fresh produce. As this is no longer an option for the foreseeable future, currenseed will fill this void. We made the decision to use our own currency to rewind to a simpler time of bartering and trading. 
+The motivation for this idea was driven by the continued lockdown, the maker movement, and the change in weather. For many people, warmer weather means going to farmer’s markets and buying local fresh produce. As this is no longer an option for the foreseeable future, currenseed will fill this void. We made the decision to use our own currency to rewind to a simpler time of bartering and trading. 
 
 
 ## Installation
@@ -41,8 +39,6 @@ git clone git@github.com:DJ-KARMA/currenseed.git
 // Install all the dependencies by typing code:
 npm i
 
-// INSERT REST OF THE STEPS HERE
-
 ```
 
 ## Usage
@@ -50,9 +46,7 @@ npm i
 
 ## Deployed Link
 
-
-## Demo
-
+https://sheltered-stream-52499.herokuapp.com/
 
 ## Languages and Technology
 
@@ -62,7 +56,7 @@ npm i
 - [React](https://reactjs.org/ "React")<br />
 - [Redux](https://redux.js.org/ "Redux")<br />
 - [Graphql](https://graphql.org/ "Graphql")<br />
-- [Apollo]("")<br />
+- [Apollo]("https://www.apollographql.com/" "Apollo")<br />
 - [Bcrypt](https://www.npmjs.com/package/bcrypt "Bcrypt")<br />
 - [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken "Jsonwebtoken")<br />
 - [Stripe](https://stripe.com/docs/api "Stripe")<br />
@@ -70,13 +64,11 @@ npm i
 
 
 ## Screenshots
-// INSERT SCREENSHOTS
-![sample screenshot](./assets/images/screenshot.jpg?raw=true) <br /><br />
-![sample screenshot](./assets/images/screenshot.jpg?raw=true) <br /><br />
 
-## Wireframe
-
-![webpage skeleton 1](https://github.com/) // INSERT WIREFRAMES HERE
+![sample screenshot](./public/images/signup.png?raw=true) <br /><br />
+![sample screenshot](./public/images/login.png?raw=true) <br /><br />
+![sample screenshot](./public/images/productpage.png?raw=true) <br /><br />
+![sample screenshot](./public/images/addproduct.png?raw=true) <br /><br />
 
 ## License
 
