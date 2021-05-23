@@ -18,7 +18,6 @@ const FooterLinks = () => {
         {name: 'Devin Jones', username: 'dvicj'},
         {name: 'Kristen Groller', username: 'Kgroll'},
         {name: 'Raed Altaki', username: 'raedaltaki'},
-        {name: 'Matthew Bianco', username: 'matthewAbianco'},
         {name: 'Andaleeb Farooq', username: 'cerafinn'},
         {name: 'Jon Shallcross', username: 'jshallcross'},
         {name: 'Hayley Vuylsteke', username: 'hayleyvuylsteke'}
