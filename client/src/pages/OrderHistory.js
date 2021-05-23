@@ -2,7 +2,7 @@
 import React from "react";
 //utilities
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_USER, QUERY_USER_BY_ID } from "../utils/queries";
+import { QUERY_USER } from "../utils/queries";
 //chakra ui
 import { Box, Image, Flex, Text, Heading } from '@chakra-ui/react';
 

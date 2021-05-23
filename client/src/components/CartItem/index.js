@@ -1,15 +1,13 @@
 //dependencies
 import React from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 //utilities
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 //chakra ui
-import { Box, Text, Input, Image, Container, Button} from "@chakra-ui/react";
+import { Box, Text, Input, Image } from "@chakra-ui/react";
 
 const CartItem = ({ item }) => {
-
-  const state = useSelector(state => state);
   
   const dispatch = useDispatch();
 

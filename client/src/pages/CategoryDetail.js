@@ -8,7 +8,7 @@ import { QUERY_CATEGORIES } from "../utils/queries";
 import ProductList from '../components/ProductList';
 import { Box, Container } from "@chakra-ui/react";
 
-const CategoryDetail = ({ }) => {
+const CategoryDetail = () => {
    const { categoryId } = useParams();
    const { data } = useQuery(QUERY_CATEGORIES);
     let categories = [];
