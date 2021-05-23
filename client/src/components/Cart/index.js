@@ -12,7 +12,7 @@ import { ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import Auth from '../../utils/auth';
 //chakra ui
-import {Button, Box, Text, Heading, SimpleGrid, useToast} from "@chakra-ui/react";
+import {Button, Box, Text, Heading, useToast} from "@chakra-ui/react";
 
 const Cart = () => {
     const buyer = useQuery(QUERY_USER);

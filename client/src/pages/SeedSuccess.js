@@ -1,7 +1,6 @@
 //dependencies
 import React, { useEffect } from "react";
 import { useMutation } from '@apollo/react-hooks';
-import { useDispatch, useSelector } from 'react-redux';
 //utilities
 import { PURCHASE_SEEDS } from "../utils/mutations";
 //chakra ui
@@ -9,8 +8,6 @@ import { Box, Flex, Stack, Container, Heading } from "@chakra-ui/react";
 
 function SeedSuccess() {
     const [purchaseSeeds] = useMutation(PURCHASE_SEEDS);
-    const state = useSelector(state => state);
-    const dispatch = useDispatch();
 
     useEffect(() => {
 

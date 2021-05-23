@@ -1,6 +1,6 @@
 //dependencies
 import React,{useState, useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLazyQuery } from '@apollo/react-hooks';
 //utilities
 import Auth from '../../utils/auth';
@@ -16,8 +16,6 @@ const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 const SeedItem = () => {
 
   const state = useSelector(state => state);
-  const dispatch = useDispatch();
-
 
   const [total,updateTotal] = useState(0);
   const handleChange = event => {
@@ -44,7 +42,7 @@ const SeedItem = () => {
         res.redirectToCheckout({ sessionId: data.checkout.session });
       });
     }
-  }, [data]);
+  }, [data, state]);
 
   return (
     <Box align="center"  d="flex" justifyContent="center" alignItems="center">
