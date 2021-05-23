@@ -2,7 +2,7 @@
 
 ![GitHub license](https://img.shields.io/badge/license-MIT-ff69b4.svg)
 
-Please visit our completed webpage at:  https://sheltered-stream-52499.herokuapp.com/
+Please visit our completed webpage at:  https://currenseed.herokuapp.com/
 
 ![website screenshot](./client/public/images/homepage.png?raw=true) 
 
@@ -45,7 +45,7 @@ npm i
 
 ## Deployed Link
 
-https://sheltered-stream-52499.herokuapp.com/
+https://currenseed.herokuapp.com/
 
 ## Languages and Technology
 
