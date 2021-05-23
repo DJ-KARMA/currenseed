@@ -1,15 +1,29 @@
+//dependencies
 import React from "react";
 import { useParams } from 'react-router-dom';
-// import { Box, Heading, Flex, Image, Text} from "@chakra-ui/react";
+import { useQuery } from '@apollo/react-hooks';
+//utilities
+import { QUERY_CATEGORIES } from "../utils/queries";
+//components
 import ProductList from '../components/ProductList';
-// import { QUERY_PRODUCTS} from "../utils/queries";
+import { Box, Container } from "@chakra-ui/react";
 
-// /categories/:categoryId
-
-function CategoryDetail ({ }) {
+const CategoryDetail = () => {
    const { categoryId } = useParams();
+   const { data } = useQuery(QUERY_CATEGORIES);
+    let categories = [];
+        if (data) {
+        categories = data.categories;
+        }
 
-    return <ProductList categoryId={categoryId} />
-}
+    const currentCategory = categories.find(category => categoryId === category._id);
+    return (
+    <Box>
+    <Box>
+		<Container fontSize="3xl" align="center" fontWeight="bold" color="brand.500">{currentCategory?.name}</Container>
+	</Box>
+    <ProductList categoryId={categoryId} />
+    </Box>)
 
-export default CategoryDetail
+}; 
+export default CategoryDetail;

@@ -10,7 +10,9 @@ import {
     CLEAR_CART,
     TOGGLE_CART,
     GET_USERID,
-    PURCHASE_SEED
+    PURCHASE_SEED,
+    SPEND_SEED,
+    REMOVE_FROM_KIOSK
 } from './actions';
 
 const defaultState ={
@@ -20,7 +22,7 @@ const defaultState ={
   categories: [],
   currentCategrory: '',
   userId: '',
-  seeds:0,
+  seeds: 0,
   parchaseSeeds:0
 }
 
@@ -54,6 +56,11 @@ const defaultState ={
           ...state, 
           parchaseSeeds: action.parchaseSeeds
         }
+      case SPEND_SEED: 
+        return {
+          ...state, 
+          spendSeeds: action.spendSeeds
+        }
       case ADD_TO_CART: 
         return {
             ...state, 
@@ -73,6 +80,14 @@ const defaultState ={
           ...state,
           cartOpen: newState.length > 0,
           cart: newState
+        };
+      case REMOVE_FROM_KIOSK:
+        let kioskState = state.products.filter(product => {
+          return product._id !== action._id;
+        });
+        return {
+          ...state,
+          products: kioskState
         };
 
       case UPDATE_CART_QUANTITY:

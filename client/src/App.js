@@ -11,18 +11,22 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 import Home from "./pages/Home";
 import Footer from './pages/Footer';
-import Detail from "./pages/Detail";
-// import NoMatch from "./pages/NoMatch";
+import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Success from "./pages/Success";
 import Nav from "./components/Nav";
 import sellerProfile from "./pages/sellerProfile";
-//import OrderHistory from "./pages/OrderHistory";
-//import SellHistory from "./pages/SellHistory";
+import OrderHistory from "./pages/OrderHistory";
+import SellHistory from "./pages/SellHistory";
 import CategoryDetail from "./pages/CategoryDetail"
-import Cart from "./components/Cart";
+//seed component and pages
+import SeedCart from "./components/SeedCart";
 import SeedItem from './components/SeedItem';
+import SeedSuccess from "./pages/SeedSuccess";
+//product component and pages 
+import Cart from "./components/Cart";
+import CartItem from "./components/CartItem";
+
 
 
 const client = new ApolloClient({
@@ -63,20 +67,21 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
-
-            <Route exact path="/success" component={Success} />
-            <Route exact path="/category/:categoryId" component={CategoryDetail} />
-            <Route exact path="/products/:id" component={Detail} />
-            <Route exact path="/cart" component={Cart}/>
             <Route exact path="/profile" component={sellerProfile}/>
+            <Route exact path="/orderHistory" component={OrderHistory} />
+            <Route exact path="/sellHistory" component={SellHistory} />
+
+            
+            <Route exact path="/category/:categoryId" component={CategoryDetail} />
+
+            <Route exact path="/SeedCart" component={SeedCart}/>
+            <Route exact path="/SeedSuccess" component={SeedSuccess} />
             <Route exact path="/SeedItem" component={SeedItem}/>
 
-            {/*
-            <Route exact path="/orderHistory" component={OrderHistory} />
-            <Route exact path="/products/:id" component={Detail} />
-                        
+            <Route exact path="/cart" component={Cart}/>
+            <Route exact path="/CartItem" component={CartItem}/>
+
             <Route component={NoMatch} />
-            */}
 
           </Switch>
           <Footer/>

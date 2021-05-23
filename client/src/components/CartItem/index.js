@@ -1,14 +1,13 @@
-import React from 'react';
+//dependencies
+import React from "react";
+import { useDispatch } from 'react-redux';
+//utilities
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
-import { useDispatch, useSelector } from 'react-redux';
-import { Box, Text, Input, Image, Container } from "@chakra-ui/react";
+//chakra ui
+import { Box, Text, Input, Image } from "@chakra-ui/react";
 
 const CartItem = ({ item }) => {
-
-  const state = useSelector((state) => {
-    return state
-  });
   
   const dispatch = useDispatch();
 
@@ -40,13 +39,16 @@ const CartItem = ({ item }) => {
             idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(value) });
           }
       };
+
+
       
   return (
-    <Container>
-    <Box align='center'>
+    <>
+    <Box align='center'  m="20px" >
       <Box 
+
       align='center'
-      w='300px'
+      w='150px'
       border='2px'
       borderColor= 'brand.900'
       overflow='sm'
@@ -57,7 +59,17 @@ const CartItem = ({ item }) => {
         />
       </Box>
       <Box>
-        <Box>{item.name} {item.price}</Box>
+        <Box>{item.name}
+          <Text
+            role="img"
+            size="lg"
+            aria-label="trash"
+            onClick={() => removeFromCart(item)}
+          >
+            🗑️
+          </Text>
+        </Box>
+        <Box> {item.price} 🌱</Box>
         <Box>
           <Text mb="8px" align="center">Qty:</Text>
           <Input
@@ -68,18 +80,11 @@ const CartItem = ({ item }) => {
             value={item.purchaseQuantity}
             onChange={onChange}
           />
-          <Text
-            role="img"
-            size="lg"
-            aria-label="trash"
-            onClick={() => removeFromCart(item)}
-          >
-            🗑️
-          </Text>
         </Box>
+        
       </Box>
     </Box>
-    </Container>
+    </>
   );
 }
 

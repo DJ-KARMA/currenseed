@@ -1,9 +1,11 @@
+//dependencies
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
+//utilities
 import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
-
+//chakra ui 
 import {
     Flex,
     Box,
@@ -12,11 +14,7 @@ import {
     FormLabel,
     Input,
     Button,
-    //Checkbox,
-    //Stack,
     Text
-    //setFirstName, 
-    //setLastName
 } from '@chakra-ui/react';
 
 export default function Signup(props) {
@@ -47,7 +45,7 @@ export default function Signup(props) {
  
     return (
 
-        <Flex width="full" align="center" justifyContent="center">
+        <Flex width="full" align="center" justifyContent="center" pb={8}>
             <Box p={8} maxWidth="500px" borderWidth={1} borderRadius={8} boxShadow="lg">
                 <Box textAlign="center">
                     <Text>
@@ -114,19 +112,13 @@ export default function Signup(props) {
                                 onChange={handleChange}
                             />
                         </FormControl>
-                        {/* <FormControl isRequired>
-                            <FormLabel htmlFor="seeds">Enter a number between 1 and 100</FormLabel>
-                            <Input
-                                type="seeds"
-                                name="seeds"
-                                id="seeds"
-                                placeholder="Niagara Region"
-                                size="lg"
-                                onChange={handleChange}
-                            />
-                        </FormControl> */}
                         <Button
-                            // variantColor="teal"
+                            color={["white"]} 
+                            size="lg"
+                            bg={["brand.800"]}
+                                _hover={{
+                                color: ["brand.500"]
+                                }}
                             variant="outline"
                             type="submit"
                             width="full"

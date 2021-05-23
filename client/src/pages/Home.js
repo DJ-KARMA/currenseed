@@ -1,9 +1,10 @@
+//dependencies
 import React from "react";
-import { QUERY_CATEGORIES } from "../utils/queries";
 import { useQuery } from '@apollo/react-hooks';
+//utilities
+import { QUERY_CATEGORIES } from "../utils/queries";
+//chakra ui
 import { Box, Image, Flex, Text, Button,Stack, Container, SimpleGrid } from "@chakra-ui/react";
-//import CategoryMenu from "../components/CategoryMenu"
-
 
 const Home = () => {
 const { data } = useQuery(QUERY_CATEGORIES);
@@ -11,7 +12,6 @@ const { data } = useQuery(QUERY_CATEGORIES);
   if (data) {
     categories = data.categories;
    }
-   console.log(categories)
 
    return (
 			
@@ -61,7 +61,7 @@ const { data } = useQuery(QUERY_CATEGORIES);
 										size="lg"
 										bg={["brand.800"]}
 										_hover={{
-											bg: ["white"]
+											bg: ["whitesmoke"]
 											}}
 										>
 											See More
@@ -74,23 +74,6 @@ const { data } = useQuery(QUERY_CATEGORIES);
 
 		</Flex>
 	)
-	}
-
-
-	const Categories = () => {
-	/*	const data = [
-			{id: 1, title: "Craft Beers", content: "Check out local vendors selling their craft beers", src:"beer-1-min", alt:"Glass of beer on a table"},
-			{id: 2, title: "Fresh Produce", content: "Check out local farmers selling their fresh produce", src:"produce-3-min", alt: "Oranges in a bowl and sliced on a table"},
-			{id: 3, title: "Jewelry", content: "Check out vendors selling their handmade jewelry", src:"jewelry-1-min", alt: "Necklaces hanging, silver heart and two gold circular"},
-			{id: 4, title: "Artisan Cheese", content: "Check out local vendors selling their artisan cheese", src:"cheese-2-min", alt: "Charcuterie board with assorted cheese, crackers and fruits"},
-			{id: 5, title: "Fresh Meat", content: "Check out local vendors selling their fresh meats", src:"meat-2-min", alt: "Seasoned lamb racks on a baking tray"},
-			{id: 6, title: "Handmade Items", content: "Check out vendors selling handmade items", src:"soap-2-min", alt:"Four handmade soap bars on a table"},
-			{id: 7, title: "Baked Goods", content: "Check out vendors selling homemade baked items", src:"baked-goods-2-min", alt:"Six assorted cookies on a table"},
-			{id: 8, title: "Wine", content: "Check out what local wineries have to offer", src:"wine-2-min", alt: "A glass of red and white wine on a table"}
-		]*/
-
-
-		
 	}
 
 export default Home;

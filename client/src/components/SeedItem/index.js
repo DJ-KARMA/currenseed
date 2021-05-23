@@ -1,13 +1,14 @@
+//dependencies
 import React,{useState, useEffect} from 'react';
-import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY , PURCHASE_SEED} from '../../utils/actions';
-import { idbPromise } from "../../utils/helpers";
-import { useDispatch, useSelector } from 'react-redux';
-import { Box, Text, Input, Image, Button, Heading } from "@chakra-ui/react";
-import Auth from '../../utils/auth';
+import { useSelector } from 'react-redux';
 import { useLazyQuery } from '@apollo/react-hooks';
-import {  QUERY_CHECKOUT} from "../../utils/queries";
+//utilities
+import Auth from '../../utils/auth';
+import {QUERY_CHECKOUT} from "../../utils/queries";
+//stripe functionality
 import { loadStripe } from '@stripe/stripe-js';
-
+//chakra ui 
+import { Box, Text, Input, Image, Button, Heading } from "@chakra-ui/react";
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
@@ -15,8 +16,6 @@ const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 const SeedItem = () => {
 
   const state = useSelector(state => state);
-  const dispatch = useDispatch();
-
 
   const [total,updateTotal] = useState(0);
   const handleChange = event => {
@@ -36,32 +35,30 @@ const SeedItem = () => {
   }
   
   useEffect(() => {
-
-    console.log("state",state);
     if (data) {
       stripePromise.then((res) => {
         res.redirectToCheckout({ sessionId: data.checkout.session });
       });
     }
-  }, [data]);
+  }, [data, state]);
 
   return (
     <Box align="center"  d="flex" justifyContent="center" alignItems="center">
       <Box align='center' m="30px" width="500px">
         <Box 
         align='center'
-        w='300px'
+        w='200px'
         border='2px'
         borderColor= 'brand.900'
         overflow='sm'
         bg='brand.700'>
           <Image
-            src={`images/beer-1-min.jpg`}
+            src={`images/flowers-1-min.jpg`}
             alt=""
           />
         </Box>
         <Box>
-          <Box>Seed $1</Box>
+          <Box>1 🌱 = $1</Box>
           <Box>
             <Text mb="8px" align="center">Qty:</Text>
             <Input
@@ -75,10 +72,11 @@ const SeedItem = () => {
         </Box>
       </Box>
       <Box  width="300px" m="30px">
-        <Heading>Seeds: ${total?total:0}</Heading>
+        <Heading>{total?total:0}🌱= ${total?total:0}</Heading>
         {
           Auth.loggedIn() ?
             <Button 
+            m="20px"
             onClick={submitCheckout}
             size="sm"
             rounded="md"

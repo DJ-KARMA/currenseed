@@ -10,17 +10,15 @@ const resolvers = {
     },
     products: async (parent, { category, name }) => {
       const params = {};
-  
+
       if (category) {
         params.category = category;
       }
   
       if (name) {
-        params.name = {
-          $regex: name
-        };
+        params.name = { $regex: name };
       }
-  
+
       return await Product.find(params).populate('category');
     },
     product: async (parent, { _id }) => {
@@ -35,18 +33,15 @@ const resolvers = {
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id)
-        .populate(
-        {
+        .populate({
           path: 'orders.products',
           populate: 'category'
         })
-        .populate(
-        {
+        .populate({
           path: 'purchases.products',
           populate: 'category'
         })
-        .populate(
-        {
+        .populate({
           path: 'sales.products',
           populate: 'category'
         });
@@ -57,6 +52,31 @@ const resolvers = {
       }
   
       throw new AuthenticationError('Not logged in');
+    },
+    getUserById: async (parent, args, context) => {
+      
+        const user = await User.findById(args._id)
+        .populate({
+          path: 'orders.products',
+          populate: 'category'
+        })
+        .populate({
+          path: 'purchases.products',
+          populate: 'category'
+        })
+        .populate({
+          path: 'sales.products',
+          populate: 'category'
+        });
+  
+        user.purchases.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        user.sales.sort((a, b) => b.purchaseDate - a.purchaseDate);
+
+      if (user) {
+        return user;
+      }
+  
+      throw new AuthenticationError('Not available');
     },
     orders: async (parent, { _id }, context) => {
       if (context.user) {
@@ -72,24 +92,11 @@ const resolvers = {
     },
     checkout: async (parent, { price, quantity }, context) => {
       const url = new URL(context.headers.referer).origin;
-      // const user = await User.findById(context.user._id);
-      console.log("price",price);
-      console.log("quantity",quantity);
-
-      // const seeds = new Product({name:"seeds", price: args.price, quantity: args.quantity});
-      // console.log("seeds",seeds);
-
-      // const order = new Order({ products: [product._id], sellerId: "currenseed", buyerId: context.user._id});
-      // const { products } = await order.populate('products').execPopulate();
+  
       const line_items = [];
   
-      // for (let i = 0; i < seeds.length; i++) 
-      // {
-        // generate product id
         const product = await stripe.products.create({
           name: `${quantity} seeds`,
-          // description: "100",
-          //images: [`${url}/images/${products[i].image}`]
         });
   
         // generate price id using the product id
@@ -104,12 +111,12 @@ const resolvers = {
           price: price1.id,
           quantity: 1
         });
-      // }
-      const session = await stripe.checkout.sessions.create({
+
+        const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items,
         mode: 'payment',
-        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${url}/SeedSuccess?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`
       });
         
@@ -124,7 +131,6 @@ const resolvers = {
       return { token, user };
     },
     addOrder: async (parent, { products }, context) => {
-      console.log(context);
       if (context.user) {
         const order = new Order({ products });
 
@@ -135,25 +141,49 @@ const resolvers = {
   
       throw new AuthenticationError('Not logged in');
     },
+    addPurchase: async (parent, { products }, context) => {
+      if (context.user) {
+        const purchase = new Order({ products });
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { purchases: purchase } });
+  
+        return purchase;
+      }
+  
+      throw new AuthenticationError('Not logged in');
+    },
+    addSaleById: async (parent, {_id, products}, context) => {
+        const sale = new Order({ products });
+
+        await User.findByIdAndUpdate(_id, { $push: { sales: sale } },{new: true});
+  
+        return sale;
+      },
+
     addSeeds: async (parent, {_id, seeds }) => {
       const increment = Math.random().toPrecision(2);
 
       return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }},{new: true});
     },
+    addSeedsById: async (parent, {_id, seeds }) => {
+      const increment = parseFloat(seeds);
+
+      return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }},{new: true});
+    },
     purchaseSeeds: async (parent, {seeds },context) => {
       const increment = parseFloat(seeds);
-      console.log("increment",increment);
+
       return await User.findByIdAndUpdate(context.user._id, {$inc: { seeds: increment }},{new: true});
+    },
+    spendSeeds: async (parent, {seeds}, context) => {
+      const decrease = parseFloat(seeds);
+      return await User.findByIdAndUpdate(context.user._id, {$inc: {seeds: - decrease }}, {new: true})
     },
     addProduct: async (parent,  data , context) => {
       if(context.user) {
-        console.log("data",data);
         const category = await Category.findOne({name:data.category});
-        console.log("category", category)
-        const product = new Product ( {name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category._id, userId: context.user._id });
-        console.log("product",product);
+        const product = await Product.create({name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category._id, sellerId: context.user._id });
         const user = await User.findByIdAndUpdate(context.user._id, { $push: { products: product } }, {new: true});
-        console.log("user",user);
 
         return user; 
       }
@@ -183,11 +213,18 @@ const resolvers = {
     },
     deleteProduct: async (parent, { productId }, context) => {
       if (context.user) {
+        const increment = Math.random().toPrecision(2) *-1;
+
+        console.log ("increment",increment);
+        console.log ("productId",productId);
+
         const updateUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { products: { productId } } },
+          { $pull: { products: { _id: productId }} ,$inc: { seeds: increment }},
           { new: true }
         );
+
+        console.log("updateUser",updateUser);
         return updateUser;
       }
       throw new AuthenticationError('You must be logged in to remove a product from your shop')

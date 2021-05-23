@@ -1,26 +1,25 @@
+//dependencies
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import OrderHistory from "./OrderHistory";
-import SellHistory from "./SellHistory";
-import ProductItem from "../components/ProductItem";
-//import AddItem from "../components/AddItem";
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { QUERY_USER, QUERY_CATEGORIES } from "../utils/queries";
+//components
+import ProductItem from "../components/ProductItem";
+//utilities
+import { QUERY_USER } from "../utils/queries";
 import { ADD_PRODUCT, ADD_SEEDS } from "../utils/mutations";
-import { UPDATE_PRODUCTS, UPDATE_SEEDS, UPDATE_CATEGORIES } from "../utils/actions"
+import { UPDATE_PRODUCTS, UPDATE_SEEDS } from "../utils/actions"
 import { idbPromise } from "../utils/helpers";
-
-// import { Link as ReactLink } from "react-router-dom";
-import { Box, Image, Flex, Text, Divider, useDisclosure, Drawer,
+//chakra ui
+import { Box, Flex, Text, Divider, useDisclosure, Drawer,
     DrawerBody,
     DrawerFooter,
     DrawerHeader,
     DrawerOverlay,
     DrawerContent,
+    useToast,
     DrawerCloseButton, Heading, Input, FormControl, FormLabel, Select, Button } from '@chakra-ui/react';
 
-function SellerProfile() {
+const SellerProfile = ({ item }) => {
 
     const state = useSelector(state => state);
     const dispatch = useDispatch();
@@ -28,20 +27,12 @@ function SellerProfile() {
     const [loading2, setLoading] = useState(true);
 
     const { loading, data } = useQuery(QUERY_USER);
-    
-    const { loading3, data2 } = useQuery(QUERY_CATEGORIES);
 
     let user;
 
     if (data) {
-         user = data.user;
+        user = data.user;
     }
-
-    // let categories;
-
-    // if (data2) {
-    //     categories = data2.categories;
-    // }
 
     const [addSeeds] = useMutation(ADD_SEEDS);
 
@@ -59,56 +50,27 @@ function SellerProfile() {
     };
     console.log("state",state);
     console.log("user",user);
-    // console.log("data2",data2);
-
-
+    
     useEffect(() => 
-    {
-        // console.log(data2,loading3)
-        // console.log(state);
-        // if(data2)
-        // {
-        //     dispatch({
-        //         type: UPDATE_CATEGORIES,
-        //         categories: categories
-        //     });
-        //     console.log("data2",data2);
-        //     data2.categories.forEach((category) => 
-        //     {
-        //         idbPromise('categories', 'put', category);
-        //     });
-
-        // }
-        // else if (!loading3) 
-        // {
-        //     idbPromise('categories', 'get').then((categories) => 
-        //     {
-        //         // use retrieved data to set global state for offline browsing
-        //         dispatch({
-        //             type: UPDATE_CATEGORIES,
-        //             categories: categories
-        //         });
-        //     });
-        // }
-        
+    {        
         // if there's data to be stored
         if (data) 
         {
             dispatch({
-                type: UPDATE_SEEDS,
-                seeds: user.seeds
-            });
-            // let's store it in the global state object
-            dispatch({
                 type: UPDATE_PRODUCTS,
                 products: user.products
             });
-         
+
+            dispatch({
+                type: UPDATE_SEEDS,
+                seeds: user.seeds
+            });         
+        
         
             // but let's also take each product and save it to IndexedDB using the helper function 
             data.user.products.forEach((product) => 
             {
-                idbPromise('products', 'put', product);
+                idbPromise('products', 'pull', product);
             });
 
             // add else if to check if `loading` is undefined in `useQuery()` Hook
@@ -126,21 +88,16 @@ function SellerProfile() {
             });
 
         }
-    }, [state.products.length,state.seeds,data,state.categories.length, loading, dispatch]);
+    }, [state.products.length, state.seeds, data,state.categories.length, loading, dispatch]);
     
-    // useEffect(() => 
-    // {
-    //     setLoading(false);
-
-    // }, [state.products.length]);
-
+    const pseeds = state.seeds.toFixed(2);
 
     return (
         <>
         {user ? (
         <Box margin={10}>   
             <Box>
-                <Flex height="100hv" alignItems="top" justifyContent="space-between">  
+                <Flex height="100hv" alignItems="top" justifyContent="space-between"  flexWrap="wrap">  
                     <Box>   
                         <Text m={2} fontSize="xx-large" fontWeight="semibold" lineHeight="short">
                             {user.firstName}'s Kiosk
@@ -150,10 +107,15 @@ function SellerProfile() {
                         </Text>
                     </Box>
                     <Text m={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
-                        Seeds: {state.seeds} 
+                        {pseeds}🌱 
                     </Text>
                     <Button
-                            variant="outline"
+                        color={["white"]} 
+                        size="lg"
+                        bg={["brand.800"]}
+                         _hover={{
+                        color: ["brand.500"]
+                        }}
                             type="submit"
                             width=""
                             mt={4}
@@ -188,7 +150,7 @@ function SellerProfile() {
                                     quantity={product.quantity}
                                     description={product.description}
                                     category={product.category}
-                                    userId={product.userId}
+                                    sellerId={product.sellerId}
                                 />
                                 </Box>
                             ))}
@@ -196,21 +158,6 @@ function SellerProfile() {
                     ) : (
                         <Heading>You haven't added any products yet!</Heading>
                     )}
-                </Box>
-            </Box>
-            
-            <Box d="flex" height="100hv" width="100%" alignItems="top" justifyContent="space-around" flexWrap="wrap">
-
-                <Box m="1" width="48%" minWidth="450px" textAlign="center" borderWidth={1} borderRadius={8} boxShadow="lg">
-                    <Box borderWidth="1px" width="90%" minHeight="400px"  my="20px" mx="auto" textAlign="center">
-                        <OrderHistory/>
-                    </Box>
-                </Box> 
-
-                <Box m="1" width="48%" minWidth="450px" textAlign="center" borderWidth={1} borderRadius={8} boxShadow="lg">
-                    <Box borderWidth="1px" width="90%" minHeight="400px"  my="20px" mx="auto" textAlign="center">
-                        <SellHistory/>
-                    </Box>
                 </Box>
             </Box>
         </Box> 
@@ -223,11 +170,15 @@ function SellerProfile() {
 function AddProduct({setLoading}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
-    const state = useSelector(state => state);
+
+    const dispatch = useDispatch();
+
+    const { data } = useQuery(QUERY_USER);
 
     const [formState, setFormState] = useState({ name: '', description: '', price: '', quantity: '', category: ''});
     const [addProduct] = useMutation(ADD_PRODUCT);
-    
+    const toast = useToast();
+
     const handleFormSubmit = async event => 
     {
         event.preventDefault();
@@ -238,9 +189,29 @@ function AddProduct({setLoading}) {
                 description: formState.description,
                 price: parseFloat(formState.price), 
                 quantity: parseInt(formState.quantity),
-                category: formState.category
+                category: formState.category,
+                sellerId: data.user._id
             }
         });
+
+        if(mutationResponse)
+        {
+            toast({
+                title: "Product added.",
+                description: "Your Product has been added to your kiosk.",
+                status: "success",
+                isClosable: true,
+            })
+        }
+        else
+        {
+            toast({
+                title: "Product failed.",
+                description: "Your Product has failed to be added to your kiosk.",
+                status: "error",
+                isClosable: true,
+            })
+        }
 
         setLoading(false);
         console.log("mutationResponse.data.addProduct.products",mutationResponse.data.addProduct.products);
@@ -258,34 +229,17 @@ function AddProduct({setLoading}) {
         [name]: value
       });
     };
-
-    const dispatch = useDispatch();
-
-    const { loading, data } = useQuery(QUERY_USER);
-    
-    let user;
-
-    if (data) {
-         user = data.user;
-    }
-
-    // const [addSeeds] = useMutation(ADD_SEEDS);
-
-    // const handleSeedAdd = async event => {
-    //     event.preventDefault(); 
-    //     const mutationResponse = await addSeeds({ variables: { _id: user._id, seeds: user.seeds } }); 
-      
-    //     dispatch({
-    //         type: UPDATE_SEEDS,
-    //         products: mutationResponse.data.addSeeds
-    //     });
-
-    //     console.log(mutationResponse.data.addSeeds);
-    // };
  
     return (
 <>
-            <Button ref={btnRef} bgColor="brand.500" size="lg" onClick={onOpen}>
+            <Button ref={btnRef} 
+                    color={["white"]} 
+                    size="lg"
+                    bg={["brand.800"]}
+                    _hover={{
+                    color: ["brand.500"]
+                    }}
+            onClick={onOpen}>
                 Add Product
             </Button>
             <Drawer
@@ -360,15 +314,26 @@ function AddProduct({setLoading}) {
                             </FormControl>
                         </DrawerBody>
                         <DrawerFooter mt="8">
-                            <Button variant="outline" mr={3} onClick={onClose}>
+                            <Button 
+                                color={["white"]} 
+                                size="lg"
+                                bg={["brand.800"]}
+                                _hover={{
+                                 color: ["brand.500"]
+                                 }}
+                            
+                            mr={3} onClick={onClose}>
                                 Cancel
                             </Button>
                             <Button
-                                // variantColor="teal"
-                                variant="outline"
+                                color={["white"]} 
+                                size="lg"
+                                bg={["brand.800"]}
+                                    _hover={{
+                                    color: ["brand.500"]
+                                    }}
                                 type="submit"
                                 width="full"
-                                // mt={4}
                             >
                                 Add Product to Kiosk
                             </Button>

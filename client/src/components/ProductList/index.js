@@ -1,13 +1,14 @@
+//dependencies 
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-
-import ProductItem from "../ProductItem";
-import { QUERY_PRODUCTS } from "../../utils/queries";
-
 import { useSelector, useDispatch } from 'react-redux';
+//components
+import ProductItem from "../ProductItem";
+//utilities
+import { QUERY_PRODUCTS } from "../../utils/queries";
 import { UPDATE_PRODUCTS } from '../../utils/actions';
-
 import { idbPromise } from "../../utils/helpers";
+//chakra ui
 import { Heading, Box } from '@chakra-ui/layout';
 
 function ProductList({ categoryId }) {
@@ -31,7 +32,7 @@ function ProductList({ categoryId }) {
         type: UPDATE_PRODUCTS,
         products: data.products
       });
-  
+
       // but let's also take each product and save it to IndexedDB using the helper function 
       data.products.forEach((product) => {
         idbPromise('products', 'put', product);
@@ -60,7 +61,7 @@ function ProductList({ categoryId }) {
   return (
     <Box fontSize="lg" align="center">
       {state.products.length ? (
-        <Box className="flex-row">
+        <Box d="flex" justifyContent="center" m="20px" flexWrap="wrap">
             {filterProducts().map(product => (
                 <ProductItem
                   key= {product._id}
@@ -71,12 +72,12 @@ function ProductList({ categoryId }) {
                   quantity={product.quantity}
                   description={product.description}
                   category={product.category}
-                  userId={product.userId}
+                  sellerId={product.sellerId}
                 />
             ))}
         </Box>
       ) : (
-        <Heading>You haven't added any products yet!</Heading>
+        <Heading>No products yet!</Heading>
       )}
     </Box>
   );

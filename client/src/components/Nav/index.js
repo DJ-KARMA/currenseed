@@ -1,11 +1,13 @@
+//dependencies
 import React from "react";
-import { Link, Box, Flex, Text, Button, Stack, IconButton } from "@chakra-ui/react";
-import { FaShoppingCart, FaCoins } from "react-icons/fa";
-import { CloseButton} from "@chakra-ui/react";
+//utilities
 import Auth from "../../utils/auth"
+//chakra ui
+import { Link, Box, Flex, Text, Button, Stack, IconButton } from "@chakra-ui/react";
+import { FaShoppingCart, FaSeedling } from "react-icons/fa";
+import { CloseButton} from "@chakra-ui/react";
 import Logo from "./Logo";
-import SeedItem from "../SeedItem";
-import SellerProfile from "../../pages/sellerProfile";
+
 
 const Nav = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -87,7 +89,9 @@ const MenuLinks = ({ isOpen }) => {
             pt={[4, 4, 0, 0]}
           >
             <MenuItem to="/">Home</MenuItem>
-            <MenuItem to="/profile/">My Profile</MenuItem>
+            <MenuItem to="/profile/">My Kiosk</MenuItem>
+            <MenuItem to="/orderHistory">My Purchases</MenuItem>
+            <MenuItem to="/sellHistory">My Sales</MenuItem>
             <MenuItem to="/">
               <Button
                 onClick={() => Auth.logout()}
@@ -103,8 +107,7 @@ const MenuLinks = ({ isOpen }) => {
               </Button>
             </MenuItem>
             <MenuItem to="/cart"><IconButton icon={<FaShoppingCart/>} size="md" ></IconButton></MenuItem>
-            <MenuItem to="/SeedItem"><IconButton icon={<FaCoins/>} size="md" >$</IconButton></MenuItem>
-
+            <MenuItem to="/SeedItem"><IconButton icon={<FaSeedling/>} size="md" >$</IconButton></MenuItem>
             
           </Stack>
         </Box>
@@ -123,7 +126,7 @@ const MenuLinks = ({ isOpen }) => {
             pt={[4, 4, 0, 0]}
           >
             <MenuItem to="/">Home</MenuItem>
-            <MenuItem to="/login">My Profile</MenuItem>
+            <MenuItem to="/login">My Kiosk</MenuItem>
             <MenuItem to="/signup">
               <Button
                 size="sm"
