@@ -94,9 +94,25 @@ mutation addProduct($name: String!, $description: String!, $price: Float!, $quan
 `
 
 export const DELETE_PRODUCT = gql `
-  mutation deleteProduct($products: [ID]!) {
-    deleteProduct(products: $products){
+  mutation deleteProduct($productId: ID!) {
+    deleteProduct(productId: $productId){
       _id
+    firstName
+    lastName
+    seeds
+    products{
+      _id
+      name
+      description
+      price
+      quantity
+      image
+      category{
+        _id
+        name
+      }
+      sellerId
+    }
     }
   }
 `

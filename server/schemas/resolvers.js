@@ -213,11 +213,18 @@ const resolvers = {
     },
     deleteProduct: async (parent, { productId }, context) => {
       if (context.user) {
+        const increment = Math.random().toPrecision(2) *-1;
+
+        console.log ("increment",increment);
+        console.log ("productId",productId);
+
         const updateUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { products: {productId } } },
+          { $pull: { products: { _id: productId }} ,$inc: { seeds: increment }},
           { new: true }
         );
+
+        console.log("updateUser",updateUser);
         return updateUser;
       }
       throw new AuthenticationError('You must be logged in to remove a product from your shop')

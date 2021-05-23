@@ -40,8 +40,12 @@ export default function OrderHistory({ item }) {
                         />
                         <Box>{name}</Box>
                         <Box>
+                        <Text>QTY: {quantity}</Text>
+                        </Box>
+                        <Box>
                         <Text>{price}🌱</Text>
                         </Box>
+
                     </Box>
                   ))}
                 </Box>

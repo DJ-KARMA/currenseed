@@ -5,9 +5,9 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 //components
 import ProductItem from "../components/ProductItem";
 //utilities
-import { QUERY_USER, QUERY_CATEGORIES } from "../utils/queries";
-import { ADD_PRODUCT, ADD_SEEDS, DELETE_PRODUCT } from "../utils/mutations";
-import { UPDATE_PRODUCTS, UPDATE_SEEDS, REMOVE_FROM_KIOSK } from "../utils/actions"
+import { QUERY_USER } from "../utils/queries";
+import { ADD_PRODUCT, ADD_SEEDS } from "../utils/mutations";
+import { UPDATE_PRODUCTS, UPDATE_SEEDS } from "../utils/actions"
 import { idbPromise } from "../utils/helpers";
 //chakra ui
 import { Box, Flex, Text, Divider, useDisclosure, Drawer,
@@ -27,9 +27,6 @@ const SellerProfile = ({ item }) => {
     const [loading2, setLoading] = useState(true);
 
     const { loading, data } = useQuery(QUERY_USER);
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    
-    const { loading3, data2 } = useQuery(QUERY_CATEGORIES);
 
     let user;
 
@@ -53,48 +50,7 @@ const SellerProfile = ({ item }) => {
     };
     console.log("state",state);
     console.log("user",user);
-
-    const [deleteProduct] = useMutation(DELETE_PRODUCT);
-    const toast = useToast();
-    let productId; 
-
-    const removeFromKiosk = async event => 
-    {
-        onClose();
-        const mutationResponse = await deleteProduct({
-            variables: {
-                productId: data.user.product._id
-            }
-        });
-
-        if(mutationResponse)
-        {
-            toast({
-                title: "Product delete.",
-                description: "Your Product has been deleted from your kosik.",
-                status: "success",
-                isClosable: true,
-            })
-        }
-        else
-        {
-            toast({
-                title: "Product failed.",
-                description: "Your Product could not be deleted from your kiosk.",
-                status: "error",
-                isClosable: true,
-            })
-        }
-
-        setLoading(false);
-        console.log("mutationResponse.data.addProduct.products",mutationResponse.data.deleteProduct.products);
-
-        dispatch({
-            type: UPDATE_PRODUCTS,
-            products: data.user.products
-        });
-    };
-
+    
     useEffect(() => 
     {        
         // if there's data to be stored
@@ -104,6 +60,11 @@ const SellerProfile = ({ item }) => {
                 type: UPDATE_PRODUCTS,
                 products: user.products
             });
+
+            dispatch({
+                type: UPDATE_SEEDS,
+                seeds: user.seeds
+            });         
         
         
             // but let's also take each product and save it to IndexedDB using the helper function 
@@ -209,11 +170,10 @@ const SellerProfile = ({ item }) => {
 function AddProduct({setLoading}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
-    const state = useSelector(state => state);
 
     const dispatch = useDispatch();
 
-    const { loading, data } = useQuery(QUERY_USER);
+    const { data } = useQuery(QUERY_USER);
 
     const [formState, setFormState] = useState({ name: '', description: '', price: '', quantity: '', category: ''});
     const [addProduct] = useMutation(ADD_PRODUCT);
@@ -238,7 +198,7 @@ function AddProduct({setLoading}) {
         {
             toast({
                 title: "Product added.",
-                description: "Your Product has been added to you kosik.",
+                description: "Your Product has been added to your kiosk.",
                 status: "success",
                 isClosable: true,
             })
@@ -247,7 +207,7 @@ function AddProduct({setLoading}) {
         {
             toast({
                 title: "Product failed.",
-                description: "Your Product has failed to be added to you kosik.",
+                description: "Your Product has failed to be added to your kiosk.",
                 status: "error",
                 isClosable: true,
             })
@@ -269,7 +229,7 @@ function AddProduct({setLoading}) {
         [name]: value
       });
     };
-
+ 
     return (
 <>
             <Button ref={btnRef} 
