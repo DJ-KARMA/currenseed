@@ -12,7 +12,6 @@ const { data } = useQuery(QUERY_CATEGORIES);
   if (data) {
     categories = data.categories;
    }
-   console.log(categories)
 
    return (
 			

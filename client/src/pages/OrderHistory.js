@@ -13,8 +13,6 @@ export default function OrderHistory({ item }) {
 
   if (data) {
     user = data.user;
-
-    console.log("order",user);
   }
 
  return (
@@ -61,5 +59,4 @@ export default function OrderHistory({ item }) {
     </Box>              
   </Flex>
   </Box> 
-)
- }  
+)}

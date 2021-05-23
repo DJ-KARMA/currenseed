@@ -35,8 +35,6 @@ const SeedItem = () => {
   }
   
   useEffect(() => {
-
-    console.log("state",state);
     if (data) {
       stripePromise.then((res) => {
         res.redirectToCheckout({ sessionId: data.checkout.session });

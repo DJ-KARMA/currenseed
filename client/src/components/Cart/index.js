@@ -51,8 +51,7 @@ const Cart = () => {
     const checkoutHandler = () => {
       async function savePurchase() {
           const total = calculateTotal();
-          console.log(buyer.data.user);
-          console.log(state.cart)
+
           if(buyer.data.user.seeds>=total)
           {
               spendSeeds({ variables: {seeds: parseFloat(total)} });
