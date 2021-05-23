@@ -217,6 +217,10 @@ const resolvers = {
 
         console.log ("increment",increment);
         console.log ("productId",productId);
+        
+        const updateProduct = await Product.findByIdAndDelete(
+          { _id: productId }
+        );
 
         const updateUser = await User.findOneAndUpdate(
           { _id: context.user._id },
