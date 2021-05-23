@@ -36,8 +36,6 @@ function ProductItem(item) {
     userId = data.user._id;
   }
 
-  console.log("userId",userId,"sellerId",sellerId, "productId", _id);
-
   const { cart } = state;
 
   const addToCart = () => {
@@ -77,7 +75,6 @@ function ProductItem(item) {
               productId: _id
           }
       });
-      console.log("mutationResponse.data.addProduct.products",mutationResponse.data.deleteProduct.products);
 
       dispatch({
           type: UPDATE_PRODUCTS,
@@ -126,7 +123,7 @@ function ProductItem(item) {
             </Box>
             
         <Box textAlign='center' paddingBottom={5}>
-        { (sellerId!=userId) ? 
+        { (sellerId !== userId) ? 
             (<Button to= "/cart" bg="#005C13" color='white' size='lg' mt={3} boxShadow='sm' onClick={addToCart}  >add to cart</Button>)
             
         : (<Button bg="#005C13" color="white" size="lg" boxShadow="sm" onClick={removeFromKiosk}>remove from kiosk</Button>)

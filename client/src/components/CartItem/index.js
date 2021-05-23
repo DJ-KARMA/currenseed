@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 //chakra ui
-import { Box, Text, Input, Image, Container, Button} from "@chakra-ui/react";
+import { Box, Text, Input, Image } from "@chakra-ui/react";
 
 const CartItem = ({ item }) => {
 

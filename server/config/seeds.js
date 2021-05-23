@@ -204,9 +204,5 @@ db.once('open', async () => {
 
   console.log('orders are added to users');
 
-  console.log("user1",user1);
-  console.log("user2",user2);
-  console.log("user3",user3);
-
   process.exit();
 });

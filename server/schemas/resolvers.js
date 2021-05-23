@@ -11,24 +11,14 @@ const resolvers = {
     products: async (parent, { category, name }) => {
       const params = {};
 
-      console.log("category",category);
-      console.log("name", name);
-
       if (category) {
         params.category = category;
-        console.log("params1",params);
       }
   
       if (name) {
-        params.name = {
-          $regex: name
-        };
-
-        console.log("params2",params);
+        params.name = { $regex: name };
       }
 
-
-  
       return await Product.find(params).populate('category');
     },
     product: async (parent, { _id }) => {
@@ -43,18 +33,15 @@ const resolvers = {
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id)
-        .populate(
-        {
+        .populate({
           path: 'orders.products',
           populate: 'category'
         })
-        .populate(
-        {
+        .populate({
           path: 'purchases.products',
           populate: 'category'
         })
-        .populate(
-        {
+        .populate({
           path: 'sales.products',
           populate: 'category'
         });
@@ -69,18 +56,15 @@ const resolvers = {
     getUserById: async (parent, args, context) => {
       
         const user = await User.findById(args._id)
-        .populate(
-        {
+        .populate({
           path: 'orders.products',
           populate: 'category'
         })
-        .populate(
-        {
+        .populate({
           path: 'purchases.products',
           populate: 'category'
         })
-        .populate(
-        {
+        .populate({
           path: 'sales.products',
           populate: 'category'
         });
@@ -109,9 +93,6 @@ const resolvers = {
     checkout: async (parent, { price, quantity }, context) => {
       const url = new URL(context.headers.referer).origin;
   
-      console.log("price",price);
-      console.log("quantity",quantity);
-
       const line_items = [];
   
         const product = await stripe.products.create({
@@ -130,8 +111,8 @@ const resolvers = {
           price: price1.id,
           quantity: 1
         });
-      // }
-      const session = await stripe.checkout.sessions.create({
+
+        const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items,
         mode: 'payment',
@@ -150,7 +131,6 @@ const resolvers = {
       return { token, user };
     },
     addOrder: async (parent, { products }, context) => {
-      console.log(context);
       if (context.user) {
         const order = new Order({ products });
 
@@ -162,7 +142,6 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     addPurchase: async (parent, { products }, context) => {
-      console.log(context);
       if (context.user) {
         const purchase = new Order({ products });
 
@@ -174,7 +153,6 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     addSaleById: async (parent, {_id, products}, context) => {
-
         const sale = new Order({ products });
 
         await User.findByIdAndUpdate(_id, { $push: { sales: sale } },{new: true});
@@ -189,12 +167,12 @@ const resolvers = {
     },
     addSeedsById: async (parent, {_id, seeds }) => {
       const increment = parseFloat(seeds);
-      console.log("increment",increment);
+
       return await User.findByIdAndUpdate(_id, {$inc: { seeds: increment }},{new: true});
     },
     purchaseSeeds: async (parent, {seeds },context) => {
       const increment = parseFloat(seeds);
-      console.log("increment",increment);
+
       return await User.findByIdAndUpdate(context.user._id, {$inc: { seeds: increment }},{new: true});
     },
     spendSeeds: async (parent, {seeds}, context) => {
@@ -203,14 +181,9 @@ const resolvers = {
     },
     addProduct: async (parent,  data , context) => {
       if(context.user) {
-        console.log("data",data);
         const category = await Category.findOne({name:data.category});
-        console.log("category", category)
-        // const product = new Product ( {name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category._id, userId: context.user._id });
         const product = await Product.create({name:data.name, description:data.description, price:data.price, quantity:data.quantity, category:category._id, sellerId: context.user._id });
-        console.log("product",product);
         const user = await User.findByIdAndUpdate(context.user._id, { $push: { products: product } }, {new: true});
-        console.log("user",user);
 
         return user; 
       }

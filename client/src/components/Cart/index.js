@@ -12,7 +12,7 @@ import { ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import Auth from '../../utils/auth';
 //chakra ui
-import {Button, Box, Text, Heading, SimpleGrid, useToast} from "@chakra-ui/react";
+import {Button, Box, Text, Heading, useToast} from "@chakra-ui/react";
 
 const Cart = () => {
     const buyer = useQuery(QUERY_USER);
@@ -51,8 +51,7 @@ const Cart = () => {
     const checkoutHandler = () => {
       async function savePurchase() {
           const total = calculateTotal();
-          console.log(buyer.data.user);
-          console.log(state.cart)
+
           if(buyer.data.user.seeds>=total)
           {
               spendSeeds({ variables: {seeds: parseFloat(total)} });

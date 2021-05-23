@@ -34,7 +34,7 @@ const SellerProfile = ({ item }) => {
     let user;
 
     if (data) {
-         user = data.user;
+        user = data.user;
     }
 
     const [addSeeds] = useMutation(ADD_SEEDS);
@@ -104,7 +104,7 @@ const SellerProfile = ({ item }) => {
                 type: UPDATE_PRODUCTS,
                 products: user.products
             });
-         
+        
         
             // but let's also take each product and save it to IndexedDB using the helper function 
             data.user.products.forEach((product) => 
@@ -127,7 +127,7 @@ const SellerProfile = ({ item }) => {
             });
 
         }
-    }, [state.products.length,state.seeds,data,state.categories.length, loading, dispatch]);
+    }, [state.products.length, state.seeds, data,state.categories.length, loading, dispatch]);
     
     const pseeds = state.seeds.toFixed(2);
 
@@ -270,8 +270,6 @@ function AddProduct({setLoading}) {
       });
     };
 
-
- 
     return (
 <>
             <Button ref={btnRef} 
